@@ -97,6 +97,14 @@ const photos: Photo[] = [
     width: 1920,
     height: 1080,
   },
+  {
+    id: 11,
+    src: "/photos/TealAndOrangeSunset.jpeg",
+    alt: "An orange sunset blends into a teal sky",
+    category: "Landscape",
+    width: 1920,
+    height: 1080,
+  },  
 ]
 
 export default function PhotoGallery() {

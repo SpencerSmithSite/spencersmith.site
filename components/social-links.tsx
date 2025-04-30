@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Github, Linkedin } from "lucide-react"
+import { Github, Linkedin, AppleIcon as AppStore, PlayIcon as PlayStore } from "lucide-react"
 
 interface SocialLinksProps {
   minimal?: boolean
@@ -43,41 +43,11 @@ export default function SocialLinks({ minimal = false, showAppLinks = false }: S
       {(showAppLinks || !minimal) && (
         <>
           <Link href="https://apps.apple.com" target="_blank" rel="noopener noreferrer" className={linkClass}>
-            {/* Apple App Store logo - updated to match the provided image */}
-            <svg
-              width={iconSize}
-              height={iconSize}
-              viewBox="0 0 24 24"
-              fill="currentColor"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M12 2L6.5 12H17.5L12 2Z" />
-              <path d="M12 22L17.5 12H6.5L12 22Z" />
-              <path d="M3 9L6.5 12L3 15V9Z" />
-              <path d="M21 9L17.5 12L21 15V9Z" />
-            </svg>
+            <AppStore size={iconSize} />
             <span className="sr-only">App Store</span>
           </Link>
           <Link href="https://play.google.com" target="_blank" rel="noopener noreferrer" className={linkClass}>
-            {/* Google Play Store logo */}
-            <svg width={iconSize} height={iconSize} viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M4.5 2.253v19.494L14.25 12 4.5 2.253z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-              <path
-                d="M4.5 2.253l13.504 7.384-3.754 2.363L4.5 2.253zM14.25 12l3.754 2.363L4.5 21.747 14.25 12z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="1.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
+            <PlayStore size={iconSize} />
             <span className="sr-only">Play Store</span>
           </Link>
         </>
