@@ -9,9 +9,36 @@ import { ThemeProvider } from "@/components/theme-provider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Spencer Smith | Developer, Photographer, Writer",
-  description: "Personal portfolio website showcasing programming projects, photography, and writings.",
-    generator: 'v0.dev'
+  title: "Spencer Smith | I build things",
+  description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
+  generator: 'v0.dev',
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
+  openGraph: {
+    title: "Spencer Smith | I build things",
+    description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
+    url: "https://spencersmith.site",
+    siteName: "Spencer Smith",
+    images: [
+      {
+        url: "/logo.png",
+        width: 1200,
+        height: 630,
+        alt: "Spencer Smith's Portfolio",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Spencer Smith | I build things",
+    description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
+    images: ["/logo.png"],
+    creator: "@spencersmith",
+  },
 }
 
 export const viewport: Viewport = {

@@ -96,37 +96,41 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ScrollAnimation delay={100}>
               <ProjectCard
-                title="Mobile App"
-                description="A cross-platform mobile application built with React Native"
+                title="Bitcoin Wallet Comparison"
+                description="View and compare bitcoin wallet software options and their feautres. Built with Flutter and Firebase."
                 image="/placeholder.svg?height=400&width=600"
-                tags={["React Native", "Firebase", "Redux"]}
+                tags={["Flutter", "Firebase", "Dart"]}
                 links={{
-                  github: "https://github.com",
-                  appStore: "https://apps.apple.com",
-                  playStore: "https://play.google.com",
+                  github: "https://github.com/spencersmithsite/bitcoin-wallet-comparison",
+                  live: "https://bitcoinwalletcomparison.com",
+                  // appStore: "https://apps.apple.com",
+                  // playStore: "https://play.google.com",
                 }}
               />
             </ScrollAnimation>
             <ScrollAnimation delay={200}>
               <ProjectCard
-                title="Web Dashboard"
-                description="Analytics dashboard with real-time data visualization"
+                title="IDK what do YOU want?"
+                description="A restaurant decision-making app that helps you choose where to eat when you (or your partner) can't decide. Built with Flutter and Firebase."
                 image="/placeholder.svg?height=400&width=600"
-                tags={["React", "D3.js", "Node.js"]}
+                tags={["Flutter", "Firebase", "Dart"]}
                 links={{
-                  github: "https://github.com",
-                  live: "https://example.com",
+                  github: "https://github.com/SpencerSmithSite/IDK-what-do-YOU-want",
+                  live: "https://idk-what-do-you-want-6dd19.web.app/",
+                  // appStore: "https://apps.apple.com",
+                  // playStore: "https://play.google.com",
                 }}
               />
             </ScrollAnimation>
             <ScrollAnimation delay={300}>
               <ProjectCard
-                title="AI Assistant"
-                description="Natural language processing chatbot for customer service"
+                title="Spencer Smith's Portfolio"
+                description="My personal portfolio website. Built with Next.js, Tailwind CSS, and TypeScript."
                 image="/placeholder.svg?height=400&width=600"
-                tags={["Python", "TensorFlow", "NLP"]}
+                tags={["Next.js", "Tailwind CSS", "TypeScript"]}
                 links={{
-                  github: "https://github.com",
+                  github: "https://github.com/spencersmithsite/spencersmith.site",
+                  live: "https://spencersmith.site",
                 }}
               />
             </ScrollAnimation>

@@ -76,7 +76,7 @@ export default function Navbar() {
               onClick={() => scrollToSection("contact")}
               className="bg-gradient-to-r from-primary-500 to-secondary-400 hover:from-primary-600 hover:to-secondary-500 text-white"
             >
-              Hire Me
+              Contact Me
             </Button>
           </div>
 
@@ -120,7 +120,7 @@ export default function Navbar() {
                 onClick={() => scrollToSection("contact")}
                 className="bg-gradient-to-r from-primary-500 to-secondary-400 hover:from-primary-600 hover:to-secondary-500 text-white"
               >
-                Hire Me
+                Contact Me
               </Button>
             </div>
           </nav>
