@@ -171,11 +171,13 @@ export default function Home() {
               </span>
             </h2>
           </ScrollAnimation>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ScrollAnimation delay={100}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
+          gap-8">
+{/*             <ScrollAnimation delay={100}>
               <BlogPreview
                 title="The Future of Web Development"
-                excerpt="Exploring the latest trends and technologies shaping the future of web development..."
+                excerpt="Exploring the latest trends and technologies shaping 
+                the future of web development..."
                 date="May 15, 2023"
                 image="/placeholder.svg?height=300&width=500"
               />
@@ -183,7 +185,8 @@ export default function Home() {
             <ScrollAnimation delay={200}>
               <BlogPreview
                 title="Photography Tips for Beginners"
-                excerpt="Essential tips and techniques to improve your photography skills and capture stunning images..."
+                excerpt="Essential tips and techniques to improve your 
+                photography skills and capture stunning images..."
                 date="April 22, 2023"
                 image="/placeholder.svg?height=300&width=500"
               />
@@ -191,7 +194,8 @@ export default function Home() {
             <ScrollAnimation delay={300}>
               <BlogPreview
                 title="My Journey as a Developer"
-                excerpt="Personal reflections on my path from beginner to professional developer and lessons learned along the way..."
+                excerpt="Personal reflections on my path from beginner to 
+                professional developer and lessons learned along the way..."
                 date="March 10, 2023"
                 image="/placeholder.svg?height=300&width=500"
               />
@@ -199,11 +203,15 @@ export default function Home() {
           </div>
           <ScrollAnimation delay={400}>
             <div className="text-center mt-12">
-              <Button variant="outline" className="border-primary-500 text-primary-500 hover:bg-primary-500/10">
+              <Button variant="outline" className="border-primary-500 
+              text-primary-500 hover:bg-primary-500/10">
                 Read More Articles
               </Button>
             </div>
-          </ScrollAnimation>
+          </ScrollAnimation> */}
+          <div className="flex justify-center items-center min-h-[150px]">
+            <span className="text-zinc-400 text-xl">Writings coming soon...maybe</span>
+          </div>
         </div>
       </section>
 
