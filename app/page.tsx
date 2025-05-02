@@ -98,7 +98,7 @@ export default function Home() {
               <ProjectCard
                 title="Bitcoin Wallet Comparison"
                 description="View and compare bitcoin wallet software options and their feautres. Built with Flutter and Firebase."
-                image="/public/photos/BitcoinWalletComparison.png?height=400&width=600"
+                image="/photos/BitcoinWalletComparison.png"
                 tags={["Flutter", "Firebase", "Dart"]}
                 links={{
                   github: "https://github.com/spencersmithsite/bitcoin-wallet-comparison",
@@ -112,7 +112,7 @@ export default function Home() {
               <ProjectCard
                 title="IDK what do YOU want?"
                 description="A restaurant decision-making app that helps you choose where to eat when you (or your partner) can't decide. Built with Flutter and Firebase."
-                image="/photos/IDKwhatdoYOUwant.png?height=400&width=600"
+                image="/photos/IDKwhatdoYOUwant.png"
                 tags={["Flutter", "Firebase", "Dart"]}
                 links={{
                   github: "https://github.com/SpencerSmithSite/IDK-what-do-YOU-want",
@@ -126,7 +126,7 @@ export default function Home() {
               <ProjectCard
                 title="Spencer Smith's Portfolio"
                 description="My personal portfolio website. Built with Next.js, Tailwind CSS, and TypeScript."
-                image="/photos/Portfolio.png?height=400&width=600"
+                image="/photos/Portfolio.png"
                 tags={["Next.js", "Tailwind CSS", "TypeScript"]}
                 links={{
                   github: "https://github.com/spencersmithsite/spencersmith.site",
