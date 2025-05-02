@@ -171,9 +171,9 @@ export default function Home() {
               </span>
             </h2>
           </ScrollAnimation>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
+          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
           gap-8">
-{/*             <ScrollAnimation delay={100}>
+            <ScrollAnimation delay={100}>
               <BlogPreview
                 title="The Future of Web Development"
                 excerpt="Exploring the latest trends and technologies shaping 
