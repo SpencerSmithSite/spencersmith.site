@@ -238,7 +238,7 @@ export default function Home() {
                 <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
                   Spencer Smith
                 </h3>
-                <p className="text-zinc-400 mt-1">Developer. Photographer. Writer.</p>
+                <p className="text-zinc-400 mt-1">I build things.</p>
               </div>
             </div>
             <SocialLinks />
