@@ -1,4 +1,5 @@
-![image](public/photos/Portfolio.png)
+<img width="1728" height="930" alt="image" src="https://github.com/user-attachments/assets/f013639e-e31c-46bb-bf93-5272c39cbc74" />
+
 # Spencer Smith's Portfolio Website
 
 A modern, performant, and visually stunning portfolio website built with cutting-edge web technologies. Visit the live site at [spencersmith.site](https://spencersmith.site).
