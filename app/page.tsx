@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 
@@ -13,8 +14,12 @@ import ParticleNetworkBackground from "@/components/particle-network-background"
 import ContactForm from "@/components/contact-form"
 import ScrollAnimation from "@/components/scroll-animation"
 import FloatingOrbs from "@/components/floating-orbs"
+import AllProjectsModal from "@/components/all-projects-modal"
+import { featuredProjects } from "@/lib/projects"
 
 export default function Home() {
+  const [showAllProjects, setShowAllProjects] = useState(false)
+
   return (
     <div className="min-h-screen bg-ctp-base text-ctp-text">
       <Navbar />
@@ -77,53 +82,32 @@ export default function Home() {
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ctp-mantle/50 to-transparent pointer-events-none" />
         <div className="container mx-auto px-4 relative z-10">
           <ScrollAnimation>
-            <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-              <span className="gradient-text">My Projects</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-center">
+              <span className="gradient-text">Featured Projects</span>
             </h2>
+            <p className="text-ctp-subtext0 text-center mb-12 max-w-2xl mx-auto">
+              Highlighting my most impactful and innovative work
+            </p>
           </ScrollAnimation>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <ScrollAnimation delay={100}>
-              <ProjectCard
-                title="Bitcoin Wallet Comparison"
-                description="View and compare bitcoin wallet software options and their features. Built with Flutter and Firebase."
-                image="/photos/BitcoinWalletComparison.png"
-                tags={["Flutter", "Firebase", "Dart"]}
-                links={{
-                  github: "https://github.com/spencersmithsite/bitcoin-wallet-comparison",
-                  live: "https://bitcoinwalletcomparison.com",
-                }}
-              />
-            </ScrollAnimation>
-            <ScrollAnimation delay={200}>
-              <ProjectCard
-                title="IDK what do YOU want?"
-                description="A restaurant decision-making app that helps you choose where to eat when you can't decide. Built with Flutter and Firebase."
-                image="/photos/IDKwhatdoYOUwant.png"
-                tags={["Flutter", "Firebase", "Dart"]}
-                links={{
-                  github: "https://github.com/SpencerSmithSite/IDK-what-do-YOU-want",
-                  live: "https://idk-what-do-you-want-6dd19.web.app/",
-                }}
-              />
-            </ScrollAnimation>
-            <ScrollAnimation delay={300}>
-              <ProjectCard
-                title="Spencer Smith's Portfolio"
-                description="My personal portfolio website. Built with Next.js, Tailwind CSS, and TypeScript."
-                image="/photos/Portfolio.png"
-                tags={["Next.js", "Tailwind CSS", "TypeScript"]}
-                links={{
-                  github: "https://github.com/spencersmithsite/spencersmith.site",
-                  live: "https://spencersmith.site",
-                }}
-              />
-            </ScrollAnimation>
+            {featuredProjects.map((project, index) => (
+              <ScrollAnimation key={project.id} delay={100 * (index + 1)}>
+                <ProjectCard
+                  title={project.title}
+                  description={project.description}
+                  image={project.image}
+                  tags={project.tags}
+                  links={project.links}
+                />
+              </ScrollAnimation>
+            ))}
           </div>
           <ScrollAnimation delay={400}>
             <div className="text-center mt-12">
               <Button
                 variant="outline"
-                className="border-ctp-teal/50 text-ctp-teal hover:bg-ctp-teal/10 hover:border-ctp-teal transition-all duration-300"
+                onClick={() => setShowAllProjects(true)}
+                className="border-ctp-teal/50 text-ctp-teal hover:bg-ctp-teal/10 hover:border-ctp-teal transition-all duration-300 hover:shadow-glow-sm"
               >
                 View All Projects
               </Button>
@@ -131,6 +115,12 @@ export default function Home() {
           </ScrollAnimation>
         </div>
       </section>
+
+      {/* All Projects Modal */}
+      <AllProjectsModal
+        open={showAllProjects}
+        onOpenChange={setShowAllProjects}
+      />
 
       {/* Photography Section */}
       <section className="py-20 relative" id="photography">
