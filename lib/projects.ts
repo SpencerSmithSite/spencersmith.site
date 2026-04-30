@@ -85,7 +85,7 @@ export const projects: Project[] = [
     id: "bitcoin-wallet-comparison",
     title: "Bitcoin Wallet Comparison",
     description: "A comprehensive comparison tool for Bitcoin wallets. Compare features, security, and usability to find the wallet that best suits your needs.",
-    image: "/photos/BitcoinWalletComparison.png",
+    image: "/photos/BitcoinWalletComparison.jpg",
     tags: ["Flutter", "Firebase", "Bitcoin"],
     links: {
       github: "https://github.com/SpencerSmithSite/Bitcoin-Wallet-Comparison",
@@ -97,7 +97,7 @@ export const projects: Project[] = [
     id: "idk-what-do-you-want",
     title: "IDK what do YOU want?",
     description: "A restaurant decision-making app that helps you choose where to eat when you can't decide. Features random selection, head-to-head comparison, and custom lists.",
-    image: "/photos/IDKwhatdoYOUwant.png",
+    image: "/photos/IDK.jpg",
     tags: ["Flutter", "Firebase", "Mobile"],
     links: {
       github: "https://github.com/SpencerSmithSite/IDK-what-do-YOU-want",
