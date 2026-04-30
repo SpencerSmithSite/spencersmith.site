@@ -1,26 +1,27 @@
 "use client"
 
 import Image from "next/image"
+import { ChevronDown } from "lucide-react"
 
 import { Button } from "@/components/ui/button"
 import ProjectCard from "@/components/project-card"
 import PhotoGallery from "@/components/photo-gallery"
-import BlogPreview from "@/components/blog-preview"
 import SocialLinks from "@/components/social-links"
 import Navbar from "@/components/navbar"
 import FloatingLogo from "@/components/floating-logo"
 import ParticleNetworkBackground from "@/components/particle-network-background"
 import ContactForm from "@/components/contact-form"
 import ScrollAnimation from "@/components/scroll-animation"
+import FloatingOrbs from "@/components/floating-orbs"
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-zinc-900 text-zinc-100">
+    <div className="min-h-screen bg-ctp-base text-ctp-text">
       <Navbar />
+      <FloatingOrbs />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
-        {/* Replace the static background with the particle network */}
         <ParticleNetworkBackground />
 
         <div className="container relative z-10 mx-auto px-4 text-center">
@@ -28,12 +29,15 @@ export default function Home() {
             <FloatingLogo />
           </div>
           <ScrollAnimation>
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-              Hello, I'm <span className="text-white">Spencer Smith</span>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
+              <span className="gradient-text">Hello, I&apos;m</span>{" "}
+              <span className="text-ctp-text">Spencer Smith</span>
             </h1>
           </ScrollAnimation>
           <ScrollAnimation delay={200}>
-            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-zinc-300">I Build Things.</p>
+            <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-ctp-subtext0">
+              I Build Things.
+            </p>
           </ScrollAnimation>
           <ScrollAnimation delay={400}>
             <div className="flex flex-wrap justify-center gap-4">
@@ -44,7 +48,7 @@ export default function Home() {
                     projectsSection.scrollIntoView({ behavior: "smooth" })
                   }
                 }}
-                className="bg-gradient-to-r from-primary-500 to-secondary-400 hover:from-primary-600 hover:to-secondary-500 text-white"
+                className="relative overflow-hidden bg-gradient-to-r from-ctp-mauve to-ctp-sapphire hover:from-ctp-pink hover:to-ctp-sky text-ctp-crust font-semibold transition-all duration-300 hover:shadow-glow-md hover:scale-105"
               >
                 View My Work
               </Button>
@@ -56,7 +60,7 @@ export default function Home() {
                   }
                 }}
                 variant="outline"
-                className="border-secondary-500 text-secondary-500 hover:bg-secondary-500/10"
+                className="border-ctp-mauve/50 text-ctp-mauve hover:bg-ctp-mauve/10 hover:border-ctp-mauve transition-all duration-300 hover:shadow-glow-sm"
               >
                 Contact Me
               </Button>
@@ -64,61 +68,41 @@ export default function Home() {
           </ScrollAnimation>
         </div>
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <svg
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="text-zinc-400"
-          >
-            <path
-              d="M12 5V19M12 19L5 12M12 19L19 12"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
+          <ChevronDown className="w-6 h-6 text-ctp-overlay1" />
         </div>
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 bg-zinc-900" id="projects">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative" id="projects">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-ctp-mantle/50 to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollAnimation>
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-                My Projects
-              </span>
+              <span className="gradient-text">My Projects</span>
             </h2>
           </ScrollAnimation>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <ScrollAnimation delay={100}>
               <ProjectCard
                 title="Bitcoin Wallet Comparison"
-                description="View and compare bitcoin wallet software options and their feautres. Built with Flutter and Firebase."
+                description="View and compare bitcoin wallet software options and their features. Built with Flutter and Firebase."
                 image="/photos/BitcoinWalletComparison.png"
                 tags={["Flutter", "Firebase", "Dart"]}
                 links={{
                   github: "https://github.com/spencersmithsite/bitcoin-wallet-comparison",
                   live: "https://bitcoinwalletcomparison.com",
-                  // appStore: "https://apps.apple.com",
-                  // playStore: "https://play.google.com",
                 }}
               />
             </ScrollAnimation>
             <ScrollAnimation delay={200}>
               <ProjectCard
                 title="IDK what do YOU want?"
-                description="A restaurant decision-making app that helps you choose where to eat when you (or your partner) can't decide. Built with Flutter and Firebase."
+                description="A restaurant decision-making app that helps you choose where to eat when you can't decide. Built with Flutter and Firebase."
                 image="/photos/IDKwhatdoYOUwant.png"
                 tags={["Flutter", "Firebase", "Dart"]}
                 links={{
                   github: "https://github.com/SpencerSmithSite/IDK-what-do-YOU-want",
                   live: "https://idk-what-do-you-want-6dd19.web.app/",
-                  // appStore: "https://apps.apple.com",
-                  // playStore: "https://play.google.com",
                 }}
               />
             </ScrollAnimation>
@@ -137,7 +121,10 @@ export default function Home() {
           </div>
           <ScrollAnimation delay={400}>
             <div className="text-center mt-12">
-              <Button variant="outline" className="border-secondary-500 text-secondary-500 hover:bg-secondary-500/10">
+              <Button
+                variant="outline"
+                className="border-ctp-teal/50 text-ctp-teal hover:bg-ctp-teal/10 hover:border-ctp-teal transition-all duration-300"
+              >
                 View All Projects
               </Button>
             </div>
@@ -146,13 +133,12 @@ export default function Home() {
       </section>
 
       {/* Photography Section */}
-      <section className="py-20 bg-zinc-800/50" id="photography">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative" id="photography">
+        <div className="absolute inset-0 bg-ctp-mantle/30 pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollAnimation>
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-                Photography
-              </span>
+              <span className="gradient-text-alt">Photography</span>
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={200}>
@@ -162,70 +148,32 @@ export default function Home() {
       </section>
 
       {/* Writing Section */}
-      <section className="py-20 bg-zinc-900" id="writing">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative" id="writing">
+        <div className="absolute inset-0 bg-gradient-to-b from-ctp-mantle/30 to-transparent pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollAnimation>
             <h2 className="text-3xl md:text-4xl font-bold mb-12 text-center">
-              <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-                My Writings
-              </span>
+              <span className="gradient-text">My Writings</span>
             </h2>
           </ScrollAnimation>
-          {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 
-          gap-8">
-            <ScrollAnimation delay={100}>
-              <BlogPreview
-                title="The Future of Web Development"
-                excerpt="Exploring the latest trends and technologies shaping 
-                the future of web development..."
-                date="May 15, 2023"
-                image="/placeholder.svg?height=300&width=500"
-              />
-            </ScrollAnimation>
-            <ScrollAnimation delay={200}>
-              <BlogPreview
-                title="Photography Tips for Beginners"
-                excerpt="Essential tips and techniques to improve your 
-                photography skills and capture stunning images..."
-                date="April 22, 2023"
-                image="/placeholder.svg?height=300&width=500"
-              />
-            </ScrollAnimation>
-            <ScrollAnimation delay={300}>
-              <BlogPreview
-                title="My Journey as a Developer"
-                excerpt="Personal reflections on my path from beginner to 
-                professional developer and lessons learned along the way..."
-                date="March 10, 2023"
-                image="/placeholder.svg?height=300&width=500"
-              />
-            </ScrollAnimation>
-          </div>
-          <ScrollAnimation delay={400}>
-            <div className="text-center mt-12">
-              <Button variant="outline" className="border-primary-500 
-              text-primary-500 hover:bg-primary-500/10">
-                Read More Articles
-              </Button>
-            </div>
-          </ScrollAnimation> */}
           <div className="flex justify-center items-center min-h-[150px]">
-            <span className="text-zinc-400 text-xl">Writings coming soon...maybe</span>
+            <span className="text-ctp-overlay1 text-xl glass-subtle px-6 py-3 rounded-full">
+              Writings coming soon...maybe
+            </span>
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section className="py-20 bg-zinc-800/50" id="contact">
-        <div className="container mx-auto px-4">
+      <section className="py-20 relative" id="contact">
+        <div className="absolute inset-0 bg-ctp-mantle/40 pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <ScrollAnimation>
-            <div className="max-w-3xl mx-auto backdrop-blur-lg bg-zinc-800/30 p-8 md:p-12 rounded-2xl border border-zinc-700/50 shadow-xl">
+            <div className="max-w-3xl mx-auto glass-card p-8 md:p-12 rounded-2xl">
               <h2 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-                <span className="bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-                  Get In Touch
-                </span>
+                <span className="gradient-text">Get In Touch</span>
               </h2>
-              <p className="text-center text-zinc-300 mb-8">
+              <p className="text-center text-ctp-subtext0 mb-8">
                 Have a project in mind or just want to say hello? Feel free to reach out!
               </p>
               <ContactForm />
@@ -235,24 +183,24 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 bg-zinc-900 border-t border-zinc-800">
-        <div className="container mx-auto px-4">
+      <footer className="py-12 relative border-t border-ctp-surface0/50">
+        <div className="absolute inset-0 bg-ctp-crust/50 pointer-events-none" />
+        <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col md:flex-row justify-between items-center">
-            <div className="mb-6 md:mb-0 flex items-center gap-3">
-              <div className="relative w-12 h-12">
-                <Image src="/logo.png" alt="Logo" fill className="object-contain" />
+            <div className="mb-6 md:mb-0 flex items-center gap-3 group">
+              <div className="relative w-12 h-12 transition-transform duration-300 group-hover:scale-110">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-ctp-mauve/20 to-ctp-sapphire/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <Image src="/logo.png" alt="Logo" fill className="object-contain relative z-10" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-                  Spencer Smith
-                </h3>
-                <p className="text-zinc-400 mt-1">I build things.</p>
+                <h3 className="text-2xl font-bold gradient-text">Spencer Smith</h3>
+                <p className="text-ctp-subtext0 mt-1">I build things.</p>
               </div>
             </div>
             <SocialLinks />
           </div>
-          <div className="border-t border-zinc-800 mt-8 pt-8 text-center text-zinc-500 text-sm">
-            <p>© {new Date().getFullYear()} Spencer Smith. All rights reserved.</p>
+          <div className="border-t border-ctp-surface0/30 mt-8 pt-8 text-center text-ctp-overlay0 text-sm">
+            <p>&copy; {new Date().getFullYear()} Spencer Smith. All rights reserved.</p>
           </div>
         </div>
       </footer>

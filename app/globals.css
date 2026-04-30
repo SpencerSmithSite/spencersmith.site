@@ -2,50 +2,108 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Catppuccin Mocha Theme */
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-    --primary: 28 100% 63%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 181 100% 56%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 28 100% 63%;
-    --radius: 0.5rem;
+    /* Catppuccin Mocha Base Colors */
+    --ctp-rosewater: 10 56% 91%;
+    --ctp-flamingo: 0 59% 88%;
+    --ctp-pink: 316 72% 86%;
+    --ctp-mauve: 267 84% 81%;
+    --ctp-red: 343 81% 75%;
+    --ctp-maroon: 350 65% 77%;
+    --ctp-peach: 23 92% 75%;
+    --ctp-yellow: 41 86% 83%;
+    --ctp-green: 115 54% 76%;
+    --ctp-teal: 170 57% 73%;
+    --ctp-sky: 189 71% 73%;
+    --ctp-sapphire: 199 76% 69%;
+    --ctp-blue: 217 92% 76%;
+    --ctp-lavender: 232 97% 85%;
+    --ctp-text: 226 64% 88%;
+    --ctp-subtext1: 227 35% 80%;
+    --ctp-subtext0: 228 24% 72%;
+    --ctp-overlay2: 228 17% 64%;
+    --ctp-overlay1: 227 15% 56%;
+    --ctp-overlay0: 228 13% 49%;
+    --ctp-surface2: 228 12% 39%;
+    --ctp-surface1: 227 12% 32%;
+    --ctp-surface0: 230 14% 25%;
+    --ctp-base: 240 21% 15%;
+    --ctp-mantle: 240 21% 12%;
+    --ctp-crust: 240 23% 9%;
+
+    /* Map to semantic tokens - Dark theme as default */
+    --background: 240 21% 15%;
+    --foreground: 226 64% 88%;
+    --card: 230 14% 25%;
+    --card-foreground: 226 64% 88%;
+    --popover: 240 21% 12%;
+    --popover-foreground: 226 64% 88%;
+    --primary: 267 84% 81%;
+    --primary-foreground: 240 23% 9%;
+    --secondary: 170 57% 73%;
+    --secondary-foreground: 240 23% 9%;
+    --muted: 227 12% 32%;
+    --muted-foreground: 228 24% 72%;
+    --accent: 199 76% 69%;
+    --accent-foreground: 240 23% 9%;
+    --destructive: 343 81% 75%;
+    --destructive-foreground: 240 23% 9%;
+    --border: 228 12% 39%;
+    --input: 227 12% 32%;
+    --ring: 267 84% 81%;
+    --radius: 0.75rem;
+
+    /* Glass effect variables */
+    --glass-bg: 240 21% 15% / 0.6;
+    --glass-border: 226 64% 88% / 0.1;
+    --glass-highlight: 226 64% 88% / 0.05;
   }
 
   .dark {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 28 100% 63%;
-    --primary-foreground: 0 0% 98%;
-    --secondary: 181 100% 56%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --ring: 28 100% 63%;
+    --background: 240 21% 15%;
+    --foreground: 226 64% 88%;
+    --card: 230 14% 25%;
+    --card-foreground: 226 64% 88%;
+    --popover: 240 21% 12%;
+    --popover-foreground: 226 64% 88%;
+    --primary: 267 84% 81%;
+    --primary-foreground: 240 23% 9%;
+    --secondary: 170 57% 73%;
+    --secondary-foreground: 240 23% 9%;
+    --muted: 227 12% 32%;
+    --muted-foreground: 228 24% 72%;
+    --accent: 199 76% 69%;
+    --accent-foreground: 240 23% 9%;
+    --destructive: 343 81% 75%;
+    --destructive-foreground: 240 23% 9%;
+    --border: 228 12% 39%;
+    --input: 227 12% 32%;
+    --ring: 267 84% 81%;
+  }
+
+  .light {
+    /* Light mode - Catppuccin Latte inspired but keeping dark default */
+    --background: 220 23% 95%;
+    --foreground: 234 16% 35%;
+    --card: 220 22% 92%;
+    --card-foreground: 234 16% 35%;
+    --popover: 220 23% 95%;
+    --popover-foreground: 234 16% 35%;
+    --primary: 266 85% 58%;
+    --primary-foreground: 220 23% 95%;
+    --secondary: 183 74% 35%;
+    --secondary-foreground: 220 23% 95%;
+    --muted: 223 16% 83%;
+    --muted-foreground: 233 10% 47%;
+    --accent: 220 91% 54%;
+    --accent-foreground: 220 23% 95%;
+    --destructive: 347 87% 44%;
+    --destructive-foreground: 220 23% 95%;
+    --border: 223 16% 83%;
+    --input: 223 16% 83%;
+    --ring: 266 85% 58%;
   }
 }
 
@@ -55,46 +113,207 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
   }
 }
 
-/* Custom scrollbar */
+/* Custom scrollbar with Catppuccin colors */
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.1);
+  background: hsl(var(--ctp-mantle));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, rgba(255, 145, 66, 0.5), rgba(30, 250, 255, 0.5));
-  border-radius: 4px;
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--ctp-mauve)),
+    hsl(var(--ctp-sapphire))
+  );
+  border-radius: 5px;
+  border: 2px solid hsl(var(--ctp-mantle));
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(to bottom, rgba(255, 145, 66, 0.8), rgba(30, 250, 255, 0.8));
+  background: linear-gradient(
+    to bottom,
+    hsl(var(--ctp-pink)),
+    hsl(var(--ctp-sky))
+  );
 }
 
-/* Glass effect */
-.glass-effect {
+/* Glassmorphism utilities */
+.glass {
+  background: hsl(var(--ctp-base) / 0.7);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid hsl(var(--ctp-surface2) / 0.3);
+  box-shadow: 
+    0 4px 30px hsl(var(--ctp-crust) / 0.3),
+    inset 0 1px 0 hsl(var(--ctp-text) / 0.05);
+}
+
+.glass-subtle {
+  background: hsl(var(--ctp-surface0) / 0.5);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-  background: rgba(15, 23, 42, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  border: 1px solid hsl(var(--ctp-surface2) / 0.2);
 }
 
-/* Logo animation */
-@keyframes logo-pulse {
-  0% {
-    box-shadow: 0 0 0 0 rgba(255, 145, 66, 0.4);
+.glass-card {
+  background: hsl(var(--ctp-surface0) / 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid hsl(var(--ctp-surface2) / 0.4);
+  box-shadow: 
+    0 8px 32px hsl(var(--ctp-crust) / 0.4),
+    inset 0 1px 0 hsl(var(--ctp-text) / 0.05);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--ctp-mauve)) 0%,
+    hsl(var(--ctp-sapphire)) 50%,
+    hsl(var(--ctp-teal)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-alt {
+  background: linear-gradient(
+    135deg,
+    hsl(var(--ctp-peach)) 0%,
+    hsl(var(--ctp-pink)) 50%,
+    hsl(var(--ctp-mauve)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient border */
+.gradient-border {
+  position: relative;
+  background: hsl(var(--ctp-surface0));
+  border-radius: var(--radius);
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: calc(var(--radius) + 2px);
+  padding: 2px;
+  background: linear-gradient(
+    135deg,
+    hsl(var(--ctp-mauve)),
+    hsl(var(--ctp-sapphire)),
+    hsl(var(--ctp-teal)),
+    hsl(var(--ctp-mauve))
+  );
+  background-size: 300% 300%;
+  animation: gradient-shift 8s ease infinite;
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.gradient-border:hover::before {
+  opacity: 1;
+}
+
+/* Glow effects */
+.glow-mauve {
+  box-shadow: 0 0 20px hsl(var(--ctp-mauve) / 0.3),
+              0 0 40px hsl(var(--ctp-mauve) / 0.15);
+}
+
+.glow-teal {
+  box-shadow: 0 0 20px hsl(var(--ctp-teal) / 0.3),
+              0 0 40px hsl(var(--ctp-teal) / 0.15);
+}
+
+.glow-sapphire {
+  box-shadow: 0 0 20px hsl(var(--ctp-sapphire) / 0.3),
+              0 0 40px hsl(var(--ctp-sapphire) / 0.15);
+}
+
+/* Animations */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
   }
-  70% {
-    box-shadow: 0 0 0 15px rgba(30, 250, 255, 0);
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(30, 250, 255, 0);
+    background-position: 200% 0;
+  }
+}
+
+@keyframes orbit {
+  0% {
+    transform: rotate(0deg) translateX(var(--orbit-radius, 100px)) rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg) translateX(var(--orbit-radius, 100px)) rotate(-360deg);
+  }
+}
+
+/* Logo animation - updated for Catppuccin */
+@keyframes logo-pulse {
+  0% {
+    box-shadow: 0 0 0 0 hsl(var(--ctp-mauve) / 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 15px hsl(var(--ctp-sapphire) / 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 hsl(var(--ctp-sapphire) / 0);
   }
 }
 
@@ -103,13 +322,94 @@
   border-radius: 50%;
 }
 
+/* Animate float class */
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    hsl(var(--ctp-surface0)) 0%,
+    hsl(var(--ctp-surface2)) 50%,
+    hsl(var(--ctp-surface0)) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+}
+
 /* Scroll animations */
 .animate-in {
   opacity: 1 !important;
   transform: translateY(0) !important;
 }
 
-/* Smooth scrolling for the entire page */
+/* Smooth scrolling */
 html {
   scroll-behavior: smooth;
+}
+
+/* Selection color */
+::selection {
+  background: hsl(var(--ctp-mauve) / 0.3);
+  color: hsl(var(--ctp-text));
+}
+
+/* Focus visible styles */
+:focus-visible {
+  outline: 2px solid hsl(var(--ctp-mauve));
+  outline-offset: 2px;
+}
+
+/* Noise texture overlay for glass effects */
+.noise-overlay {
+  position: relative;
+}
+
+.noise-overlay::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%' height='100%' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.03;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+/* Catppuccin color utilities for direct use */
+@layer utilities {
+  .text-ctp-rosewater { color: hsl(var(--ctp-rosewater)); }
+  .text-ctp-flamingo { color: hsl(var(--ctp-flamingo)); }
+  .text-ctp-pink { color: hsl(var(--ctp-pink)); }
+  .text-ctp-mauve { color: hsl(var(--ctp-mauve)); }
+  .text-ctp-red { color: hsl(var(--ctp-red)); }
+  .text-ctp-maroon { color: hsl(var(--ctp-maroon)); }
+  .text-ctp-peach { color: hsl(var(--ctp-peach)); }
+  .text-ctp-yellow { color: hsl(var(--ctp-yellow)); }
+  .text-ctp-green { color: hsl(var(--ctp-green)); }
+  .text-ctp-teal { color: hsl(var(--ctp-teal)); }
+  .text-ctp-sky { color: hsl(var(--ctp-sky)); }
+  .text-ctp-sapphire { color: hsl(var(--ctp-sapphire)); }
+  .text-ctp-blue { color: hsl(var(--ctp-blue)); }
+  .text-ctp-lavender { color: hsl(var(--ctp-lavender)); }
+  .text-ctp-text { color: hsl(var(--ctp-text)); }
+  .text-ctp-subtext1 { color: hsl(var(--ctp-subtext1)); }
+  .text-ctp-subtext0 { color: hsl(var(--ctp-subtext0)); }
+  
+  .bg-ctp-base { background-color: hsl(var(--ctp-base)); }
+  .bg-ctp-mantle { background-color: hsl(var(--ctp-mantle)); }
+  .bg-ctp-crust { background-color: hsl(var(--ctp-crust)); }
+  .bg-ctp-surface0 { background-color: hsl(var(--ctp-surface0)); }
+  .bg-ctp-surface1 { background-color: hsl(var(--ctp-surface1)); }
+  .bg-ctp-surface2 { background-color: hsl(var(--ctp-surface2)); }
+  .bg-ctp-mauve { background-color: hsl(var(--ctp-mauve)); }
+  .bg-ctp-teal { background-color: hsl(var(--ctp-teal)); }
+  .bg-ctp-sapphire { background-color: hsl(var(--ctp-sapphire)); }
+  
+  .border-ctp-surface0 { border-color: hsl(var(--ctp-surface0)); }
+  .border-ctp-surface1 { border-color: hsl(var(--ctp-surface1)); }
+  .border-ctp-surface2 { border-color: hsl(var(--ctp-surface2)); }
+  .border-ctp-mauve { border-color: hsl(var(--ctp-mauve)); }
+  .border-ctp-teal { border-color: hsl(var(--ctp-teal)); }
 }

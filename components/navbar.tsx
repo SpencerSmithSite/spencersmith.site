@@ -22,61 +22,64 @@ export default function Navbar() {
     const section = document.getElementById(sectionId)
     if (section) {
       section.scrollIntoView({ behavior: "smooth" })
-      setIsMobileMenuOpen(false) // Close mobile menu if open
+      setIsMobileMenuOpen(false)
     }
   }
 
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" })
-    setIsMobileMenuOpen(false) // Close mobile menu if open
+    setIsMobileMenuOpen(false)
   }
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "bg-zinc-900/80 backdrop-blur-lg shadow-md" : "bg-transparent"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        isScrolled
+          ? "glass border-b border-ctp-surface2/30 shadow-lg shadow-ctp-crust/20"
+          : "bg-transparent"
       }`}
     >
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
-          <button onClick={scrollToTop} className="flex items-center gap-3 cursor-pointer">
-            <div className="relative w-10 h-10 md:w-12 md:h-12">
-              <Image src="/logo.png" alt="Logo" fill className="object-contain" priority />
+          <button
+            onClick={scrollToTop}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
+            <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110">
+              <div className="absolute inset-0 rounded-full bg-gradient-to-br from-ctp-mauve/30 to-ctp-sapphire/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <Image
+                src="/logo.png"
+                alt="Logo"
+                fill
+                className="object-contain relative z-10"
+                priority
+              />
             </div>
-            <span className="font-bold text-xl bg-clip-text text-transparent bg-gradient-to-r from-primary-500 to-secondary-400">
-              Spencer Smith
-            </span>
+            <span className="font-bold text-xl gradient-text">Spencer Smith</span>
           </button>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="text-zinc-300 hover:text-white transition-colors"
-            >
-              Projects
-            </button>
-            <button
-              onClick={() => scrollToSection("photography")}
-              className="text-zinc-300 hover:text-white transition-colors"
-            >
-              Photography
-            </button>
-            <button
-              onClick={() => scrollToSection("writing")}
-              className="text-zinc-300 hover:text-white transition-colors"
-            >
-              Writing
-            </button>
+          <nav className="hidden md:flex items-center gap-1">
+            {["projects", "photography", "writing"].map((section) => (
+              <button
+                key={section}
+                onClick={() => scrollToSection(section)}
+                className="relative px-4 py-2 text-ctp-subtext1 hover:text-ctp-text transition-colors duration-300 capitalize group"
+              >
+                <span className="relative z-10">{section}</span>
+                <span className="absolute inset-0 rounded-lg bg-ctp-surface0/0 group-hover:bg-ctp-surface0/50 transition-all duration-300" />
+                <span className="absolute bottom-1 left-1/2 w-0 h-0.5 bg-gradient-to-r from-ctp-mauve to-ctp-sapphire group-hover:w-3/4 group-hover:left-[12.5%] transition-all duration-300" />
+              </button>
+            ))}
           </nav>
 
           <div className="hidden md:flex items-center gap-4">
             <SocialLinks minimal={true} showAppLinks={true} />
             <Button
               onClick={() => scrollToSection("contact")}
-              className="bg-gradient-to-r from-primary-500 to-secondary-400 hover:from-primary-600 hover:to-secondary-500 text-white"
+              className="relative overflow-hidden bg-gradient-to-r from-ctp-mauve to-ctp-sapphire hover:from-ctp-pink hover:to-ctp-sky text-ctp-crust font-semibold transition-all duration-300 hover:shadow-glow-md hover:scale-105"
             >
-              Contact Me
+              <span className="relative z-10">Contact Me</span>
             </Button>
           </div>
 
@@ -84,48 +87,59 @@ export default function Navbar() {
           <Button
             variant="ghost"
             size="icon"
-            className="md:hidden text-zinc-300"
+            className="md:hidden text-ctp-subtext1 hover:text-ctp-text hover:bg-ctp-surface0/50 transition-all duration-300"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="relative w-6 h-6">
+              <span
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                  isMobileMenuOpen ? "opacity-100 rotate-0" : "opacity-0 rotate-90"
+                }`}
+              >
+                <X size={24} />
+              </span>
+              <span
+                className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-300 ${
+                  isMobileMenuOpen ? "opacity-0 -rotate-90" : "opacity-100 rotate-0"
+                }`}
+              >
+                <Menu size={24} />
+              </span>
+            </div>
           </Button>
         </div>
       </div>
 
       {/* Mobile Menu */}
-      {isMobileMenuOpen && (
-        <div className="md:hidden bg-zinc-900/95 backdrop-blur-lg">
-          <nav className="container mx-auto px-4 py-6 flex flex-col gap-4">
+      <div
+        className={`md:hidden glass-card overflow-hidden transition-all duration-500 ease-out ${
+          isMobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+        }`}
+      >
+        <nav className="container mx-auto px-4 py-6 flex flex-col gap-2">
+          {["projects", "photography", "writing"].map((section, index) => (
             <button
-              onClick={() => scrollToSection("projects")}
-              className="text-zinc-300 hover:text-white transition-colors py-2 border-b border-zinc-800 text-left"
+              key={section}
+              onClick={() => scrollToSection(section)}
+              className="text-ctp-subtext1 hover:text-ctp-text transition-all duration-300 py-3 px-4 rounded-lg hover:bg-ctp-surface0/50 text-left capitalize border-b border-ctp-surface2/20 last:border-b-0"
+              style={{
+                animationDelay: `${index * 50}ms`,
+              }}
             >
-              Projects
+              {section}
             </button>
-            <button
-              onClick={() => scrollToSection("photography")}
-              className="text-zinc-300 hover:text-white transition-colors py-2 border-b border-zinc-800 text-left"
+          ))}
+          <div className="pt-4 flex justify-between items-center border-t border-ctp-surface2/30 mt-2">
+            <SocialLinks showAppLinks={true} />
+            <Button
+              onClick={() => scrollToSection("contact")}
+              className="bg-gradient-to-r from-ctp-mauve to-ctp-sapphire hover:from-ctp-pink hover:to-ctp-sky text-ctp-crust font-semibold"
             >
-              Photography
-            </button>
-            <button
-              onClick={() => scrollToSection("writing")}
-              className="text-zinc-300 hover:text-white transition-colors py-2 border-b border-zinc-800 text-left"
-            >
-              Writing
-            </button>
-            <div className="pt-4 flex justify-between items-center">
-              <SocialLinks showAppLinks={true} />
-              <Button
-                onClick={() => scrollToSection("contact")}
-                className="bg-gradient-to-r from-primary-500 to-secondary-400 hover:from-primary-600 hover:to-secondary-500 text-white"
-              >
-                Contact Me
-              </Button>
-            </div>
-          </nav>
-        </div>
-      )}
+              Contact Me
+            </Button>
+          </div>
+        </nav>
+      </div>
     </header>
   )
 }

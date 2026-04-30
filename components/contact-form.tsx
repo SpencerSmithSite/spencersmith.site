@@ -1,9 +1,9 @@
 "use client"
 
 import type React from "react"
-
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Send, CheckCircle2, AlertCircle, Loader2 } from "lucide-react"
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
@@ -11,6 +11,7 @@ export default function ContactForm() {
     message: string
     success: boolean
   } | null>(null)
+  const [focusedField, setFocusedField] = useState<string | null>(null)
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -21,7 +22,6 @@ export default function ContactForm() {
     const formData = new FormData(form)
 
     try {
-      // Replace 'YOUR_FORMSPREE_ID' with your actual Formspree form ID
       const response = await fetch("https://formspree.io/f/mldbgwbb", {
         method: "POST",
         body: formData,
@@ -43,7 +43,7 @@ export default function ContactForm() {
           message: data.error || "There was an error sending your message. Please try again later.",
         })
       }
-    } catch (error) {
+    } catch {
       setFormState({
         success: false,
         message: "There was an error sending your message. Please try again later.",
@@ -53,24 +53,37 @@ export default function ContactForm() {
     }
   }
 
+  const inputClasses = (fieldName: string) =>
+    `w-full px-4 py-3 glass-subtle border transition-all duration-300 rounded-lg text-ctp-text placeholder:text-ctp-overlay0 ${
+      focusedField === fieldName
+        ? "border-ctp-mauve/50 ring-2 ring-ctp-mauve/20 shadow-glow-sm"
+        : "border-ctp-surface2/50 hover:border-ctp-surface2"
+    }`
+
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {formState && (
         <div
-          className={`p-4 rounded-lg ${
-            formState.success ? "bg-green-500/20 text-green-200" : "bg-red-500/20 text-red-200"
+          className={`p-4 rounded-lg glass-subtle flex items-center gap-3 animate-fade-in ${
+            formState.success
+              ? "border border-ctp-green/30 text-ctp-green"
+              : "border border-ctp-red/30 text-ctp-red"
           }`}
         >
+          {formState.success ? (
+            <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
+          ) : (
+            <AlertCircle className="w-5 h-5 flex-shrink-0" />
+          )}
           {formState.message}
         </div>
       )}
 
-      {/* Hidden field for Formspree to know where to send the email */}
       <input type="hidden" name="_replyto" value="website@spencersmith.site" />
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-zinc-300 mb-1">
+        <div className="space-y-2">
+          <label htmlFor="name" className="block text-sm font-medium text-ctp-subtext1">
             Name
           </label>
           <input
@@ -78,12 +91,14 @@ export default function ContactForm() {
             id="name"
             name="name"
             required
-            className="w-full px-4 py-3 bg-zinc-700/50 border border-zinc-600 rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent text-zinc-100"
+            className={inputClasses("name")}
             placeholder="Your name"
+            onFocus={() => setFocusedField("name")}
+            onBlur={() => setFocusedField(null)}
           />
         </div>
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-zinc-300 mb-1">
+        <div className="space-y-2">
+          <label htmlFor="email" className="block text-sm font-medium text-ctp-subtext1">
             Email
           </label>
           <input
@@ -91,13 +106,16 @@ export default function ContactForm() {
             id="email"
             name="email"
             required
-            className="w-full px-4 py-3 bg-zinc-700/50 border border-zinc-600 rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent text-zinc-100"
+            className={inputClasses("email")}
             placeholder="your.email@example.com"
+            onFocus={() => setFocusedField("email")}
+            onBlur={() => setFocusedField(null)}
           />
         </div>
       </div>
-      <div>
-        <label htmlFor="subject" className="block text-sm font-medium text-zinc-300 mb-1">
+
+      <div className="space-y-2">
+        <label htmlFor="subject" className="block text-sm font-medium text-ctp-subtext1">
           Subject
         </label>
         <input
@@ -105,12 +123,15 @@ export default function ContactForm() {
           id="subject"
           name="subject"
           required
-          className="w-full px-4 py-3 bg-zinc-700/50 border border-zinc-600 rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent text-zinc-100"
-          placeholder="Subject"
+          className={inputClasses("subject")}
+          placeholder="What is this about?"
+          onFocus={() => setFocusedField("subject")}
+          onBlur={() => setFocusedField(null)}
         />
       </div>
-      <div>
-        <label htmlFor="message" className="block text-sm font-medium text-zinc-300 mb-1">
+
+      <div className="space-y-2">
+        <label htmlFor="message" className="block text-sm font-medium text-ctp-subtext1">
           Message
         </label>
         <textarea
@@ -118,17 +139,28 @@ export default function ContactForm() {
           name="message"
           rows={5}
           required
-          className="w-full px-4 py-3 bg-zinc-700/50 border border-zinc-600 rounded-lg focus:ring-2 focus:ring-secondary-500 focus:border-transparent text-zinc-100"
-          placeholder="Your message"
-        ></textarea>
+          className={`${inputClasses("message")} resize-none`}
+          placeholder="Tell me about your project or idea..."
+          onFocus={() => setFocusedField("message")}
+          onBlur={() => setFocusedField(null)}
+        />
       </div>
+
       <div>
         <Button
           type="submit"
           disabled={isSubmitting}
-          className="w-full bg-gradient-to-r from-primary-500 to-secondary-400 hover:from-primary-600 hover:to-secondary-500 text-white"
+          className="w-full relative overflow-hidden bg-gradient-to-r from-ctp-mauve to-ctp-sapphire hover:from-ctp-pink hover:to-ctp-sky text-ctp-crust font-semibold transition-all duration-300 hover:shadow-glow-md hover:scale-[1.02] disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
         >
-          {isSubmitting ? "Sending..." : "Send Message"}
+          <span className={`flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitting ? "opacity-0" : "opacity-100"}`}>
+            <Send className="w-4 h-4" />
+            Send Message
+          </span>
+          {isSubmitting && (
+            <span className="absolute inset-0 flex items-center justify-center">
+              <Loader2 className="w-5 h-5 animate-spin" />
+            </span>
+          )}
         </Button>
       </div>
     </form>
