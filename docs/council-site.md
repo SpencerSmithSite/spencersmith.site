@@ -18,6 +18,18 @@ It is plain HTML, CSS and vanilla JavaScript. Next.js does not build it, lint it
 or know it exists — it is copied verbatim into the deployment as a static asset,
 so editing a page is editing that page.
 
+## Why it is not React
+
+It sits inside a Next app, so the obvious question is why it is not just more
+pages of that app. Because it is four static pages, and the one dynamic thing —
+searching 687 works — is a `filter()` over a 700 KB JSON file: one request and a
+few milliseconds. Rewriting it as components would add a build between the author
+and a one-line copy edit, put the pages behind hydration, and buy nothing.
+
+Everything in it is path-relative, which is what lets the same files work at
+`/council`, at a subdomain, or opened from a directory. Keep it that way — the
+routing notes below depend on it.
+
 ## Why it needs two lines of `next.config.mjs`
 
 Dropping static HTML into `public/` does *not* give you a working `/council`.
@@ -145,3 +157,18 @@ python3 -m http.server 8123 --directory public/council
 It must be served over HTTP rather than opened as a file — `sources.html`
 fetches `sources.json`, and browsers block `fetch` from `file://`. Every other
 page works opened directly.
+
+## Accessibility and browser support
+
+- Skip link, landmarks, and `aria-current` on the active nav item.
+- The carousel is a native `scroll-snap` track: it works with a trackpad, a
+  touchscreen and a scrollbar before any JavaScript runs. Arrows, dots and
+  keyboard support are layered on top, and the active slide is set on click
+  rather than derived from the scroll event, so the dots do not freeze in a
+  background tab where `requestAnimationFrame` never fires.
+- `prefers-reduced-motion` disables smooth scrolling and transitions.
+- WebP images and `color-mix()` need a 2023-or-later browser.
+- It degrades: with JavaScript off, Home and Docs read fine and the hero's
+  figures are still correct, because they are in the markup and only *refreshed*
+  from `sources.json` rather than injected by it. Sources is the one page that
+  needs JavaScript, since its whole content is the catalogue.
