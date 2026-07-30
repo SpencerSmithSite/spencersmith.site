@@ -1,0 +1,596 @@
+/* Council — site styles.
+ *
+ * One stylesheet, no build step, no framework. The site is four pages; a
+ * toolchain would cost more than it saves and would put a `node_modules` between
+ * the author and a one-line copy edit.
+ *
+ * Colours come from the app's own icon — the indigo it is drawn on, the lavender
+ * of the book's spine, the gold of the cross — so the site and the thing it is
+ * advertising look like the same product.
+ *
+ * Every colour is a custom property declared twice, once per theme. Nothing
+ * below the `:root` blocks names a literal colour, which is what makes the dark
+ * and light modes genuinely equal rather than one being the real design and the
+ * other an afterthought.
+ */
+
+/* ---------------------------------------------------------------- palette -- */
+
+:root {
+  --indigo-900: #14111f;
+  --indigo-800: #1b1729;
+  --indigo-700: #241f36;
+  --indigo-500: #3b2e6b;
+  --indigo-400: #5a4aa0;
+  --lavender: #a99be0;
+  --gold: #f2d99b;
+
+  --radius: 14px;
+  --radius-lg: 22px;
+  --max: 1120px;
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+  /* The corpus is set in a serif. Quoting Chrysostom in the same face as the
+   * navigation makes him look like interface copy. */
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Georgia", serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 8px rgb(0 0 0 / 0.04);
+  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08), 0 12px 32px rgb(0 0 0 / 0.06);
+  --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.12), 0 24px 64px rgb(0 0 0 / 0.10);
+
+  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+}
+
+/* Light is the default so a page rendered with JavaScript disabled is still
+ * legible rather than dark text on a dark ground. */
+:root,
+:root[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #f6f5fa;
+  --bg-tint: #efedf7;
+  --surface: #ffffff;
+  --surface-2: #faf9fd;
+  --border: #e2dfee;
+  --border-strong: #cfcae0;
+
+  --text: #17142a;
+  --text-dim: #5c5678;
+  --text-faint: #857fa0;
+
+  --accent: #55429c;
+  --accent-hover: #43327f;
+  --accent-soft: #ede9f8;
+  --on-accent: #ffffff;
+
+  --gold-ink: #7a5c12;
+  --gold-soft: #fbf3de;
+
+  --hero-from: #3b2e6b;
+  --hero-to: #6a53b8;
+  --hero-ink: #ffffff;
+
+  --shadow-tint: 0 1px 2px rgb(23 20 42 / 0.05), 0 8px 24px rgb(23 20 42 / 0.06);
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+
+  --bg: #100e1a;
+  --bg-tint: #161327;
+  --surface: #1a1729;
+  --surface-2: #211d33;
+  --border: #2c2742;
+  --border-strong: #3d3659;
+
+  --text: #eeebf8;
+  --text-dim: #a9a3c6;
+  --text-faint: #7d7799;
+
+  --accent: #b4a6ec;
+  --accent-hover: #c8bcf5;
+  --accent-soft: #241f3c;
+  --on-accent: #17142a;
+
+  --gold-ink: var(--gold);
+  --gold-soft: #2a2418;
+
+  --hero-from: #241d45;
+  --hero-to: #3f3178;
+  --hero-ink: #f3f0ff;
+
+  --shadow-tint: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+}
+
+/* The toggle stamps `data-theme` on <html>, so it must win over this. The
+ * attribute selectors above are more specific than this media query, which is
+ * what makes an explicit choice stick in both directions. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    color-scheme: dark;
+
+    --bg: #100e1a;
+    --bg-tint: #161327;
+    --surface: #1a1729;
+    --surface-2: #211d33;
+    --border: #2c2742;
+    --border-strong: #3d3659;
+
+    --text: #eeebf8;
+    --text-dim: #a9a3c6;
+    --text-faint: #7d7799;
+
+    --accent: #b4a6ec;
+    --accent-hover: #c8bcf5;
+    --accent-soft: #241f3c;
+    --on-accent: #17142a;
+
+    --gold-ink: var(--gold);
+    --gold-soft: #2a2418;
+
+    --hero-from: #241d45;
+    --hero-to: #3f3178;
+    --hero-ink: #f3f0ff;
+
+    --shadow-tint: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+  }
+}
+
+/* ------------------------------------------------------------------ base -- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  color: var(--accent-hover);
+  text-decoration: underline;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.5em;
+  font-weight: 680;
+}
+
+h1 {
+  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
+  letter-spacing: -0.035em;
+}
+h2 {
+  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+}
+h3 {
+  font-size: 1.2rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+code,
+kbd {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--accent-soft);
+  color: var(--text);
+  padding: 0.15em 0.42em;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+}
+
+pre {
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.15rem;
+  overflow-x: auto;
+  margin: 0 0 1.25rem;
+  line-height: 1.5;
+}
+
+pre code {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: 0.86rem;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.wrap {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+}
+
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+  padding: 0.6rem 1rem;
+  z-index: 100;
+  border-radius: 0 0 var(--radius) 0;
+}
+.skip:focus {
+  left: 0;
+}
+
+/* -------------------------------------------------------------- nav bar --- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  backdrop-filter: saturate(180%) blur(16px);
+  -webkit-backdrop-filter: saturate(180%) blur(16px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav__inner {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding: 0.6rem var(--gutter);
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 700;
+  font-size: 1.06rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  margin-right: auto;
+}
+.brand:hover {
+  text-decoration: none;
+  color: var(--text);
+}
+.brand img {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 0.15rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav__links a {
+  display: block;
+  padding: 0.42rem 0.78rem;
+  border-radius: 999px;
+  color: var(--text-dim);
+  font-size: 0.95rem;
+  font-weight: 550;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+}
+.nav__links a:hover {
+  background: var(--accent-soft);
+  color: var(--text);
+  text-decoration: none;
+}
+.nav__links a[aria-current="page"] {
+  color: var(--accent);
+  background: var(--accent-soft);
+}
+
+.icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  flex: none;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text-dim);
+  cursor: pointer;
+  transition: background 0.18s var(--ease), color 0.18s var(--ease),
+    border-color 0.18s var(--ease);
+}
+.icon-btn:hover {
+  color: var(--text);
+  border-color: var(--border-strong);
+}
+.icon-btn svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* The toggle shows the theme you would switch *to*, so exactly one glyph is
+ * ever visible. */
+:root[data-theme="dark"] .icon-btn__sun,
+:root:not([data-theme="dark"]) .icon-btn__moon {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .icon-btn__sun {
+    display: none;
+  }
+  :root:not([data-theme]) .icon-btn__moon {
+    display: block;
+  }
+}
+
+.nav__toggle {
+  display: none;
+}
+
+@media (max-width: 720px) {
+  .nav__toggle {
+    display: inline-flex;
+  }
+  .nav__links {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.4rem var(--gutter) 0.8rem;
+    box-shadow: var(--shadow-tint);
+  }
+  .nav__links[hidden] {
+    display: none;
+  }
+  .nav__links a {
+    padding: 0.7rem 0.8rem;
+    border-radius: var(--radius);
+  }
+}
+
+/* --------------------------------------------------------------- footer --- */
+
+.footer {
+  margin-top: 5rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg-tint);
+  padding: 2.5rem 0 3rem;
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.footer__inner {
+  max-width: var(--max);
+  margin-inline: auto;
+  padding-inline: var(--gutter);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem 2.5rem;
+  align-items: baseline;
+}
+
+.footer__inner nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 1.25rem;
+  margin-left: auto;
+}
+
+/* -------------------------------------------------------------- buttons --- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.72rem 1.35rem;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  font: inherit;
+  font-weight: 620;
+  font-size: 0.98rem;
+  cursor: pointer;
+  transition: transform 0.18s var(--ease), background 0.18s var(--ease),
+    border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+}
+.btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--on-accent);
+  box-shadow: var(--shadow-tint);
+}
+.btn--primary:hover {
+  background: var(--accent-hover);
+  color: var(--on-accent);
+}
+
+.btn--ghost {
+  background: var(--surface);
+  border-color: var(--border-strong);
+  color: var(--text);
+}
+.btn--ghost:hover {
+  background: var(--surface-2);
+  color: var(--text);
+}
+
+.btn--onhero {
+  background: rgb(255 255 255 / 0.14);
+  border-color: rgb(255 255 255 / 0.28);
+  color: var(--hero-ink);
+  backdrop-filter: blur(8px);
+}
+.btn--onhero:hover {
+  background: rgb(255 255 255 / 0.22);
+  color: var(--hero-ink);
+}
+
+.btn[disabled],
+.btn[aria-disabled="true"] {
+  opacity: 0.55;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---------------------------------------------------------------- shared -- */
+
+.section {
+  padding: clamp(3rem, 8vw, 5.5rem) 0;
+}
+
+.section__head {
+  max-width: 46rem;
+  margin-bottom: 2.5rem;
+}
+.section__head p {
+  color: var(--text-dim);
+  font-size: 1.06rem;
+  margin-bottom: 0;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-tint);
+}
+
+.grid {
+  display: grid;
+  gap: 1.15rem;
+}
+.grid--3 {
+  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
+}
+.grid--2 {
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--text-dim);
+}
+
+.muted {
+  color: var(--text-dim);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* A wide element that must scroll inside itself rather than pushing the page
+ * sideways. */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.95rem;
+}
+th,
+td {
+  text-align: left;
+  padding: 0.6rem 0.9rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+th {
+  font-weight: 650;
+  color: var(--text-dim);
+  font-size: 0.86rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+td:first-child,
+th:first-child {
+  padding-left: 0;
+}

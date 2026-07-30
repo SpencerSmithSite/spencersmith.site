@@ -1,0 +1,218 @@
+/* Download page — the detected platform, then everything else. */
+
+.dl-head {
+  padding: clamp(2.5rem, 6vw, 4rem) 0 1.75rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-tint);
+}
+.dl-head .lede {
+  max-width: 42rem;
+  margin-bottom: 0;
+}
+
+.primary {
+  padding-top: 2.5rem;
+}
+
+.primary__card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2rem);
+  padding: clamp(1.5rem, 4vw, 2.25rem);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(150deg, var(--hero-from), var(--hero-to));
+  color: var(--hero-ink);
+  box-shadow: var(--shadow-tint);
+}
+
+@media (max-width: 760px) {
+  .primary__card {
+    grid-template-columns: minmax(0, 1fr);
+    text-align: left;
+  }
+  .primary__action {
+    justify-self: stretch;
+  }
+  .primary__action .btn {
+    width: 100%;
+  }
+}
+
+.primary__card--unknown {
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
+  grid-template-columns: minmax(0, 1fr);
+}
+.primary__card--unknown .primary__requires {
+  color: var(--text-dim);
+}
+
+.primary__icon {
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  border-radius: 16px;
+  background: rgb(255 255 255 / 0.14);
+  border: 1px solid rgb(255 255 255 / 0.2);
+}
+.primary__icon svg {
+  width: 30px;
+  height: 30px;
+}
+
+.primary__eyebrow {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.6);
+  margin: 0 0 0.15rem;
+}
+
+.primary__text h2 {
+  margin: 0 0 0.2rem;
+  color: inherit;
+  font-size: clamp(1.5rem, 3.5vw, 2rem);
+}
+
+.primary__requires {
+  margin: 0;
+  color: rgb(255 255 255 / 0.8);
+  font-size: 0.95rem;
+}
+
+.primary__note {
+  margin: 0.5rem 0 0;
+  font-size: 0.88rem;
+  color: rgb(255 255 255 / 0.62);
+}
+
+.primary__action {
+  text-align: center;
+}
+.primary__card .btn--primary {
+  background: var(--gold);
+  color: #2a2110;
+}
+.primary__card .btn--primary:hover {
+  background: #f7e5b8;
+  color: #2a2110;
+}
+.primary__card .btn[disabled] {
+  background: rgb(255 255 255 / 0.16);
+  border-color: rgb(255 255 255 / 0.26);
+  color: var(--hero-ink);
+}
+
+.primary__meta {
+  margin: 0.6rem 0 0;
+  font-size: 0.8rem;
+  color: rgb(255 255 255 / 0.62);
+}
+.primary__card--unknown .primary__meta {
+  color: var(--text-faint);
+}
+
+/* --------------------------------------------------------- all platforms -- */
+
+.others {
+  padding-top: clamp(2.5rem, 6vw, 3.5rem);
+}
+.others h2 {
+  font-size: 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.platforms {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface);
+}
+
+.platform {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1.1rem;
+  padding: 1.1rem 1.35rem;
+  border-bottom: 1px solid var(--border);
+}
+.platform:last-child {
+  border-bottom: 0;
+}
+.platform--current {
+  background: var(--accent-soft);
+}
+
+@media (max-width: 620px) {
+  .platform {
+    grid-template-columns: auto minmax(0, 1fr);
+    row-gap: 0.85rem;
+  }
+  .platform__action {
+    grid-column: 1 / -1;
+  }
+  .platform__action .btn {
+    width: 100%;
+  }
+}
+
+.platform__icon {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 11px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+}
+.platform__icon svg {
+  width: 21px;
+  height: 21px;
+}
+
+.platform__text h3 {
+  margin: 0 0 0.1rem;
+  font-size: 1.02rem;
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  flex-wrap: wrap;
+}
+.platform__text p {
+  margin: 0;
+  font-size: 0.9rem;
+  color: var(--text-dim);
+}
+.platform__meta {
+  font-size: 0.8rem !important;
+  color: var(--text-faint) !important;
+  margin-top: 0.15rem !important;
+}
+
+.pill {
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.2em 0.6em;
+  border-radius: 999px;
+  background: var(--accent);
+  color: var(--on-accent);
+}
+
+.grid .card h3 {
+  margin-bottom: 0.4rem;
+}
+.grid .card p {
+  margin-bottom: 0;
+  font-size: 0.95rem;
+}

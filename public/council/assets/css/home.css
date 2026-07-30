@@ -1,0 +1,398 @@
+/* Home page only — hero, feature grid, screenshot carousel. */
+
+/* ------------------------------------------------------------------ hero -- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(3rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 5rem);
+  background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
+  color: var(--hero-ink);
+  isolation: isolate;
+}
+
+/* A soft light source behind the copy, so the flat gradient has somewhere to
+ * come from. Purely decorative and hidden from assistive tech. */
+.hero__bg {
+  position: absolute;
+  inset: -30% -10% auto -10%;
+  height: 130%;
+  z-index: -1;
+  background:
+    radial-gradient(38rem 26rem at 22% 18%, rgb(255 255 255 / 0.16), transparent 65%),
+    radial-gradient(30rem 22rem at 88% 78%, rgb(242 217 155 / 0.14), transparent 62%);
+}
+
+.hero__inner {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
+}
+
+/* Stacked, with the copy still first. Leading with the screenshot was tried and
+ * is wrong on a phone: a 620px-tall device mock pushes the headline entirely
+ * below the fold, so the first thing a visitor sees is a picture of a phone on
+ * their phone, with nothing telling them what it is. */
+@media (max-width: 900px) {
+  .hero__inner {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .hero__shot {
+    margin-top: 1rem;
+  }
+}
+@media (max-width: 560px) {
+  .hero .phone {
+    width: min(250px, 66vw);
+  }
+}
+
+.hero__eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 0 0 1rem;
+}
+
+.hero h1 {
+  color: var(--hero-ink);
+  margin-bottom: 1.1rem;
+}
+
+.hero__lede {
+  font-size: clamp(1.05rem, 1.9vw, 1.22rem);
+  max-width: 34rem;
+  color: rgb(255 255 255 / 0.86);
+  margin-bottom: 2rem;
+}
+.hero__lede strong {
+  color: var(--hero-ink);
+  font-weight: 650;
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2.75rem;
+}
+
+/* On the hero the primary button sits on indigo, so it inverts to a light fill
+ * rather than using the page accent, which would be indigo on indigo. */
+.hero .btn--primary {
+  background: var(--gold);
+  color: #2a2110;
+}
+.hero .btn--primary:hover {
+  background: #f7e5b8;
+  color: #2a2110;
+}
+
+.hero__stats {
+  display: grid;
+  grid-template-columns: repeat(4, auto);
+  justify-content: start;
+  gap: 0 clamp(1.25rem, 4vw, 2.75rem);
+  margin: 0;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgb(255 255 255 / 0.18);
+}
+.hero__stats dt {
+  font-size: 0.74rem;
+  font-weight: 650;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  color: rgb(255 255 255 / 0.62);
+}
+.hero__stats dd {
+  margin: 0.15rem 0 0;
+  font-size: clamp(1.25rem, 3vw, 1.7rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 560px) {
+  .hero__stats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.1rem 1rem;
+  }
+}
+
+/* ----------------------------------------------------------- phone frame -- */
+
+.phone {
+  --bezel: 11px;
+  width: min(300px, 74vw);
+  margin-inline: auto;
+  padding: var(--bezel);
+  border-radius: 46px;
+  background: linear-gradient(155deg, #3a3550, #17141f 55%, #2a2539);
+  box-shadow:
+    0 0 0 1.5px rgb(255 255 255 / 0.10),
+    0 30px 60px -18px rgb(0 0 0 / 0.55),
+    0 8px 18px -6px rgb(0 0 0 / 0.4);
+}
+
+.phone__screen {
+  position: relative;
+  border-radius: 36px;
+  overflow: hidden;
+  background: #000;
+  aspect-ratio: 1080 / 2424;
+}
+
+.phone__screen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+}
+
+/* The pill cut-out. Drawn rather than baked into the screenshot so it stays
+ * crisp at any size and matches whatever the image behind it is. */
+.phone__screen::after {
+  content: "";
+  position: absolute;
+  top: 9px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 31%;
+  height: 22px;
+  border-radius: 999px;
+  background: #000;
+}
+
+/* --------------------------------------------------------------- section -- */
+
+.section--tint {
+  background: var(--bg-tint);
+  border-block: 1px solid var(--border);
+}
+
+.feature__icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+.feature__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.feature h3 {
+  margin-bottom: 0.45rem;
+}
+.feature p {
+  color: var(--text-dim);
+  font-size: 0.97rem;
+  margin-bottom: 0;
+}
+
+.collections td:first-child {
+  white-space: normal;
+}
+.collections__note {
+  margin-top: 1rem;
+  font-size: 0.93rem;
+}
+
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: clamp(2rem, 5vw, 3.5rem);
+  align-items: start;
+}
+@media (max-width: 860px) {
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.backend h3 {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.backend p {
+  color: var(--text-dim);
+  font-size: 0.97rem;
+  margin-bottom: 0;
+}
+
+.pill {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.22em 0.62em;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent);
+  border: 1px solid var(--border);
+}
+.pill--default {
+  background: var(--gold-soft);
+  color: var(--gold-ink);
+}
+.pill--warn {
+  background: color-mix(in srgb, #d97706 14%, transparent);
+  color: #b45309;
+  border-color: color-mix(in srgb, #d97706 30%, transparent);
+}
+:root[data-theme="dark"] .pill--warn {
+  color: #fbbf24;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .pill--warn {
+    color: #fbbf24;
+  }
+}
+
+.cta {
+  text-align: center;
+  padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
+  border-radius: var(--radius-lg);
+  background: linear-gradient(150deg, var(--hero-from), var(--hero-to));
+  color: var(--hero-ink);
+}
+.cta h2 {
+  color: var(--hero-ink);
+  margin-bottom: 0.4rem;
+}
+.cta p {
+  color: rgb(255 255 255 / 0.78);
+  margin-bottom: 1.75rem;
+}
+.cta .btn--primary {
+  background: var(--gold);
+  color: #2a2110;
+}
+.cta .btn--primary:hover {
+  background: #f7e5b8;
+  color: #2a2110;
+}
+
+/* -------------------------------------------------------------- carousel -- */
+
+.carousel {
+  position: relative;
+  margin-top: 0.5rem;
+}
+
+.carousel__track {
+  display: flex;
+  gap: clamp(1rem, 3vw, 2rem);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  /* Leading and trailing space so the first and last slides can still centre
+   * themselves under `scroll-snap-align: center`. */
+  padding: 1rem max(var(--gutter), calc(50% - 150px)) 1.5rem;
+  scrollbar-width: none;
+}
+.carousel__track::-webkit-scrollbar {
+  display: none;
+}
+.carousel__track:focus-visible {
+  outline-offset: -4px;
+}
+
+.slide {
+  flex: 0 0 auto;
+  width: min(300px, 74vw);
+  scroll-snap-align: center;
+  text-align: center;
+  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+}
+
+/* Off-centre slides recede. Applied by the script, which knows which slide is
+ * actually snapped. */
+.slide:not(.is-active) {
+  opacity: 0.42;
+  transform: scale(0.93);
+}
+
+.slide .phone {
+  width: 100%;
+}
+
+.slide__caption {
+  margin: 1.15rem auto 0;
+  max-width: 26rem;
+}
+.slide__caption h3 {
+  font-size: 1.02rem;
+  margin-bottom: 0.25rem;
+}
+.slide__caption p {
+  font-size: 0.91rem;
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.carousel__arrow {
+  position: absolute;
+  top: clamp(140px, 26vw, 250px);
+  z-index: 3;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-tint);
+  transition: background 0.18s var(--ease), opacity 0.18s var(--ease);
+}
+.carousel__arrow:hover {
+  background: var(--surface-2);
+}
+.carousel__arrow[disabled] {
+  opacity: 0.3;
+  cursor: default;
+}
+.carousel__arrow svg {
+  width: 20px;
+  height: 20px;
+}
+.carousel__arrow--prev {
+  left: max(0.75rem, calc(50% - min(50% - 1rem, 480px)));
+}
+.carousel__arrow--next {
+  right: max(0.75rem, calc(50% - min(50% - 1rem, 480px)));
+}
+
+.carousel__dots {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.carousel__dots button {
+  width: 8px;
+  height: 8px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--border-strong);
+  cursor: pointer;
+  transition: background 0.2s var(--ease), width 0.2s var(--ease);
+}
+.carousel__dots button[aria-selected="true"] {
+  background: var(--accent);
+  width: 22px;
+}
