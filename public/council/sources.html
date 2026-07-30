@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sources — Council</title>
+<meta name="description" content="Every one of the 687 public-domain works in Council's library, searchable, with its translator, edition, provenance and an excerpt of its own opening.">
+<link rel="icon" href="assets/img/icon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/sources.css">
+<script>
+(function(){try{var t=localStorage.getItem('council-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon.png" alt="">
+      Council
+    </a>
+    <button class="icon-btn nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sources.html">Sources</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="download.html">Download</a></li>
+    </ul>
+    <button class="icon-btn js-theme" type="button" aria-label="Switch theme">
+      <svg class="icon-btn__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-btn__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-head">
+    <div class="wrap">
+      <span class="eyebrow">The library</span>
+      <h1>Every work in Council</h1>
+      <p class="lede">
+        All <strong data-stat="sources">687</strong> of them, with the
+        translator, edition and digitisation each one came from — and an
+        excerpt of its own opening rather than a description written about it.
+        Nothing here is a summary standing in for a text.
+      </p>
+    </div>
+  </section>
+
+  <div class="controls" id="controls">
+    <div class="wrap">
+      <div class="searchbar">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" id="q" placeholder="Search 687 works by title, author or opening line…" autocomplete="off" aria-label="Search the library">
+        <button type="button" class="searchbar__clear" id="clear" hidden aria-label="Clear search">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+        </button>
+      </div>
+
+      <div class="filters">
+        <label class="select">
+          <span>Tradition</span>
+          <select id="f-tradition"><option value="">All</option></select>
+        </label>
+        <label class="select">
+          <span>Kind</span>
+          <select id="f-type"><option value="">All</option></select>
+        </label>
+        <label class="select">
+          <span>Collection</span>
+          <select id="f-collection"><option value="">All</option></select>
+        </label>
+        <label class="select">
+          <span>Sort</span>
+          <select id="f-sort">
+            <option value="author">Author A–Z</option>
+            <option value="title">Title A–Z</option>
+            <option value="largest">Largest first</option>
+            <option value="smallest">Smallest first</option>
+          </select>
+        </label>
+        <button type="button" class="btn btn--ghost btn--sm" id="reset">Reset</button>
+      </div>
+
+      <p class="count" id="count" role="status" aria-live="polite">Loading the catalogue…</p>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <ul class="cards" id="results"></ul>
+
+    <p class="empty" id="empty" hidden>
+      No work matches that. Try a broader term — or
+      <a href="#request">ask for it to be added</a>.
+    </p>
+
+    <div class="more">
+      <button type="button" class="btn btn--ghost" id="more" hidden>Show more</button>
+    </div>
+  </div>
+
+  <!-- ---------------------------------------------------------- request -- -->
+
+  <section class="section section--tint" id="request">
+    <div class="wrap">
+      <div class="request">
+        <div>
+          <span class="eyebrow">Something missing?</span>
+          <h2>Request a work</h2>
+          <p>
+            The library only holds works that are public domain in the United
+            States and available as real, checkable text. If something you need
+            meets that bar and is not here, say so — the corpus grows by
+            request more than by plan.
+          </p>
+          <p class="muted">
+            Deliberately absent, and not faked: Pentecostal and Oriental
+            Orthodox standards, whose defining documents are 20th-century and
+            still in copyright. A gap is better than an invention.
+          </p>
+        </div>
+
+        <form class="form" id="request-form">
+          <div class="form__row">
+            <label class="field">
+              <span>Name</span>
+              <input type="text" name="name" required autocomplete="name" placeholder="Your name">
+            </label>
+            <label class="field">
+              <span>Email</span>
+              <input type="email" name="email" required autocomplete="email" placeholder="you@example.com">
+            </label>
+          </div>
+          <label class="field">
+            <span>Work or author</span>
+            <input type="text" name="subject" required placeholder="e.g. Wesley's Journal, or the 1662 Book of Common Prayer">
+          </label>
+          <label class="field">
+            <span>Anything that would help</span>
+            <textarea name="message" rows="4" required placeholder="Where it can be found, which edition or translation, why it matters to you…"></textarea>
+          </label>
+          <!-- Tells the inbox which site the message came from; the personal
+               site posts to the same Formspree endpoint. -->
+          <input type="hidden" name="_subject" value="Council — source request">
+          <button class="btn btn--primary" type="submit">Send request</button>
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <strong>Council</strong><br>
+      Built by <a href="https://spencersmith.site">Spencer Smith</a>.
+    </div>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="sources.html">Sources</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="https://github.com/SpencerSmithSite/council">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/sources.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,477 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Docs — Council</title>
+<meta name="description" content="How Council works: the library and downloads, reading and annotating, hybrid search, and connecting it to Ollama or to your own Claude, ChatGPT, Gemini or Grok API key.">
+<link rel="icon" href="assets/img/icon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/docs.css">
+<script>
+(function(){try{var t=localStorage.getItem('council-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon.png" alt="">
+      Council
+    </a>
+    <button class="icon-btn nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sources.html">Sources</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="download.html">Download</a></li>
+    </ul>
+    <button class="icon-btn js-theme" type="button" aria-label="Switch theme">
+      <svg class="icon-btn__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-btn__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="wrap">
+    <span class="eyebrow">Documentation</span>
+    <h1>How Council works</h1>
+    <p class="lede">
+      What each screen does, and — the two things people actually get stuck on —
+      how to point it at Ollama, and where to get an API key if you would rather
+      use a hosted model.
+    </p>
+  </div>
+</div>
+
+<div class="wrap docs">
+
+  <nav class="toc" aria-label="On this page">
+    <p class="toc__title">On this page</p>
+    <ol>
+      <li><a href="#start">Getting started</a></li>
+      <li><a href="#library">The library</a></li>
+      <li><a href="#reading">Reading</a></li>
+      <li><a href="#annotate">Highlights &amp; notes</a></li>
+      <li><a href="#search">Searching</a></li>
+      <li><a href="#ask">Asking questions</a></li>
+      <li><a href="#ollama">Connecting Ollama</a></li>
+      <li><a href="#api-keys">Using your own API key</a></li>
+      <li><a href="#privacy">Privacy</a></li>
+      <li><a href="#trouble">Troubleshooting</a></li>
+    </ol>
+  </nav>
+
+  <main id="main" class="docs__body">
+
+    <!-- ------------------------------------------------------- start -- -->
+    <section id="start">
+      <h2>Getting started</h2>
+      <p>
+        Council installs with the <strong>King James Version complete</strong>
+        — all 1,189 chapters — already inside the app. It works fully offline
+        from the first launch, with no account, no sign-in and no configuration.
+      </p>
+      <p>
+        On first run it unpacks the bundled library and prepares the on-device
+        search index. That takes a few seconds and happens once.
+      </p>
+      <div class="callout">
+        <strong>You do not need an AI backend.</strong> Council ships with
+        <em>no</em> model selected. In that state it is a search-and-reading
+        tool: it finds passages and shows them to you, and nothing is generated.
+        Everything on this page after <a href="#ask">Asking questions</a> is
+        optional.
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------- library -- -->
+    <section id="library">
+      <h2>The library</h2>
+      <p>
+        Everything beyond the KJV is downloaded on request, from
+        <strong>Settings → Manage content</strong> (or “Add more to your
+        library” on the Read shelf).
+      </p>
+      <p>
+        Collections are grouped as <em>Start here</em>, then Scripture, then by
+        era, then by tradition, then by individual author. If you only take one,
+        take <strong>Creeds &amp; Confessions</strong> — 8.9 MB, and the
+        smallest set that can answer a question comparing two traditions.
+      </p>
+      <h3>Collections overlap, downloads do not</h3>
+      <p>
+        Augustine belongs to <em>Church Fathers</em>, <em>Nicene &amp;
+        Post-Nicene Writers</em>, <em>Augustine of Hippo</em> and <em>Eastern
+        Orthodox</em> at once. He is only ever downloaded once. This is why a
+        collection's size <em>drops</em> after you install a neighbouring one —
+        install the Nicene &amp; Post-Nicene writers and the Catholic collection
+        falls from 24.8 MB to 10.6 MB, because the Latin fathers it shares with
+        them are already on the device.
+      </p>
+      <p>
+        Removing a collection removes only the works no remaining collection
+        still needs. Your highlights, notes and bookmarks are stored separately
+        and survive.
+      </p>
+      <div class="callout callout--note">
+        Content is published separately from the app, so the library can grow
+        without you waiting for an app update. New collections appear in
+        <em>Manage content</em> on their own.
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------- reading -- -->
+    <section id="reading">
+      <h2>Reading</h2>
+      <p>
+        <strong>Read</strong> is the shelf: everything installed, grouped by
+        tradition, each section collapsible. Bibles sit at the top rather than in
+        alphabetical order.
+      </p>
+      <ul>
+        <li><strong>Swipe a work right</strong> to pin it to the top of the shelf.</li>
+        <li><strong>Swipe it left</strong> to star it. The row springs back either
+          way — the gestures toggle state, they never remove anything.</li>
+      </ul>
+      <p>
+        Opening a work shows a provenance card first: its tradition, its author,
+        its rights statement and the URL the text was digitised from. Then the
+        text.
+      </p>
+      <h3>Appearance</h3>
+      <p>
+        <strong>Settings → Font Size</strong> scales type across the whole app,
+        not just the reader. <strong>Settings → Theme</strong> offers
+        <strong>24 themes</strong> — Tokyo Night, Everforest, Catppuccin,
+        Gruvbox, Nord, Solarized, Dracula, Rose Pine and more — each with a light
+        and dark rendering, and a dark high-contrast option.
+      </p>
+    </section>
+
+    <!-- ---------------------------------------------------- annotate -- -->
+    <section id="annotate">
+      <h2>Highlights &amp; notes</h2>
+      <p>
+        Tap any passage while reading and a floating toolbar appears over it.
+        From there you can:
+      </p>
+      <ul>
+        <li><strong>Highlight</strong> it in one of several colours — or erase an
+          existing highlight, which the same palette handles.</li>
+        <li><strong>Write a note</strong> against it. The quoted passage and your
+          note are stored separately: the quote is the corpus's words and cannot
+          be edited, the note is yours.</li>
+        <li><strong>Copy</strong> or <strong>share</strong> the passage.</li>
+        <li><strong>Ask about this passage</strong> — opens a conversation with
+          that text pinned above it, so you can ask several questions in a row
+          without losing what you were reading.</li>
+      </ul>
+      <p>
+        Everything you write lives in a separate database from the corpus, so
+        adding or removing collections never touches it.
+      </p>
+    </section>
+
+    <!-- ------------------------------------------------------ search -- -->
+    <section id="search">
+      <h2>Searching</h2>
+      <p>
+        The field at the bottom of the Read shelf does two things in sequence.
+        As you type it <strong>filters the shelf</strong> by work and author. If
+        nothing on the shelf matches, it offers to
+        <strong>search inside the texts</strong> — press return, and it does.
+      </p>
+      <h3>Why there are two kinds of search</h3>
+      <p>
+        Full-text search (SQLite FTS5) nails exact terminology — <code>homoousion</code>,
+        a quoted phrase, a proper name — but returns nothing when your words and
+        the text's words differ. Embeddings match meaning across vocabulary, but
+        drift on rare proper nouns and can rank a merely topical passage above an
+        exact quotation.
+      </p>
+      <p>
+        Council runs both and fuses the two rankings by
+        <strong>reciprocal rank</strong> rather than by score, because BM25 and
+        cosine similarity are on incomparable scales. The embedding model runs
+        <em>on your device</em> — nothing is sent anywhere to search.
+      </p>
+    </section>
+
+    <!-- --------------------------------------------------------- ask -- -->
+    <section id="ask">
+      <h2>Asking questions</h2>
+      <p>
+        <strong>Ask</strong> is retrieval-augmented: your question is matched
+        against the library by full-text <em>and</em> semantic search, the two
+        result sets are fused, and the passages are handed to whichever model you
+        have configured — along with an instruction to answer out of them.
+      </p>
+      <p>
+        Answers carry numbered citations. Each one names the work, its tradition
+        and its author, and tapping it opens the passage itself. Citations can be
+        turned off in <strong>Settings → Show Citations</strong>, though there is
+        rarely a reason to.
+      </p>
+      <p>
+        Council states under every answer that it was written by a language model
+        and can be wrong or misattributed. That is not boilerplate — it is why the
+        citations are there.
+      </p>
+      <p>
+        Conversations are kept in <strong>Chat history</strong> in the sidebar.
+      </p>
+    </section>
+
+    <!-- ------------------------------------------------------ ollama -- -->
+    <section id="ollama">
+      <h2>Connecting Ollama</h2>
+      <p>
+        <a href="https://ollama.com/" rel="noopener">Ollama</a> runs a language
+        model on hardware you own. Answers are generated locally and your
+        questions never leave your network.
+      </p>
+
+      <h3>What you need</h3>
+      <ul>
+        <li>A computer that can run Ollama — macOS, Windows or Linux.</li>
+        <li>At least one model pulled. Something in the 3–8B range is a
+          reasonable starting point on consumer hardware; larger models give
+          better answers and need more memory.</li>
+        <li>Council on the same machine, or on a device that can reach it over
+          your network or VPN.</li>
+      </ul>
+
+      <h3>1. Install Ollama and pull a model</h3>
+      <pre><code># macOS (or download the app from ollama.com)
+brew install ollama
+
+# Pull a model
+ollama pull llama3.2
+
+# Check it is serving
+curl http://localhost:11434/api/tags</code></pre>
+      <p class="muted">
+        That last command should return JSON listing your models. If it does,
+        Council will be able to reach it too.
+      </p>
+
+      <h3>2. Point Council at it</h3>
+      <ol>
+        <li>Open <strong>Settings → AI Backend</strong>.</li>
+        <li>Choose <strong>Ollama</strong>.</li>
+        <li>Leave <strong>Host</strong> as <code>http://localhost:11434</code> if
+          Ollama is on the same machine.</li>
+        <li>Leave <strong>Model</strong> blank and press
+          <strong>Test Connection + Pull models</strong>.</li>
+      </ol>
+      <p>
+        On success the free-text model field is replaced by a dropdown of exactly
+        what your server has pulled — so you cannot mistype a model name and get
+        a silent “model not found”.
+      </p>
+
+      <h3>Running Council on a phone, Ollama on a computer</h3>
+      <p>
+        <code>localhost</code> on a phone means the phone. To reach a computer,
+        two things have to be true:
+      </p>
+      <ol>
+        <li>
+          <strong>Ollama has to listen beyond loopback.</strong> By default it
+          only accepts connections from its own machine. Set
+          <code>OLLAMA_HOST=0.0.0.0</code> before starting it:
+          <pre><code>OLLAMA_HOST=0.0.0.0 ollama serve</code></pre>
+          On macOS, if you run the menu-bar app instead:
+          <pre><code>launchctl setenv OLLAMA_HOST "0.0.0.0"
+# then quit and reopen Ollama</code></pre>
+        </li>
+        <li>
+          <strong>Use the computer's address, not localhost.</strong> Find it
+          with <code>ipconfig getifaddr en0</code> on macOS or
+          <code>hostname -I</code> on Linux, then enter
+          <code>http://192.168.1.42:11434</code> — your address, not that one —
+          as the Host in Council.
+        </li>
+      </ol>
+      <div class="callout callout--warn">
+        <strong>Only do this on a network you trust.</strong> Binding Ollama to
+        <code>0.0.0.0</code> exposes it to everything on that network with no
+        authentication. On a shared or public network, use a VPN such as
+        Tailscale and give Council the VPN address instead.
+      </div>
+      <p class="muted">
+        On the Android emulator specifically, the host machine is
+        <code>http://10.0.2.2:11434</code>.
+      </p>
+
+      <h3>The first answer is slow</h3>
+      <p>
+        Ollama loads the model into memory on the first request, which can take
+        tens of seconds. Council warms it up when you select the backend, so the
+        wait usually lands before you have finished typing your question rather
+        than after.
+      </p>
+    </section>
+
+    <!-- ---------------------------------------------------- api-keys -- -->
+    <section id="api-keys">
+      <h2>Using your own API key</h2>
+      <p>
+        If you would rather use a hosted model, Council speaks to four providers
+        directly with a key you supply. There is no Council account, no proxy and
+        no markup — you are billed by the provider, at their rates, on your own
+        account.
+      </p>
+      <div class="callout callout--warn">
+        <strong>This is the one option that sends data off your device.</strong>
+        Your question and the retrieved passages go to the provider, where their
+        privacy policy and data-retention terms apply — not Council's. Council
+        cannot control how long they keep your questions or what they do with
+        them, and says so in the app.
+      </div>
+
+      <h3>Where to get a key</h3>
+      <div class="scroll-x">
+        <table class="providers">
+          <thead>
+            <tr><th>Provider</th><th>Shown as</th><th>Get a key</th></tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Anthropic</td><td>Claude</td>
+              <td><a href="https://console.anthropic.com/settings/keys" rel="noopener">console.anthropic.com → Settings → API Keys</a></td>
+            </tr>
+            <tr>
+              <td>OpenAI</td><td>ChatGPT</td>
+              <td><a href="https://platform.openai.com/api-keys" rel="noopener">platform.openai.com → API keys</a></td>
+            </tr>
+            <tr>
+              <td>Google</td><td>Gemini</td>
+              <td><a href="https://aistudio.google.com/app/apikey" rel="noopener">aistudio.google.com → Get API key</a></td>
+            </tr>
+            <tr>
+              <td>xAI</td><td>Grok</td>
+              <td><a href="https://console.x.ai" rel="noopener">console.x.ai</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>The general shape of it</h3>
+      <ol>
+        <li>Create an account with the provider and add a payment method. Most
+          require billing to be set up before a key will work at all.</li>
+        <li>Create an API key and copy it. Providers usually show the key
+          <strong>once</strong> — if you lose it, you make a new one.</li>
+        <li>In Council, open <strong>Settings → AI Backend</strong>, choose
+          <strong>Your own API key</strong>, pick the provider, paste the key and
+          pick a model.</li>
+      </ol>
+      <p>
+        Council stores the key in the platform keychain — Keychain on Apple
+        devices, the encrypted Keystore on Android — not in ordinary preferences,
+        and never in plain text on disk.
+      </p>
+      <div class="callout callout--note">
+        An API key is a credential that can spend money. Treat it like a
+        password: do not paste it into anything you did not go looking for, and
+        revoke it from the provider's console if you think it has leaked.
+      </div>
+    </section>
+
+    <!-- ----------------------------------------------------- privacy -- -->
+    <section id="privacy">
+      <h2>Privacy</h2>
+      <p>Plainly, because it is the point of the app:</p>
+      <ul>
+        <li>There is <strong>no account</strong> and no sign-in.</li>
+        <li>There is <strong>no telemetry or analytics</strong> in the app.</li>
+        <li>The library, the search index and the embedding model are all
+          <strong>on your device</strong>. Searching sends nothing anywhere.</li>
+        <li>Your highlights, notes, bookmarks and chat history stay on the device
+          and are never uploaded.</li>
+        <li>The app makes network requests in exactly two situations:
+          <strong>downloading a collection</strong> you asked for, and
+          <strong>generating an answer</strong> if — and only if — you configured
+          a backend. With Ollama that request goes to the address you typed; with
+          an API key it goes to that provider.</li>
+      </ul>
+    </section>
+
+    <!-- ------------------------------------------------- troubleshoot -- -->
+    <section id="trouble">
+      <h2>Troubleshooting</h2>
+
+      <h3>“No Ollama server at …”</h3>
+      <p>
+        Check <code>curl http://localhost:11434/api/tags</code> on the machine
+        running Ollama. If that fails, Ollama is not running. If it succeeds but
+        Council still cannot connect from another device, Ollama is bound to
+        loopback — see <a href="#ollama">OLLAMA_HOST above</a>.
+      </p>
+
+      <h3>The model dropdown is empty</h3>
+      <p>
+        The connection worked but no models are pulled. Run
+        <code>ollama pull llama3.2</code> and press Test Connection again.
+      </p>
+
+      <h3>“No API key saved”</h3>
+      <p>
+        The key was not saved, or was saved under a different provider — the key
+        is stored per provider, so switching from Claude to Gemini needs a Gemini
+        key.
+      </p>
+
+      <h3>An answer cites something I do not have</h3>
+      <p>
+        It cannot — retrieval only searches what is installed. If an answer
+        mentions a work you do not recognise, check the citation list: those are
+        the only texts it was given. Anything <em>not</em> in that list came from
+        the model's own training, which is exactly what the disclaimer under each
+        answer is warning you about.
+      </p>
+
+      <h3>A download failed part-way</h3>
+      <p>
+        Council verifies the checksum of every collection before installing it,
+        so a truncated download is rejected rather than half-installed. Press
+        Download again.
+      </p>
+    </section>
+
+    <p class="docs__foot">
+      Something here wrong or missing?
+      <a href="https://github.com/SpencerSmithSite/council/issues" rel="noopener">Open an issue</a>,
+      or <a href="sources.html#request">ask for a work to be added</a>.
+    </p>
+
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <strong>Council</strong><br>
+      Built by <a href="https://spencersmith.site">Spencer Smith</a>.
+    </div>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="sources.html">Sources</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="https://github.com/SpencerSmithSite/council">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/toc.js" defer></script>
+</body>
+</html>

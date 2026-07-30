@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Council — offline theology research</title>
+<meta name="description" content="A private, offline-first library of 687 public-domain Christian works — creeds, councils, the fathers, the Reformers, the Puritans — with hybrid search and AI answers that cite the text.">
+<link rel="icon" href="assets/img/icon.png">
+<link rel="stylesheet" href="assets/css/site.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<!-- Blocking on purpose: this must run before first paint or a dark-mode
+     reader gets a white flash on every page load. -->
+<script>
+(function(){try{var t=localStorage.getItem('council-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}})();
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="nav__inner">
+    <a class="brand" href="index.html">
+      <img src="assets/img/icon.png" alt="">
+      Council
+    </a>
+    <button class="icon-btn nav__toggle" type="button" aria-expanded="false" aria-controls="nav-links" aria-label="Menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav__links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="sources.html">Sources</a></li>
+      <li><a href="docs.html">Docs</a></li>
+      <li><a href="download.html">Download</a></li>
+    </ul>
+    <button class="icon-btn js-theme" type="button" aria-label="Switch theme">
+      <svg class="icon-btn__moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+      <svg class="icon-btn__sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="hero">
+    <div class="hero__bg" aria-hidden="true"></div>
+    <div class="wrap hero__inner">
+      <div class="hero__copy">
+        <p class="hero__eyebrow">Offline-first · Private by default</p>
+        <h1>The whole church,<br>on your device.</h1>
+        <p class="hero__lede">
+          Council is a research library of <strong>687 public-domain Christian
+          works</strong> — the creeds and councils, the church fathers, the
+          Reformers, the Puritans — that searches, cross-references and answers
+          questions without ever needing the internet.
+        </p>
+        <div class="hero__actions">
+          <a class="btn btn--primary" href="download.html">Get Council</a>
+          <a class="btn btn--onhero" href="sources.html">Browse the library</a>
+        </div>
+        <dl class="hero__stats">
+          <div><dt>Works</dt><dd data-stat="sources">687</dd></div>
+          <div><dt>Characters</dt><dd data-stat="chars">460 M</dd></div>
+          <div><dt>Traditions</dt><dd data-stat="traditions">10</dd></div>
+          <div><dt>Cost</dt><dd>Free</dd></div>
+        </dl>
+      </div>
+
+      <div class="hero__shot">
+        <div class="phone">
+          <div class="phone__screen">
+            <img src="assets/img/screens/chat-answer.webp" alt="Council comparing views on baptism across three traditions, quoting Augustine with numbered citations" width="600" height="1346" fetchpriority="high">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------ pitch -- -->
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">Why it exists</span>
+        <h2>A citation you can actually check</h2>
+        <p>
+          Ask a general-purpose chatbot what Athanasius said about the
+          incarnation and it will tell you — fluently, and sometimes from
+          nothing. Council answers only out of texts it actually holds, names
+          them, and lets you open the passage and read around it.
+        </p>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Primary texts, not summaries</h3>
+          <p>
+            Every work is the real thing — the acts of the seven ecumenical
+            councils, not a paragraph about them. Each source records its
+            translator, edition and where it was digitised from.
+          </p>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          </div>
+          <h3>Nothing leaves unless you say so</h3>
+          <p>
+            The library, the search index and the embedding model all live on
+            your device. Council ships with <em>no</em> AI backend selected — it
+            is a search tool until you choose otherwise.
+          </p>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+          </div>
+          <h3>Two kinds of search at once</h3>
+          <p>
+            Exact terminology — <code>homoousion</code>, a quoted phrase, a
+            proper name — is found by full-text search; meaning is found by
+            on-device embeddings. The two rankings are fused, so neither blind
+            spot survives.
+          </p>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v18"/><path d="M5 8h14"/><circle cx="12" cy="3" r="0"/><path d="M5 8 2 15a4 4 0 0 0 6 0z"/><path d="m19 8-3 7a4 4 0 0 0 6 0z"/></svg>
+          </div>
+          <h3>Ten traditions, side by side</h3>
+          <p>
+            Reformed, Baptist, Lutheran, Anglican, Methodist, Catholic, Eastern
+            Orthodox, the early church and the ecumenical councils — so a
+            question about baptism can be answered by all of them at once.
+          </p>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          </div>
+          <h3>Read, highlight, annotate</h3>
+          <p>
+            Tap any passage to highlight it in one of several colours, write a
+            note against it, bookmark it, or ask a question about that passage
+            specifically without losing your place.
+          </p>
+        </article>
+
+        <article class="card feature">
+          <div class="feature__icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+          </div>
+          <h3>Download only what you want</h3>
+          <p>
+            The King James Bible is built in. Everything else arrives as a
+            collection you choose — from 8.9 MB of creeds and confessions up to
+            the complete fathers.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------- screenshots -- -->
+
+  <section class="section section--tint" id="screens">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">A look inside</span>
+        <h2>Built to be read, not just queried</h2>
+        <p>Real screens from the app, running the real library.</p>
+      </div>
+    </div>
+
+    <div class="carousel" data-carousel>
+      <button class="carousel__arrow carousel__arrow--prev" type="button" data-carousel-prev aria-label="Previous screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+      </button>
+
+      <div class="carousel__track" data-carousel-track tabindex="0" role="group" aria-label="App screenshots">
+        <!-- Populated from assets/js/carousel.js so the caption, the alt text
+             and the slide order live in one place instead of three. -->
+      </div>
+
+      <button class="carousel__arrow carousel__arrow--next" type="button" data-carousel-next aria-label="Next screenshot">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+      </button>
+
+      <div class="carousel__dots" data-carousel-dots role="tablist" aria-label="Choose a screenshot"></div>
+    </div>
+  </section>
+
+  <!-- ---------------------------------------------------------- library -- -->
+
+  <section class="section">
+    <div class="wrap">
+      <div class="section__head">
+        <span class="eyebrow">The library</span>
+        <h2>Start small, or take all of it</h2>
+        <p>
+          Council installs with the King James Version complete — 1,189 chapters
+          — and stays useful before a single download. Collections overlap
+          freely, and no work is ever downloaded twice however many collections
+          it belongs to.
+        </p>
+      </div>
+
+      <div class="scroll-x">
+        <table class="collections">
+          <thead>
+            <tr><th>Collection</th><th>Works</th><th>Download</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Creeds &amp; Confessions</strong></td><td>53</td><td>8.9 MB</td></tr>
+            <tr><td>Eastern Orthodox</td><td>74</td><td>11.8 MB</td></tr>
+            <tr><td>Augustine of Hippo</td><td>48</td><td>12.9 MB</td></tr>
+            <tr><td>John Owen</td><td>31</td><td>13.6 MB</td></tr>
+            <tr><td>Matthew Henry</td><td>6</td><td>23.9 MB</td></tr>
+            <tr><td>John Calvin</td><td>48</td><td>29.4 MB</td></tr>
+            <tr><td>Church Fathers</td><td>402</td><td>51.0 MB</td></tr>
+            <tr><td>Charles Spurgeon</td><td>74</td><td>92.3 MB</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="muted collections__note">
+        Eight of thirty-one collections. <a href="sources.html">See every work
+        in the library →</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- your ai -->
+
+  <section class="section section--tint">
+    <div class="wrap">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Your AI, your rules</span>
+          <h2>Three ways to answer a question</h2>
+          <p class="lede">
+            Council does not ship with a model, does not proxy your questions
+            through anyone's server, and has no account to create.
+          </p>
+        </div>
+        <div class="grid" style="gap:1rem">
+          <article class="card backend">
+            <h3>Search only <span class="pill pill--default">Default</span></h3>
+            <p>
+              No AI at all. Council retrieves the passages and shows them to
+              you. Nothing is generated and nothing leaves the device.
+            </p>
+          </article>
+          <article class="card backend">
+            <h3>Ollama <span class="pill">Local</span></h3>
+            <p>
+              A model on your own machine, or another you can reach over your
+              network or VPN. Answers are generated locally and stay there.
+              <a href="docs.html#ollama">How to set it up →</a>
+            </p>
+          </article>
+          <article class="card backend">
+            <h3>Your own API key <span class="pill pill--warn">Leaves device</span></h3>
+            <p>
+              Claude, ChatGPT, Gemini or Grok, billed to your own account and
+              stored in the system keychain. Council states plainly that this is
+              the one option that sends your question off the device.
+              <a href="docs.html#api-keys">Getting a key →</a>
+            </p>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ------------------------------------------------------------- close -- -->
+
+  <section class="section">
+    <div class="wrap">
+      <div class="cta">
+        <h2>Free, and free of accounts.</h2>
+        <p>No sign-up, no subscription, no telemetry, no ads.</p>
+        <a class="btn btn--primary" href="download.html">Get Council</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer__inner">
+    <div>
+      <strong>Council</strong><br>
+      Built by <a href="https://spencersmith.site">Spencer Smith</a>.
+    </div>
+    <nav aria-label="Footer">
+      <a href="index.html">Home</a>
+      <a href="sources.html">Sources</a>
+      <a href="docs.html">Docs</a>
+      <a href="download.html">Download</a>
+      <a href="https://github.com/SpencerSmithSite/council">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+<script src="assets/js/carousel.js" defer></script>
+<script src="assets/js/stats.js" defer></script>
+</body>
+</html>
