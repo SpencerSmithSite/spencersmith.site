@@ -59,22 +59,34 @@
       name: "Windows",
       requires: "Windows 10 or later · x64",
       cta: "Download for Windows",
-      url: null,
-      size: null,
-      version: null,
-      note: null,
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-windows-setup.exe",
+      size: "35 MB",
+      version: "2026.7.27",
+      note:
+        "The installer is unsigned, so SmartScreen will warn on first run — " +
+        "choose More info, then Run anyway.",
       icon:
         '<path d="M3 5.5 10.5 4v7.5H3zM12 3.8 21 2.5v9H12zM3 13h7.5v7L3 18.5zM12 13h9v8.5L12 20.2z"/>',
     },
     {
       id: "linux",
       name: "Linux",
-      requires: "x64 · glibc 2.31 or later",
-      cta: "Download for Linux",
-      url: null,
-      size: null,
-      version: null,
-      note: null,
+      // glibc 2.34 is measured, not assumed: it is the highest GLIBC_ symbol
+      // the binary and its bundled libraries actually reference. The CI runner
+      // image ships 2.35, so taking the floor from the image would have
+      // needlessly excluded 2.34 distributions — RHEL 9 among them.
+      requires: "x64 · glibc 2.34 or later",
+      cta: "Download AppImage",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-linux-x86_64.AppImage",
+      size: "38 MB",
+      version: "2026.7.27",
+      note: "Make it executable with chmod +x, then run it.",
+      // The AppImage leads because it runs on any distribution; Debian and
+      // Ubuntu users are better served by the .deb.
+      alt: {
+        label: "Debian / Ubuntu package (.deb, 35 MB)",
+        url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-linux-amd64.deb",
+      },
       icon:
         '<path d="M9 3.5c0-1 1.3-1.5 3-1.5s3 .5 3 1.5v4c0 2 3 4 3 8a6 6 0 0 1-12 0c0-4 3-6 3-8Z"/><circle cx="10.5" cy="6" r=".6" fill="currentColor"/><circle cx="13.5" cy="6" r=".6" fill="currentColor"/>',
     },
@@ -154,6 +166,21 @@
     return text ? '<p class="' + cls + '">' + text + "</p>" : "";
   }
 
+  /** A second download for platforms that ship more than one package format.
+   *  Only Linux has one — the AppImage runs anywhere and leads, with the .deb
+   *  offered beside it. Suppressed while the platform is unreleased, so it can
+   *  never appear next to a Coming soon button. */
+  function altLink(p) {
+    if (!p.url || !p.alt || !p.alt.url) return "";
+    return (
+      '<p class="alt-format"><a href="' +
+      esc(p.alt.url) +
+      '">' +
+      esc(p.alt.label) +
+      "</a></p>"
+    );
+  }
+
   var primaryEl = document.getElementById("primary");
   var listEl = document.getElementById("platforms");
 
@@ -182,6 +209,7 @@
       '<div class="primary__action">' +
       button(lead, true) +
       metaLine(lead, "primary__meta") +
+      altLink(lead) +
       "</div>" +
       "</div>";
   } else {
@@ -214,6 +242,7 @@
       "</div>" +
       '<div class="platform__action">' +
       button(p, false) +
+      altLink(p) +
       "</div>" +
       "</li>"
     );
