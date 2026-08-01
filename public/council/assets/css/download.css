@@ -134,7 +134,12 @@
 .primary__action .alt-format a:hover {
   color: #fff;
 }
-.platform__action .alt-format {
+/* Right-align the whole action cell, not just this line. Each row is its own
+   grid, so the last column is only as wide as its content: on every other row
+   that is the button alone and it lands flush right, but here the wider .deb
+   line stretches the column and the button would otherwise sit at its left
+   edge, ending ~100px short of the buttons above it. */
+.platform__action {
   text-align: right;
 }
 .platform__action .alt-format a {
