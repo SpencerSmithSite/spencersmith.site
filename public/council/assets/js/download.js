@@ -19,7 +19,10 @@
     {
       id: "ios",
       name: "iPhone & iPad",
-      requires: "iOS 13 or later",
+      // 15, not 13: the Xcode project and the Podfile both set a 15.0
+      // deployment target, so a reader on iOS 13 or 14 would follow the
+      // TestFlight link only to be told the build will not install.
+      requires: "iOS 15 or later",
       cta: "Join the TestFlight beta",
       url: "https://testflight.apple.com/join/JZ1k29YE",
       size: null,
