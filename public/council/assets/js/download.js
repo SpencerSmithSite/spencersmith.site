@@ -21,7 +21,7 @@
       name: "iPhone & iPad",
       requires: "iOS 13 or later",
       cta: "Join the TestFlight beta",
-      url: null,
+      url: "https://testflight.apple.com/join/JZ1k29YE",
       size: null,
       version: null,
       note: "Distributed through TestFlight while it is in beta.",
@@ -33,9 +33,9 @@
       name: "Android",
       requires: "Android 8 or later",
       cta: "Download APK",
-      url: null,
-      size: null,
-      version: null,
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-android.apk",
+      size: "107 MB",
+      version: "2026.7.27",
       note: "Also planned for Google Play.",
       icon:
         '<path d="M5 16V9a7 7 0 0 1 14 0v7"/><path d="M3 16h18a0 0 0 0 1 0 0v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a0 0 0 0 1 0 0Z"/><path d="m7 5-1.5-2.5M17 5l1.5-2.5"/><circle cx="9" cy="11" r=".6" fill="currentColor"/><circle cx="15" cy="11" r=".6" fill="currentColor"/>',
@@ -43,12 +43,14 @@
     {
       id: "macos",
       name: "macOS",
-      requires: "macOS 11 or later · Apple silicon and Intel",
+      requires: "macOS 12 or later · Apple silicon",
       cta: "Download for Mac",
-      url: null,
-      size: null,
-      version: null,
-      note: null,
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-macos.dmg",
+      size: "41 MB",
+      version: "2026.7.27",
+      note:
+        "Signed but not yet notarised — on first launch, right-click the app " +
+        "and choose Open.",
       icon:
         '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 20h20"/>',
     },
@@ -143,6 +145,15 @@
     return bits.join(" · ");
   }
 
+  /** The meta line, dropped entirely when there is nothing to put in it. An
+   *  empty <p> still carries its margin and would open a gap under the button —
+   *  which is the normal case for TestFlight, where the version and size are
+   *  Apple's to state, not ours. */
+  function metaLine(p, cls) {
+    var text = meta(p);
+    return text ? '<p class="' + cls + '">' + text + "</p>" : "";
+  }
+
   var primaryEl = document.getElementById("primary");
   var listEl = document.getElementById("platforms");
 
@@ -170,9 +181,7 @@
       "</div>" +
       '<div class="primary__action">' +
       button(lead, true) +
-      '<p class="primary__meta">' +
-      meta(lead) +
-      "</p>" +
+      metaLine(lead, "primary__meta") +
       "</div>" +
       "</div>";
   } else {
@@ -201,9 +210,7 @@
       "<p>" +
       esc(p.requires) +
       "</p>" +
-      '<p class="platform__meta">' +
-      meta(p) +
-      "</p>" +
+      metaLine(p, "platform__meta") +
       "</div>" +
       '<div class="platform__action">' +
       button(p, false) +

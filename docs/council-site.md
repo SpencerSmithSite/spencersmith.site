@@ -75,9 +75,51 @@ drift from the catalogue.
 ## Publishing an app release
 
 The download page's platform table is at the top of
-`public/council/assets/js/download.js`. Every platform currently has `url: null`,
-which renders an honestly disabled **Coming soon** button rather than a
-live-looking button that goes nowhere.
+`public/council/assets/js/download.js`. iOS points at the TestFlight beta, and
+Android and macOS at assets attached to
+[`v2026.7.27`](https://github.com/SpencerSmithSite/council/releases/tag/v2026.7.27);
+Windows and Linux still have `url: null`, which renders an honestly disabled
+**Coming soon** button rather than a live-looking button that goes nowhere.
+
+Builds are release assets rather than files in this repository on purpose. The
+APK alone is 107 MB, over GitHub's hard 100 MiB limit for a tracked file, so it
+cannot be committed here at all; Git LFS would get it into GitHub but Vercel does
+not fetch LFS objects at build time, so the site would serve the pointer file
+instead of the app.
+
+`requires` is a claim about the build that is actually being served, so it is
+read off the artefact rather than written from memory. For 2026.7.27 the macOS
+app is **Apple silicon only** — the Xcode project sets `ARCHS = arm64` and
+`EXCLUDED_ARCHS = x86_64` — and its deployment target is **macOS 12**, so the
+line reads `macOS 12 or later · Apple silicon` and not the Intel-inclusive
+macOS 11 it claimed before any build existed.
+
+The macOS DMG is signed with the Developer ID certificate and has the hardened
+runtime enabled, but is **not notarised** — notarisation needs Apple credentials
+that only Spencer can supply. Until it is, Gatekeeper refuses the app on a plain
+double-click, which is what the platform's `note` warns about. Notarise with:
+
+```bash
+xcrun notarytool submit Council-macos.dmg \
+  --apple-id <apple-id> --team-id Y2Q5JVG8X5 --password <app-specific-password> \
+  --wait
+xcrun stapler staple Council-macos.dmg
+```
+
+Then re-upload the DMG with `gh release upload … --clobber` and drop the `note`.
+
+## Windows and Linux
+
+Flutter refuses to build a desktop target on any host but that target's own OS,
+so neither can be produced on a Mac. They are built by a manually dispatched
+workflow in the **app** repository, `.github/workflows/release-desktop.yml`,
+which attaches an Inno Setup installer, a `.deb` and an AppImage to an existing
+release tag.
+
+The Linux runner is pinned to `ubuntu-22.04` because the image's glibc is the
+floor on which distributions can run the binary. That makes the real requirement
+**glibc 2.35**, not the 2.31 this page claimed before anything was built — so
+whenever that pin moves, the Linux `requires` line has to move with it.
 
 To publish, set `url` — and optionally `size` and `version` — on that platform:
 
