@@ -52,6 +52,12 @@
     </div>
   </section>
 
+  <!-- Controls and results are wrapped together so the sticky bar is bounded by
+       the catalogue. A sticky element sticks for the height of its containing
+       block, so with <main> as its parent the search bar stayed pinned over the
+       request form at the end of the page — where it has nothing to search. -->
+  <div class="catalogue">
+
   <div class="controls" id="controls">
     <div class="wrap">
       <div class="searchbar">
@@ -87,7 +93,16 @@
         <button type="button" class="btn btn--ghost btn--sm" id="reset">Reset</button>
       </div>
 
-      <p class="count" id="count" role="status" aria-live="polite">Loading the catalogue…</p>
+      <!-- The count and the way out of the catalogue share a row. The controls
+           bar is sticky, so this is the one place a link stays reachable
+           without scrolling the whole library to reach the form at the end. -->
+      <div class="count-row">
+        <p class="count" id="count" role="status" aria-live="polite">Loading the catalogue…</p>
+        <a class="request-link" href="#request">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Request a work
+        </a>
+      </div>
     </div>
   </div>
 
@@ -103,6 +118,8 @@
       <button type="button" class="btn btn--ghost" id="more" hidden>Show more</button>
     </div>
   </div>
+
+  </div><!-- /.catalogue -->
 
   <!-- ---------------------------------------------------------- request -- -->
 

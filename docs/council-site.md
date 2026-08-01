@@ -197,6 +197,20 @@ Slides — image, alt text and caption together — are declared at the top of
 form. A hidden `_subject` field marks the messages as coming from Council so they
 are distinguishable in the inbox.
 
+The form sits after all 687 entries, which made it effectively undiscoverable —
+reaching it meant scrolling the entire catalogue, and nothing above said it
+existed. A **Request a work** link now shares the count row inside the controls
+bar, which is sticky, so it is both visible on arrival and reachable from
+anywhere in the list.
+
+That link also forced a fix to the sticky bar. A sticky element sticks for the
+height of its **containing block**, and `.controls` had `<main>` as its parent —
+so the search bar stayed pinned over the request form at the foot of the page,
+where it has nothing to search, and covered the heading whenever the anchor was
+followed. Wrapping the controls and the results in `.catalogue` bounds it to the
+list it belongs to. If a section is ever added between the catalogue and the
+footer, it belongs outside that wrapper.
+
 ## Theming
 
 The Council site has its own light/dark toggle, independent of the rest of the
