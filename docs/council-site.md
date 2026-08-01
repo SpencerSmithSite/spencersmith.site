@@ -93,11 +93,24 @@ not fetch LFS objects at build time, so the site would serve the pointer file
 instead of the app.
 
 `requires` is a claim about the build that is actually being served, so it is
-read off the artefact rather than written from memory. For 2026.7.27 the macOS
-app is **Apple silicon only** — the Xcode project sets `ARCHS = arm64` and
-`EXCLUDED_ARCHS = x86_64` — and its deployment target is **macOS 12**, so the
-line reads `macOS 12 or later · Apple silicon` and not the Intel-inclusive
-macOS 11 it claimed before any build existed.
+read off the artefact rather than written from memory. Every line on this page
+was wrong before a build existed to check it against:
+
+| Platform | Claimed | Actual | Read from |
+|---|---|---|---|
+| iOS | 13 or later | **15 or later** | `IPHONEOS_DEPLOYMENT_TARGET`, `ios/Podfile` |
+| macOS | 11, Apple silicon and Intel | **12, Apple silicon** | `LSMinimumSystemVersion`, `ARCHS`/`EXCLUDED_ARCHS` |
+| Linux | glibc 2.31 | **glibc 2.34** | `GLIBC_` symbols in the binary and its libraries |
+
+The iOS one was the dangerous direction: it promised support the build does not
+have, so a reader on iOS 13 or 14 would join the TestFlight beta and then find
+that nothing would install. macOS and Linux erred the other way and merely
+turned away hardware that works.
+
+Android still claims **Android 8 or later** while the APK's `minSdkVersion` is 24,
+which is Android 7.0. That understates compatibility rather than overstating it,
+so it is left alone deliberately — it reads as a statement about what has been
+tested, not about what will install.
 
 The macOS DMG is signed with the Developer ID certificate and has the hardened
 runtime enabled, but is **not notarised** — notarisation needs Apple credentials
