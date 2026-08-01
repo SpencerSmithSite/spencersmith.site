@@ -116,6 +116,40 @@
   color: var(--text-faint);
 }
 
+/* Second package format, where a platform ships more than one — currently only
+   Linux, where the AppImage leads and the .deb sits under it. Deliberately a
+   plain link rather than a second button: there is one thing to download, and
+   the alternative should not compete with it. */
+.alt-format {
+  margin: 0.45rem 0 0;
+  font-size: 0.8rem;
+}
+.alt-format a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.primary__action .alt-format a {
+  color: rgb(255 255 255 / 0.66);
+}
+.primary__action .alt-format a:hover {
+  color: #fff;
+}
+.platform__action .alt-format {
+  text-align: right;
+}
+.platform__action .alt-format a {
+  color: var(--text-faint);
+}
+.platform__action .alt-format a:hover {
+  color: var(--text);
+}
+
+@media (max-width: 620px) {
+  .platform__action .alt-format {
+    text-align: center;
+  }
+}
+
 /* --------------------------------------------------------- all platforms -- */
 
 .others {

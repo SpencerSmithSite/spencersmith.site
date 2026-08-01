@@ -75,11 +75,16 @@ drift from the catalogue.
 ## Publishing an app release
 
 The download page's platform table is at the top of
-`public/council/assets/js/download.js`. iOS points at the TestFlight beta, and
-Android and macOS at assets attached to
-[`v2026.7.27`](https://github.com/SpencerSmithSite/council/releases/tag/v2026.7.27);
-Windows and Linux still have `url: null`, which renders an honestly disabled
-**Coming soon** button rather than a live-looking button that goes nowhere.
+`public/council/assets/js/download.js`. iOS points at the TestFlight beta; every
+other platform points at an asset attached to
+[`v2026.7.27`](https://github.com/SpencerSmithSite/council/releases/tag/v2026.7.27).
+A platform with `url: null` renders an honestly disabled **Coming soon** button
+rather than a live-looking button that goes nowhere.
+
+Linux ships two packages, so it also sets `alt` — a second, quieter link under
+the button. The AppImage leads because it runs on any distribution; the `.deb`
+sits beneath it for Debian and Ubuntu. `alt` is suppressed whenever `url` is
+null, so an alternative format can never appear beside a Coming soon button.
 
 Builds are release assets rather than files in this repository on purpose. The
 APK alone is 107 MB, over GitHub's hard 100 MiB limit for a tracked file, so it
@@ -114,12 +119,32 @@ Flutter refuses to build a desktop target on any host but that target's own OS,
 so neither can be produced on a Mac. They are built by a manually dispatched
 workflow in the **app** repository, `.github/workflows/release-desktop.yml`,
 which attaches an Inno Setup installer, a `.deb` and an AppImage to an existing
-release tag.
+release tag:
 
-The Linux runner is pinned to `ubuntu-22.04` because the image's glibc is the
-floor on which distributions can run the binary. That makes the real requirement
-**glibc 2.35**, not the 2.31 this page claimed before anything was built — so
-whenever that pin moves, the Linux `requires` line has to move with it.
+```bash
+gh workflow run release-desktop.yml --repo SpencerSmithSite/council -f tag=v2026.7.27
+```
+
+Both jobs fetch the embedding model before building. `assets/model/*.onnx` is
+gitignored in the app repository, so a fresh checkout cannot bundle its assets —
+the first run of this workflow died on `No file or variants found for asset`
+because only local trees happened to have the file.
+
+The Windows installer is **unsigned**, so SmartScreen warns on first run; that is
+what the Windows `note` explains. Signing it needs an Authenticode certificate,
+which is a purchase rather than a setting.
+
+The Linux runner is pinned to `ubuntu-22.04`, whose glibc is 2.35 — but the
+stated requirement is **glibc 2.34**, because that is the highest `GLIBC_` symbol
+the built binary and its bundled libraries actually reference:
+
+```bash
+strings -a council lib/*.so | grep -oE 'GLIBC_2\.[0-9]+' | sort -t. -k2 -n -u | tail -1
+```
+
+Taking the figure from the runner image instead would have excluded glibc 2.34
+distributions — RHEL 9 among them — that run the binary perfectly well. Re-measure
+after any runner bump rather than assuming the image version.
 
 To publish, set `url` — and optionally `size` and `version` — on that platform:
 
