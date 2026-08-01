@@ -34,7 +34,9 @@
     {
       id: "android",
       name: "Android",
-      requires: "Android 8 or later",
+      // 7, not 8: the APK's own minSdkVersion is 24, which is Android 7.0, so
+      // the earlier figure was turning away devices the build installs on.
+      requires: "Android 7 or later",
       cta: "Download APK",
       url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-android.apk",
       size: "107 MB",
