@@ -101,16 +101,15 @@ was wrong before a build existed to check it against:
 | iOS | 13 or later | **15 or later** | `IPHONEOS_DEPLOYMENT_TARGET`, `ios/Podfile` |
 | macOS | 11, Apple silicon and Intel | **12, Apple silicon** | `LSMinimumSystemVersion`, `ARCHS`/`EXCLUDED_ARCHS` |
 | Linux | glibc 2.31 | **glibc 2.34** | `GLIBC_` symbols in the binary and its libraries |
+| Android | 8 or later | **7 or later** | `minSdkVersion` in the APK manifest |
 
 The iOS one was the dangerous direction: it promised support the build does not
 have, so a reader on iOS 13 or 14 would join the TestFlight beta and then find
-that nothing would install. macOS and Linux erred the other way and merely
-turned away hardware that works.
+that nothing would install. The other three erred the other way and merely
+turned away hardware that works — which is cheaper, but still wrong.
 
-Android still claims **Android 8 or later** while the APK's `minSdkVersion` is 24,
-which is Android 7.0. That understates compatibility rather than overstating it,
-so it is left alone deliberately — it reads as a statement about what has been
-tested, not about what will install.
+Read the figures back off the artefact after any toolchain or dependency bump.
+Every one of these was written from memory, and every one of them was wrong.
 
 The macOS DMG is signed with the Developer ID certificate and has the hardened
 runtime enabled, but is **not notarised** — notarisation needs Apple credentials
