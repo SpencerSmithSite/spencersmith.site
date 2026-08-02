@@ -98,7 +98,7 @@ was wrong before a build existed to check it against:
 
 | Platform | Claimed | Actual | Read from |
 |---|---|---|---|
-| iOS | 13 or later | **15 or later** | `IPHONEOS_DEPLOYMENT_TARGET`, `ios/Podfile` |
+| iOS | 13 or later | **16 or later** | `IPHONEOS_DEPLOYMENT_TARGET`, `ios/Podfile` |
 | macOS | 11, Apple silicon and Intel | **12, Apple silicon** | `LSMinimumSystemVersion`, `ARCHS`/`EXCLUDED_ARCHS` |
 | Linux | glibc 2.31 | **glibc 2.34** | `GLIBC_` symbols in the binary and its libraries |
 | Android | 8 or later | **7 or later** | `minSdkVersion` in the APK manifest |
@@ -110,6 +110,12 @@ turned away hardware that works — which is cheaper, but still wrong.
 
 Read the figures back off the artefact after any toolchain or dependency bump.
 Every one of these was written from memory, and every one of them was wrong.
+
+iOS moved again on 2026-08-02, from 15 to 16, when `flutter_gemma` was added to
+the app for on-device generation — it requires 16. That is the case the rule is
+about: the figure changed because of a *dependency*, not a deliberate decision
+about which devices to support, and nothing would have prompted anyone to come
+and update this page.
 
 The macOS DMG is signed with the Developer ID certificate and has the hardened
 runtime enabled, but is **not notarised** — notarisation needs Apple credentials

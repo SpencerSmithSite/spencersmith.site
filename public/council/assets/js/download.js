@@ -19,10 +19,13 @@
     {
       id: "ios",
       name: "iPhone & iPad",
-      // 15, not 13: the Xcode project and the Podfile both set a 15.0
-      // deployment target, so a reader on iOS 13 or 14 would follow the
-      // TestFlight link only to be told the build will not install.
-      requires: "iOS 15 or later",
+      // 16, and read off the build rather than assumed. The deployment target
+      // moved from 15 to 16 when flutter_gemma was added for on-device
+      // generation; it requires 16, and the devices that stop at 15 — the
+      // iPhone 6s, 7 and first SE — have 2 GB of RAM and could not have run a
+      // local model anyway. A reader on 15 following the TestFlight link would
+      // install TestFlight and only then learn the build will not run.
+      requires: "iOS 16 or later",
       cta: "Join the TestFlight beta",
       url: "https://testflight.apple.com/join/JZ1k29YE",
       size: null,
