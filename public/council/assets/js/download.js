@@ -29,7 +29,7 @@
       cta: "Join the TestFlight beta",
       url: "https://testflight.apple.com/join/JZ1k29YE",
       size: null,
-      version: null,
+      version: "2026.8.2",
       note: "Distributed through TestFlight while it is in beta.",
       icon:
         '<path d="M12 20.94c1.5 0 2.75 1.06 4 1.06 3 0 6-8 6-12.22A4.91 4.91 0 0 0 17 5c-2.22 0-4 1.44-5 2-1-.56-2.78-2-5-2a4.9 4.9 0 0 0-5 4.78C2 14 5 22 8 22c1.25 0 2.5-1.06 4-1.06Z"/><path d="M12 7c1-.56 1.5-2 1.5-3.5"/>',
@@ -41,9 +41,9 @@
       // the earlier figure was turning away devices the build installs on.
       requires: "Android 7 or later",
       cta: "Download APK",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-android.apk",
-      size: "107 MB",
-      version: "2026.7.27",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-android.apk",
+      size: "195 MB",
+      version: "2026.8.2",
       note: "Also planned for Google Play.",
       icon:
         '<path d="M5 16V9a7 7 0 0 1 14 0v7"/><path d="M3 16h18a0 0 0 0 1 0 0v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a0 0 0 0 1 0 0Z"/><path d="m7 5-1.5-2.5M17 5l1.5-2.5"/><circle cx="9" cy="11" r=".6" fill="currentColor"/><circle cx="15" cy="11" r=".6" fill="currentColor"/>',
@@ -53,9 +53,9 @@
       name: "macOS",
       requires: "macOS 12 or later · Apple silicon",
       cta: "Download for Mac",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-macos.dmg",
-      size: "41 MB",
-      version: "2026.7.27",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-macos.dmg",
+      size: "56 MB",
+      version: "2026.8.2",
       note:
         "Signed but not yet notarised — on first launch, right-click the app " +
         "and choose Open.",
@@ -67,9 +67,9 @@
       name: "Windows",
       requires: "Windows 10 or later · x64",
       cta: "Download for Windows",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-windows-setup.exe",
-      size: "35 MB",
-      version: "2026.7.27",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-windows-setup.exe",
+      size: "72 MB",
+      version: "2026.8.2",
       note:
         "The installer is unsigned, so SmartScreen will warn on first run — " +
         "choose More info, then Run anyway.",
@@ -85,15 +85,15 @@
       // needlessly excluded 2.34 distributions — RHEL 9 among them.
       requires: "x64 · glibc 2.34 or later",
       cta: "Download AppImage",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-linux-x86_64.AppImage",
-      size: "38 MB",
-      version: "2026.7.27",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-linux-x86_64.AppImage",
+      size: "65 MB",
+      version: "2026.8.2",
       note: "Make it executable with chmod +x, then run it.",
       // The AppImage leads because it runs on any distribution; Debian and
       // Ubuntu users are better served by the .deb.
       alt: {
-        label: "Debian / Ubuntu package (.deb, 35 MB)",
-        url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.7.27/Council-linux-amd64.deb",
+        label: "Debian / Ubuntu package (.deb, 56 MB)",
+        url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-linux-amd64.deb",
       },
       icon:
         '<path d="M9 3.5c0-1 1.3-1.5 3-1.5s3 .5 3 1.5v4c0 2 3 4 3 8a6 6 0 0 1-12 0c0-4 3-6 3-8Z"/><circle cx="10.5" cy="6" r=".6" fill="currentColor"/><circle cx="13.5" cy="6" r=".6" fill="currentColor"/>',
