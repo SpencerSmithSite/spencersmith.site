@@ -1,0 +1,64 @@
+{
+  "_comment": [
+    "What the installed app reads to find out whether it is out of date.",
+    "",
+    "TO PUBLISH A RELEASE: bump `version` and `build`, then set `url`, `bytes`",
+    "and `sha256` on each platform. The checksums are not optional and must not",
+    "be guessed — the app refuses to hand a downloaded installer to the OS",
+    "unless its bytes hash to the value here, which is the only thing standing",
+    "between a corrupted or substituted download and an executable the reader",
+    "runs with their own privileges. Take them from the release itself:",
+    "",
+    "  gh release view v<VERSION> --repo SpencerSmithSite/council \\",
+    "    --json assets --jq '.assets[] | \"\\(.name) \\(.size) \\(.digest)\"'",
+    "",
+    "This file and assets/js/download.js state the same versions and URLs, so",
+    "`node scripts/check-council-release.mjs` from the repo root proves they",
+    "agree. Run it after editing either one; a mismatch means either the page",
+    "offers a build the app will not update to, or the reverse.",
+    "",
+    "Served from the site rather than the GitHub releases API because app",
+    "releases here are marked pre-release (the corpus releases are what",
+    "`releases/latest` points at), so there is no stable `latest` URL for the",
+    "app to follow — and because a static file on the site is one request with",
+    "no rate limit."
+  ],
+
+  "schema": 1,
+  "version": "2026.8.2",
+  "build": 7,
+
+  "notes": "Apple Intelligence on Mac, a model picker sized to your device, and a transcript that no longer fights you while an answer streams.",
+  "url": "https://www.spencersmith.site/council/download.html",
+
+  "platforms": {
+    "ios": {
+      "kind": "store",
+      "url": "https://testflight.apple.com/join/JZ1k29YE"
+    },
+    "android": {
+      "kind": "download",
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-android.apk",
+      "bytes": 204610770,
+      "sha256": "03e2015837e4fd29de353dc3db079af3bbdc1bccaf0c76a23b5c6697bbb5d485"
+    },
+    "macos": {
+      "kind": "download",
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-macos.dmg",
+      "bytes": 59382899,
+      "sha256": "292af588784b6c90b41ecd8d7a225afc4a5240723aee5c59d2dff5e5cc62563a"
+    },
+    "windows": {
+      "kind": "download",
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-windows-setup.exe",
+      "bytes": 76056334,
+      "sha256": "84251c486c25e4be95cc71047171d63673ad32802ea3ea78fe99154181da416e"
+    },
+    "linux": {
+      "kind": "download",
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-linux-x86_64.AppImage",
+      "bytes": 68667896,
+      "sha256": "e0cad57f33f0c471636929d1b1261b8e3bdc3a61d9a29cf38e9757aa414bbcbf"
+    }
+  }
+}

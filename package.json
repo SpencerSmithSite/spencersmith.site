@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "check:council": "node scripts/check-council-release.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

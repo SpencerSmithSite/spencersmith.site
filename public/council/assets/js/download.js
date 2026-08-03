@@ -5,6 +5,12 @@
  * and `version`. That is the whole change — the button turns from "Coming soon"
  * into a live download wherever it appears, in the lead card and in the list.
  * Leave `url` null and it stays a placeholder.
+ *
+ * Then update ../../updates.json to match, which is what already-installed
+ * copies of the app read to find out they are out of date, and run
+ * `npm run check:council` — it fails if the two files disagree about a version,
+ * a URL or a size. Without it the page can offer a build that no installed app
+ * will ever update itself to.
  * ─────────────────────────────────────────────────────────────────────────────
  *
  * Deliberately not reading the GitHub releases API. Doing so would put a network
