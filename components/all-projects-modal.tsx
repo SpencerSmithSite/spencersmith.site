@@ -1,13 +1,13 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { X, Github, ExternalLink } from "lucide-react"
 import Image from "next/image"
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
-import { otherProjects, type Project } from "@/lib/projects"
+import { projects, type Project } from "@/lib/projects"
 
 interface AllProjectsModalProps {
   open: boolean
@@ -16,6 +16,13 @@ interface AllProjectsModalProps {
 
 function ProjectListItem({ project }: { project: Project }) {
   const [imageLoaded, setImageLoaded] = useState(false)
+  const imgRef = useRef<HTMLImageElement>(null)
+
+  // A cached image can finish decoding before React attaches onLoad, so the
+  // event never fires and the image would stay stuck at opacity-0.
+  useEffect(() => {
+    if (imgRef.current?.complete) setImageLoaded(true)
+  }, [])
 
   return (
     <div className="group glass-card rounded-xl overflow-hidden transition-all duration-300 hover:shadow-glow-sm hover:scale-[1.02]">
@@ -27,6 +34,7 @@ function ProjectListItem({ project }: { project: Project }) {
             <div className="absolute inset-0 bg-ctp-surface0 animate-pulse" />
           )}
           <Image
+            ref={imgRef}
             src={project.image}
             alt={project.title}
             fill
@@ -34,6 +42,7 @@ function ProjectListItem({ project }: { project: Project }) {
               imageLoaded ? "opacity-100" : "opacity-0"
             }`}
             onLoad={() => setImageLoaded(true)}
+            onError={() => setImageLoaded(true)}
           />
         </div>
 
@@ -104,7 +113,12 @@ export default function AllProjectsModal({
         
         {/* Header */}
         <div className="sticky top-0 z-10 glass border-b border-ctp-surface1/30 px-6 py-4 flex items-center justify-between">
-          <h2 className="text-2xl font-bold gradient-text">All Projects</h2>
+          <div>
+            <h2 className="text-2xl font-bold gradient-text">All Projects</h2>
+            <p className="text-xs text-ctp-overlay0 mt-0.5">
+              {projects.length} projects
+            </p>
+          </div>
           <Button
             variant="ghost"
             size="icon"
@@ -119,7 +133,7 @@ export default function AllProjectsModal({
         {/* Projects Grid */}
         <div className="p-6 overflow-y-auto max-h-[calc(85vh-80px)]">
           <div className="grid grid-cols-1 gap-4">
-            {otherProjects.map((project) => (
+            {projects.map((project) => (
               <ProjectListItem key={project.id} project={project} />
             ))}
           </div>
