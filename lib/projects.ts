@@ -16,7 +16,9 @@ export interface Project {
  * the array order below is the order they render in, top to bottom.
  *
  * Deliberately excluded: `nvim` and `.warp` (editor/terminal config, not projects),
- * `airtype-windows` (empty repo), `ollami` and `clawvox` (no longer maintained).
+ * `airtype-windows` (empty repo), `ollami` and `clawvox` (no longer maintained),
+ * and `retirement-doomsday-clock` (its on-screen text names a real colleague,
+ * so it is kept off the site entirely).
  */
 export const projects: Project[] = [
   {
@@ -130,19 +132,6 @@ export const projects: Project[] = [
     links: {
       github: "https://github.com/SpencerSmithSite/idk-you-pick",
       live: "https://idk-what-do-you-want-6dd19.web.app",
-    },
-    featured: false,
-  },
-  {
-    id: "retirement-doomsday-clock",
-    title: "Retirement Doomsday Clock",
-    description:
-      "A single-file countdown to a colleague's retirement, rendered as a Cold War fallout terminal — scanlines, hazard stripes, and the time remaining in every unit from months down to hundredths of a second. Toggle to Party mode, or count business days only.",
-    image: "/photos/RetirementDoomsdayClock.jpg",
-    tags: ["HTML", "CSS", "Vanilla JS"],
-    links: {
-      github: "https://github.com/SpencerSmithSite/retirement-doomsday-clock",
-      live: "https://spencersmithsite.github.io/retirement-doomsday-clock/",
     },
     featured: false,
   },

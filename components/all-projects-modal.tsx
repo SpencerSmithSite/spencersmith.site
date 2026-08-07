@@ -1,13 +1,15 @@
 "use client"
 
 import { useEffect, useRef, useState } from "react"
-import { X, Github, ExternalLink } from "lucide-react"
+import { X, Github, ExternalLink, ArrowRight } from "lucide-react"
 import Image from "next/image"
+import Link from "next/link"
 
 import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { projects, type Project } from "@/lib/projects"
+import { slugForProject } from "@/lib/project-pages"
 
 interface AllProjectsModalProps {
   open: boolean
@@ -17,6 +19,7 @@ interface AllProjectsModalProps {
 function ProjectListItem({ project }: { project: Project }) {
   const [imageLoaded, setImageLoaded] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
+  const slug = slugForProject(project.id)
 
   // A cached image can finish decoding before React attaches onLoad, so the
   // event never fires and the image would stay stuck at opacity-0.
@@ -69,7 +72,16 @@ function ProjectListItem({ project }: { project: Project }) {
           </div>
 
           {/* Links */}
-          <div className="flex gap-2">
+          <div className="flex gap-3 items-center">
+            {slug && (
+              <Link
+                href={`/${slug}`}
+                className="inline-flex items-center gap-1.5 text-sm font-medium text-ctp-mauve hover:text-ctp-sapphire transition-colors"
+              >
+                <span>Details</span>
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            )}
             {project.links.github && (
               <a
                 href={project.links.github}
