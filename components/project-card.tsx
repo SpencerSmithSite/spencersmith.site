@@ -3,7 +3,7 @@
 import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { Github, ExternalLink, AppleIcon as AppStore, PlayIcon as PlayStore } from "lucide-react"
+import { Github, ExternalLink, ArrowRight, AppleIcon as AppStore, PlayIcon as PlayStore } from "lucide-react"
 
 import { Card, CardContent } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
@@ -19,9 +19,11 @@ interface ProjectCardProps {
     appStore?: string
     playStore?: string
   }
+  /** Internal detail page for this project, when it has one. */
+  href?: string
 }
 
-export default function ProjectCard({ title, description, image, tags, links }: ProjectCardProps) {
+export default function ProjectCard({ title, description, image, tags, links, href }: ProjectCardProps) {
   const [isHovered, setIsHovered] = useState(false)
 
   return (
@@ -132,6 +134,16 @@ export default function ProjectCard({ title, description, image, tags, links }: 
             </Badge>
           ))}
         </div>
+
+        {href && (
+          <Link
+            href={href}
+            className="inline-flex items-center gap-1.5 mt-4 text-sm font-medium text-ctp-mauve hover:text-ctp-sapphire transition-colors"
+          >
+            <span>View details</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+        )}
 
         {/* Bottom links for mobile/accessibility */}
         <div className="flex gap-3 mt-4 text-ctp-overlay1 md:hidden">

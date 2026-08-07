@@ -17,6 +17,9 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
+  // Without this, the relative OG/Twitter image paths on the project pages
+  // resolve against localhost at build time.
+  metadataBase: new URL("https://spencersmith.site"),
   title: "Spencer Smith | I build things",
   description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
   generator: 'v0.dev',

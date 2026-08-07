@@ -16,6 +16,7 @@ import ScrollAnimation from "@/components/scroll-animation"
 import FloatingOrbs from "@/components/floating-orbs"
 import AllProjectsModal from "@/components/all-projects-modal"
 import { featuredProjects } from "@/lib/projects"
+import { slugForProject } from "@/lib/project-pages"
 
 export default function Home() {
   const [showAllProjects, setShowAllProjects] = useState(false)
@@ -98,6 +99,7 @@ export default function Home() {
                   image={project.image}
                   tags={project.tags}
                   links={project.links}
+                  href={slugForProject(project.id) ? `/${slugForProject(project.id)}` : undefined}
                 />
               </ScrollAnimation>
             ))}
