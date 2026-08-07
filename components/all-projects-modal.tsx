@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { projects, type Project } from "@/lib/projects"
-import { slugForProject } from "@/lib/project-pages"
+import { detailHrefForProject } from "@/lib/project-pages"
 
 interface AllProjectsModalProps {
   open: boolean
@@ -19,7 +19,7 @@ interface AllProjectsModalProps {
 function ProjectListItem({ project }: { project: Project }) {
   const [imageLoaded, setImageLoaded] = useState(false)
   const imgRef = useRef<HTMLImageElement>(null)
-  const slug = slugForProject(project.id)
+  const detailHref = detailHrefForProject(project.id)
 
   // A cached image can finish decoding before React attaches onLoad, so the
   // event never fires and the image would stay stuck at opacity-0.
@@ -73,9 +73,9 @@ function ProjectListItem({ project }: { project: Project }) {
 
           {/* Links */}
           <div className="flex gap-3 items-center">
-            {slug && (
+            {detailHref && (
               <Link
-                href={`/${slug}`}
+                href={detailHref}
                 className="inline-flex items-center gap-1.5 text-sm font-medium text-ctp-mauve hover:text-ctp-sapphire transition-colors"
               >
                 <span>Details</span>

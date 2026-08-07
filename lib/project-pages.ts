@@ -681,6 +681,18 @@ export function slugForProject(projectId: string): string | undefined {
   return projectPages.find((p) => p.projectId === projectId)?.slug
 }
 
+/**
+ * Where a project's "View details" link points, when it has somewhere to go.
+ * Council is the exception to the generated pages: it has its own hand-built
+ * static site under public/council, so it links there instead.
+ */
+export function detailHrefForProject(projectId: string): string | undefined {
+  const slug = slugForProject(projectId)
+  if (slug) return `/${slug}`
+  if (projectId === "council") return "/council/"
+  return undefined
+}
+
 /** Per-page title, description and social card, derived from the page content. */
 export function buildMetadata(slug: string) {
   const { page, project } = getProjectPage(slug)
