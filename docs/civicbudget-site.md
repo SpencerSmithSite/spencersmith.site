@@ -67,8 +67,11 @@ The hero screenshot is the FY2027 worksheet as the Fiscal Officer, at 1440 × 90
 resized to 1600 wide as WebP. The Street fund panel over it (`.check` in `index.html`) repeats
 that screenshot's figures, so update both together.
 
-`public/photos/CivicBudget.jpg` (the portfolio card) and `assets/img/social.png` (the link
-preview) are screenshots of this page's own hero, at 1400 × 760 and 1200 × 630.
+`assets/img/social.png` (the link preview) is a screenshot of this page's own hero at
+1200 × 630.
+
+The site is deliberately not listed on the portfolio's home page or in `lib/projects.ts`; it is
+reached by its address.
 
 ## Working on it locally
 

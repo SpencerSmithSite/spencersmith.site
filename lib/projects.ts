@@ -22,19 +22,6 @@ export interface Project {
  */
 export const projects: Project[] = [
   {
-    id: "civic-budget",
-    title: "CivicBudget",
-    description:
-      "Budget preparation and a public transparency portal for Ohio local government, built to sit beside the ERP. Departments request, the fiscal officer checks every fund against its certified resources, council adopts, and the adopted budget posts to the ERP. .NET 10 and Blazor, designed and built to achieve SOC 2 compliance.",
-    image: "/photos/CivicBudget.jpg",
-    tags: [".NET", "Blazor", "SQL Server", "Azure"],
-    links: {
-      github: "https://github.com/SpencerSmithSite/civic-budget",
-      live: "/CivicBudget/",
-    },
-    featured: true,
-  },
-  {
     id: "council",
     title: "Council",
     description:
