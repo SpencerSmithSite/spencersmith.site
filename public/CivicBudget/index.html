@@ -28,6 +28,7 @@
       <img src="assets/img/logo.svg" width="32" height="32" alt="">
       CivicBudget
     </a>
+    <nav class="nav__nav" aria-label="Main">
     <ul class="nav__links">
       <li><a href="#product">Product</a></li>
       <li><a href="#erp">For ERP vendors</a></li>
@@ -46,6 +47,7 @@
         <li><a href="#contact">Contact</a></li>
       </ul>
     </details>
+    </nav>
     <a class="btn btn--primary btn--sm" href="#demo">Try the live demo</a>
   </div>
 </header>
@@ -88,15 +90,15 @@
         <p class="lede">CivicBudget follows the Ohio budget calendar and hands off to the ERP where the ERP is the system of record. Nothing is re-keyed.</p>
       </div>
       <ol class="cycle">
-        <li class="erp"><b>Chart from the ERP</b><span>Funds, departments, and accounts arrive by API or file.</span></li>
+        <li class="erp"><em class="erp-tag">ERP</em><b>Chart from the ERP</b><span>Funds, departments, and accounts arrive by API or file.</span></li>
         <li><b>Departments request</b><span>Each department enters its own lines and a narrative, then submits.</span></li>
         <li><b>Fiscal review</b><span>Every fund checked against estimated resources as numbers change.</span></li>
         <li><b>Council adopts</b><span>Draft, proposed, adopted by resolution, with the certificate.</span></li>
-        <li class="erp"><b>Journal to the ERP</b><span>The adopted budget posts as a journal of changes, once.</span></li>
+        <li class="erp"><em class="erp-tag">ERP</em><b>Journal to the ERP</b><span>The adopted budget posts as a journal of changes, once.</span></li>
         <li><b>Residents read it</b><span>A public portal that works on any phone, with no sign-in.</span></li>
-        <li class="erp"><b>Amend and track</b><span>Amendments through the same workflow, actuals from the ERP.</span></li>
+        <li class="erp"><em class="erp-tag">ERP</em><b>Amend and track</b><span>Amendments through the same workflow, actuals from the ERP.</span></li>
       </ol>
-      <p class="cycle-note"><i aria-hidden="true"></i>Steps outlined in teal exchange data with the ERP.</p>
+      <p class="cycle-note"><em class="erp-tag" aria-hidden="true">ERP</em>Steps marked ERP exchange data with the ERP.</p>
     </div>
   </section>
 
@@ -114,10 +116,10 @@
           </ul>
         </div>
         <figure class="clip">
-          <video class="shot" data-clip muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/department-poster.webp" aria-describedby="cap-department">
+          <video class="shot" data-clip="department request clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/department-poster.webp" aria-describedby="cap-department">
             <source src="assets/video/department.mp4" type="video/mp4">
           </video>
-          <figcaption id="cap-department">Parks &amp; Recreation moves its playground surface to the Capital Projects fund, as the fiscal officer asked, and submits the request.</figcaption>
+          <figcaption id="cap-department">Parks &amp; Recreation's request was returned with a note asking for the playground surface to come from the Capital Projects fund. The department user sets the General Fund capital outlay line to 0, raises the Capital Projects line by the same $12,793 to $39,444, and submits to the fiscal officer. The request total stays $110,771.00, because only the fund changed.</figcaption>
         </figure>
       </article>
 
@@ -129,10 +131,10 @@
           <p class="cite">Beginning balance + revenues + transfers in ≥ expenditures + transfers out</p>
         </div>
         <figure class="clip">
-          <video class="shot" data-clip muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/worksheet-poster.webp" aria-describedby="cap-worksheet">
+          <video class="shot" data-clip="worksheet clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/worksheet-poster.webp" aria-describedby="cap-worksheet">
             <source src="assets/video/worksheet.mp4" type="video/mp4">
           </video>
-          <figcaption id="cap-worksheet">The fiscal officer trims the Street fund's capital outlay, and the fund comes back within its estimated resources.</figcaption>
+          <figcaption id="cap-worksheet">The Street Construction fund starts $21,908.65 over its estimated resources, and its balance card is red. The fiscal officer changes the fund's infrastructure capital outlay from 120,000.00 to 95,000.00, and the card turns green with $3,091.35 to spare.</figcaption>
         </figure>
       </article>
 
@@ -150,10 +152,10 @@
         <div class="shot-pair">
           <img class="shot" src="assets/img/portal-overview.webp" width="1600" height="1000" loading="lazy" alt="The public portal's overview of the 2026 budget: revenues, expenditures, projected ending balance, and spending by fund.">
           <figure class="clip clip--phone">
-            <video class="shot" data-clip muted loop playsinline controls preload="none" width="390" height="844" poster="assets/video/portal-poster.webp" aria-describedby="cap-portal">
+            <video class="shot" data-clip="portal clip" muted loop playsinline controls preload="none" width="390" height="844" poster="assets/video/portal-poster.webp" aria-describedby="cap-portal">
               <source src="assets/video/portal.mp4" type="video/mp4">
             </video>
-            <figcaption id="cap-portal">On a phone: the overview, the General Fund, and the Police department in its own words.</figcaption>
+            <figcaption id="cap-portal">On a phone, a resident scrolls the 2026 overview (revenues, expenditures, and where the money goes by fund), opens the General Fund and its departments, then the Police department, which explains its request in its own words.</figcaption>
           </figure>
         </div>
       </article>
@@ -173,10 +175,10 @@
           <p>General ledger, payroll, encumbrances. The system of record.</p>
         </div>
         <ul class="flows" aria-label="What moves between the ERP and CivicBudget">
-          <li class="flow"><span>Chart of accounts</span><span class="dir" aria-label="to CivicBudget">→</span><small>funds, departments, accounts</small></li>
-          <li class="flow"><span>Actuals and encumbrances</span><span class="dir" aria-label="to CivicBudget">→</span><small>by month, for pace and projection</small></li>
-          <li class="flow"><span>Employees and pay</span><span class="dir" aria-label="to CivicBudget">→</span><small>for personnel budgeting</small></li>
-          <li class="flow flow--out"><span>Adopted budget journal</span><span class="dir" aria-label="to the ERP">←</span><small>changes only, sent once per version</small></li>
+          <li class="flow"><span>Chart of accounts</span><span class="dir"><span aria-hidden="true">→</span><span class="visually-hidden">, to CivicBudget</span></span><small>funds, departments, accounts</small></li>
+          <li class="flow"><span>Actuals and encumbrances</span><span class="dir"><span aria-hidden="true">→</span><span class="visually-hidden">, to CivicBudget</span></span><small>by month, for pace and projection</small></li>
+          <li class="flow"><span>Employees and pay</span><span class="dir"><span aria-hidden="true">→</span><span class="visually-hidden">, to CivicBudget</span></span><small>for personnel budgeting</small></li>
+          <li class="flow flow--out"><span>Adopted budget journal</span><span class="dir"><span aria-hidden="true">←</span><span class="visually-hidden">, to the ERP</span></span><small>changes only, sent once per version</small></li>
         </ul>
         <div class="node">
           <h3>CivicBudget</h3>
@@ -220,6 +222,7 @@
           <span>Password for every login</span>
           <code id="demo-password">Demo-Bpe1GyRie5-1!</code>
           <button class="copy" type="button" id="copy-password" hidden>Copy</button>
+          <span class="visually-hidden" id="copy-status" role="status"></span>
         </div>
         <div class="actions">
           <a class="btn btn--primary" href="https://civicbudget-app.ashysmoke-cd0f52a4.centralus.azurecontainerapps.io">Open the demo</a>
@@ -227,7 +230,7 @@
         </div>
         <p class="wake">The demo runs on free cloud tiers and sleeps when nobody is using it. The first visit can take about 20 seconds.</p>
       </div>
-      <div class="table-wrap">
+      <div class="table-wrap" tabindex="0" role="region" aria-label="Table of demo logins">
         <table>
           <thead><tr><th scope="col">Sign in as</th><th scope="col">Role</th><th scope="col">Try</th></tr></thead>
           <tbody>
@@ -267,12 +270,12 @@
       <form class="form" id="contact-form" action="https://formspree.io/f/mldbgwbb" method="POST">
         <input type="hidden" name="_subject" value="CivicBudget inquiry">
         <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
-        <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required></div>
-        <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="c-name">Name <span class="req">(required)</span></label><input id="c-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="c-email">Email <span class="req">(required)</span></label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
         <div class="field"><label for="c-org">Organization</label><input id="c-org" name="organization" autocomplete="organization"></div>
         <div class="field"><label for="c-kind">I am with</label>
           <select id="c-kind" name="kind"><option>An ERP vendor</option><option>A government</option><option>Something else</option></select></div>
-        <div class="field field--wide"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+        <div class="field field--wide"><label for="c-msg">Message <span class="req">(required)</span></label><textarea id="c-msg" name="message" required></textarea></div>
         <div class="form__foot">
           <button class="btn btn--primary" type="submit">Send</button>
           <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
