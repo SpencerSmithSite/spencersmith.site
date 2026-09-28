@@ -29,9 +29,20 @@ const nextConfig = {
   // Rewriting /council straight to /council/index.html instead looks simpler and
   // is the trap: the address bar keeps /council, so every relative asset still
   // resolves against the site root.
+  //
+  // The CivicBudget site (public/CivicBudget) is wired the same way. Its address keeps the
+  // product's capitals, but people type it in lowercase. A redirect cannot fix that: Next matches
+  // sources without regard to case, so /CivicBudget/ would redirect to itself forever. Instead the
+  // second rule maps any spelling onto the real folder. Public files are served, case-sensitively,
+  // before these rewrites run, so the exact spelling never reaches it; the page's canonical link
+  // keeps search engines on one address.
   trailingSlash: true,
   async rewrites() {
-    return [{ source: '/council/', destination: '/council/index.html' }]
+    return [
+      { source: '/council/', destination: '/council/index.html' },
+      { source: '/CivicBudget/', destination: '/CivicBudget/index.html' },
+      { source: '/CivicBudget/:path+', destination: '/CivicBudget/:path+' },
+    ]
   },
 }
 

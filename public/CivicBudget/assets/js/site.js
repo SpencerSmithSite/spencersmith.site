@@ -1,0 +1,88 @@
+/* CivicBudget: the page's three small behaviors. The page works without any of them: the clips
+ * keep their native controls, the password can be selected, and the form posts to Formspree. */
+(function () {
+  "use strict";
+
+  /* ------------------------------------------------------------ clips --- */
+  // Silent loops play while on screen, unless the reader prefers reduced motion, and each gets a
+  // pause button, since moving content that lasts over five seconds must be stoppable (WCAG 2.2.2).
+  var still = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll("video[data-clip]").forEach(function (video) {
+    video.removeAttribute("controls");
+    var paused = still; // the reader's choice, kept across scrolling
+    var button = document.createElement("button");
+    button.type = "button";
+    button.className = "clip__toggle";
+    video.parentNode.insertBefore(button, video.nextSibling);
+
+    function label() {
+      button.textContent = video.paused ? "Play" : "Pause";
+      button.setAttribute("aria-label", (video.paused ? "Play" : "Pause") + " the clip");
+    }
+
+    button.addEventListener("click", function () {
+      if (video.paused) { paused = false; video.play().catch(function () {}); }
+      else { paused = true; video.pause(); }
+    });
+    video.addEventListener("play", label);
+    video.addEventListener("pause", label);
+    label();
+
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting && !paused) { video.play().catch(function () {}); }
+          else if (!entry.isIntersecting && !video.paused) { video.pause(); }
+        });
+      }, { threshold: 0.5 }).observe(video);
+    }
+  });
+
+  /* --------------------------------------------------------- password --- */
+  var copy = document.getElementById("copy-password");
+  var password = document.getElementById("demo-password");
+  if (copy && password) {
+    copy.hidden = false;
+    copy.addEventListener("click", function () {
+      var done = function (text) { copy.textContent = text; setTimeout(function () { copy.textContent = "Copy"; }, 2000); };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(password.textContent).then(function () { done("Copied"); }, select);
+      } else { select(); }
+      function select() {
+        var range = document.createRange();
+        range.selectNodeContents(password);
+        var selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        done("Selected");
+      }
+    });
+  }
+
+  /* ------------------------------------------------------------- form --- */
+  var form = document.getElementById("contact-form");
+  var status = document.getElementById("form-status");
+  if (form && window.fetch) {
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      var button = form.querySelector("button[type=submit]");
+      button.disabled = true;
+      status.className = "form__status";
+      status.textContent = "Sending...";
+
+      fetch(form.action, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
+        .then(function (r) {
+          if (!r.ok) { throw new Error(); }
+          form.reset();
+          status.className = "form__status form__status--ok";
+          status.textContent = "Sent. Thank you; I will reply by email.";
+        })
+        .catch(function () {
+          status.className = "form__status form__status--err";
+          status.textContent = "That did not send. Please email CivicBudget@spencersmith.site instead.";
+        })
+        .finally(function () { button.disabled = false; });
+    });
+  }
+})();
