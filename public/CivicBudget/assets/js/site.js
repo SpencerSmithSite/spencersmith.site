@@ -1,5 +1,6 @@
-/* CivicBudget: the page's three small behaviors. The page works without any of them: the clips
- * keep their native controls, the password can be selected, and the form posts to Formspree. */
+/* CivicBudget: the page's small behaviors. The page works without any of them: the clips keep
+ * their native controls, the password can be selected, the menu is a plain disclosure, and the
+ * form posts to Formspree. */
 (function () {
   "use strict";
 
@@ -16,9 +17,11 @@
     button.className = "clip__toggle";
     video.parentNode.insertBefore(button, video.nextSibling);
 
+    // The visible word leads the name (WCAG 2.5.3), and the rest says which clip it is.
+    var name = video.getAttribute("data-clip") || "clip";
     function label() {
       button.textContent = video.paused ? "Play" : "Pause";
-      button.setAttribute("aria-label", (video.paused ? "Play" : "Pause") + " the clip");
+      button.setAttribute("aria-label", (video.paused ? "Play" : "Pause") + " the " + name);
     }
 
     button.addEventListener("click", function () {
@@ -42,10 +45,16 @@
   /* --------------------------------------------------------- password --- */
   var copy = document.getElementById("copy-password");
   var password = document.getElementById("demo-password");
+  var copyStatus = document.getElementById("copy-status");
   if (copy && password) {
     copy.hidden = false;
     copy.addEventListener("click", function () {
-      var done = function (text) { copy.textContent = text; setTimeout(function () { copy.textContent = "Copy"; }, 2000); };
+      var done = function (text) {
+        copy.textContent = text;
+        // The button's own text changing is not announced; the status region is.
+        if (copyStatus) { copyStatus.textContent = text === "Copied" ? "Password copied" : "Password selected"; }
+        setTimeout(function () { copy.textContent = "Copy"; if (copyStatus) { copyStatus.textContent = ""; } }, 2000);
+      };
       if (navigator.clipboard) {
         navigator.clipboard.writeText(password.textContent).then(function () { done("Copied"); }, select);
       } else { select(); }
@@ -57,6 +66,17 @@
         selection.addRange(range);
         done("Selected");
       }
+    });
+  }
+
+  /* ------------------------------------------------------------- menu --- */
+  // The phone menu is a <details>; it closes when a link in it is chosen, and on Escape, which
+  // returns focus to the button that opened it.
+  var menu = document.querySelector(".nav__menu");
+  if (menu) {
+    menu.addEventListener("click", function (e) { if (e.target.closest("a")) { menu.open = false; } });
+    menu.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menu.open) { menu.open = false; menu.querySelector("summary").focus(); }
     });
   }
 

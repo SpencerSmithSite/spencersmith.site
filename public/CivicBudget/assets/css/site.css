@@ -30,6 +30,7 @@
   --text: #1F2937;
   --muted: #5B6B7B;
   --border: #E3E8EF;
+  --field-border: #848F9B; /* a field's edge needs 3:1 against the page; --border is for rules */
   --link: #1565C0;
   --ok: #1E7E4A;
   --err: #B42318;
@@ -55,6 +56,7 @@
     --text: #E3EAF2;
     --muted: #9AAABB;
     --border: #22384F;
+    --field-border: #6B8199;
     --link: #7DB4F0;
     --teal: #3FB6C4;
     --ok: #5CC98E;
@@ -70,7 +72,10 @@ html { scroll-behavior: smooth; scroll-padding-top: 80px; }
 body { background: var(--bg); color: var(--text); font: 400 16px/1.6 var(--sans); margin: 0; -webkit-text-size-adjust: 100%; }
 img, video { max-width: 100%; height: auto; display: block; }
 a { color: var(--link); }
-:focus-visible { outline: 2px solid var(--teal-bright); outline-offset: 2px; border-radius: 4px; }
+:focus-visible { outline: 2px solid var(--teal); outline-offset: 2px; border-radius: 4px; }
+/* On the navy bands the dark teal disappears, so the ring turns bright there. */
+.nav :focus-visible, .hero :focus-visible, .trust :focus-visible, footer :focus-visible { outline-color: var(--teal-bright); }
+.visually-hidden { position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
 h1, h2, h3 { text-wrap: balance; line-height: 1.15; margin: 0; letter-spacing: -0.015em; }
 h2 { font-size: clamp(1.6rem, 3vw, 2.25rem); font-weight: 700; }
 h3 { font-size: 1.15rem; font-weight: 700; }
@@ -87,7 +92,8 @@ p { margin: 0; }
 .nav { background: var(--ink); color: var(--on-ink); position: sticky; top: 0; z-index: 10; border-bottom: 1px solid rgb(255 255 255 / .08); }
 .nav__inner { display: flex; align-items: center; gap: 24px; min-height: 64px; }
 .brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 700; font-size: 1.1rem; }
-.nav__links { display: flex; gap: 22px; list-style: none; margin: 0 0 0 auto; padding: 0; }
+.nav__nav { margin-left: auto; display: flex; align-items: center; }
+.nav__links { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; }
 .nav__links a { color: var(--on-ink-muted); text-decoration: none; font-size: .95rem; font-weight: 500; }
 .nav__links a:hover { color: #fff; }
 /* Phones get the same links in a disclosure, which needs no script. */
@@ -155,6 +161,9 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .cycle span { display: block; color: var(--muted); font-size: .85rem; margin-top: 4px; line-height: 1.45; }
 .cycle .erp { border-color: var(--teal); }
 .cycle .erp::before { background: var(--teal); }
+/* The ERP steps say so in words as well as with the teal outline. */
+.erp-tag { float: right; font: 700 .68rem/1 var(--sans); font-style: normal; letter-spacing: .06em; color: var(--teal); border: 1px solid var(--teal); border-radius: 4px; padding: 3px 5px; }
+.cycle-note .erp-tag { float: none; }
 @media (max-width: 1000px) { .cycle { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 480px) { .cycle { grid-template-columns: minmax(0, 1fr); } }
 .cycle-note { margin-top: 18px; color: var(--muted); font-size: .9rem; display: flex; gap: 8px; align-items: center; }
@@ -239,7 +248,8 @@ td code { font-family: var(--mono); font-size: .84rem; white-space: nowrap; }
 .field { display: grid; gap: 6px; }
 .field--wide { grid-column: 1 / -1; }
 .field label { font-size: .85rem; font-weight: 600; }
-.field input, .field select, .field textarea { font: inherit; font-size: .95rem; color: var(--text); background: var(--bg); border: 1px solid var(--border); border-radius: 6px; padding: 10px 12px; width: 100%; }
+.field .req { font-weight: 400; color: var(--muted); }
+.field input, .field select, .field textarea { font: inherit; font-size: .95rem; color: var(--text); background: var(--bg); border: 1px solid var(--field-border); border-radius: 6px; padding: 10px 12px; width: 100%; }
 .field textarea { min-height: 120px; resize: vertical; }
 .hp { position: absolute; left: -9999px; }
 .form__foot { grid-column: 1 / -1; display: flex; flex-wrap: wrap; align-items: center; gap: 14px; }
