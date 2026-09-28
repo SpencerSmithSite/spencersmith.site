@@ -35,8 +35,9 @@ export interface ProjectPage {
 }
 
 /**
- * Detail pages. Council is deliberately absent: it has its own hand-built
- * static site under public/council, wired to the app's update manifest.
+ * Detail pages. Council and CivicBudget are deliberately absent: each has its own
+ * hand-built static site (public/council, wired to the app's update manifest, and
+ * public/CivicBudget).
  * The portfolio itself has no detail page — it is the site you are on.
  */
 export const projectPages: ProjectPage[] = [
@@ -683,13 +684,14 @@ export function slugForProject(projectId: string): string | undefined {
 
 /**
  * Where a project's "View details" link points, when it has somewhere to go.
- * Council is the exception to the generated pages: it has its own hand-built
- * static site under public/council, so it links there instead.
+ * Council and CivicBudget are the exceptions to the generated pages: each has its
+ * own hand-built static site under public/, so they link there instead.
  */
 export function detailHrefForProject(projectId: string): string | undefined {
   const slug = slugForProject(projectId)
   if (slug) return `/${slug}`
   if (projectId === "council") return "/council/"
+  if (projectId === "civic-budget") return "/CivicBudget/"
   return undefined
 }
 

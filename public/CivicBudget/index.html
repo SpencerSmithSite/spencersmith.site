@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CivicBudget | Budget preparation for Ohio local government</title>
+<meta name="description" content="Budget preparation and a public transparency portal for Ohio villages, townships, cities, and counties. Departments request, the fiscal officer checks every fund against its certified resources, and the adopted budget goes to the ERP.">
+<link rel="canonical" href="https://spencersmith.site/CivicBudget/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CivicBudget: the budget, built the way Ohio builds it">
+<meta property="og:description" content="Budget preparation and a public transparency portal for Ohio local government, built to work beside the ERP.">
+<meta property="og:url" content="https://spencersmith.site/CivicBudget/">
+<meta property="og:image" content="https://spencersmith.site/CivicBudget/assets/img/social.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0F2A44">
+<link rel="icon" href="assets/img/logo.svg" type="image/svg+xml">
+<link rel="preload" href="assets/fonts/PublicSans-Variable.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav">
+  <div class="wrap nav__inner">
+    <a class="brand" href="./" aria-label="CivicBudget home">
+      <img src="assets/img/logo.svg" width="32" height="32" alt="">
+      CivicBudget
+    </a>
+    <ul class="nav__links">
+      <li><a href="#product">Product</a></li>
+      <li><a href="#erp">For ERP vendors</a></li>
+      <li><a href="#security">Security</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <details class="nav__menu">
+      <summary aria-label="Menu"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg></summary>
+      <ul>
+        <li><a href="#product">Product</a></li>
+        <li><a href="#erp">For ERP vendors</a></li>
+        <li><a href="#security">Security</a></li>
+        <li><a href="#demo">Live demo</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </details>
+    <a class="btn btn--primary btn--sm" href="#demo">Try the live demo</a>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="wrap hero__inner">
+      <div>
+        <p class="eyebrow">Budget preparation for Ohio local government</p>
+        <h1 id="hero-title">The budget, built the way Ohio builds it.</h1>
+        <p class="hero__lede">Departments enter their own requests. The fiscal officer sees every fund checked against its certified resources as the numbers change. Council adopts by resolution, the ERP receives the journal, and residents get a budget they can read on a phone.</p>
+        <div class="actions">
+          <a class="btn btn--primary" href="#demo">Try the live demo</a>
+          <a class="btn btn--ghost" href="#product">See how it works</a>
+        </div>
+        <ul class="hero__proof">
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Works beside your ERP</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Designed and built to achieve SOC 2 compliance</li>
+          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Villages, townships, cities, counties</li>
+        </ul>
+      </div>
+      <div class="stage">
+        <img class="stage__shot" src="assets/img/worksheet.webp" width="1600" height="1000" fetchpriority="high" alt="The FY2027 budget worksheet: account lines with last year's actual, this year's budget, the proposed amount and the change, beside each fund's balance checked against the Ohio limit. The Street fund is over.">
+        <div class="check" role="img" aria-label="Example fund check: the Street Construction fund's appropriations of $429,440.63 exceed its estimated resources of $407,532.00 by $21,908.63.">
+          <div class="check__head"><span class="check__fund"><span class="mono">2011</span> Street Construction</span><span class="check__law">ORC 5705.39</span></div>
+          <div class="check__row"><span>Estimated resources</span><span>$407,532.00</span></div>
+          <div class="check__row"><span>Appropriations</span><span>$429,440.63</span></div>
+          <div class="bar"><div class="bar__fill"></div><div class="bar__limit"></div></div>
+          <p class="check__verdict">Over by $21,908.63. Council cannot adopt until it balances.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="product" aria-labelledby="cycle-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">The whole budget year</p>
+        <h2 id="cycle-title">From the chart of accounts to the public portal, in one place.</h2>
+        <p class="lede">CivicBudget follows the Ohio budget calendar and hands off to the ERP where the ERP is the system of record. Nothing is re-keyed.</p>
+      </div>
+      <ol class="cycle">
+        <li class="erp"><b>Chart from the ERP</b><span>Funds, departments, and accounts arrive by API or file.</span></li>
+        <li><b>Departments request</b><span>Each department enters its own lines and a narrative, then submits.</span></li>
+        <li><b>Fiscal review</b><span>Every fund checked against estimated resources as numbers change.</span></li>
+        <li><b>Council adopts</b><span>Draft, proposed, adopted by resolution, with the certificate.</span></li>
+        <li class="erp"><b>Journal to the ERP</b><span>The adopted budget posts as a journal of changes, once.</span></li>
+        <li><b>Residents read it</b><span>A public portal that works on any phone, with no sign-in.</span></li>
+        <li class="erp"><b>Amend and track</b><span>Amendments through the same workflow, actuals from the ERP.</span></li>
+      </ol>
+      <p class="cycle-note"><i aria-hidden="true"></i>Steps outlined in teal exchange data with the ERP.</p>
+    </div>
+  </section>
+
+  <section class="band" aria-label="Features">
+    <div class="wrap">
+      <article class="feature">
+        <div class="feature__copy">
+          <p class="eyebrow">Department requests</p>
+          <h2>Department heads budget for themselves.</h2>
+          <p class="lede">Each department user sees only their own programs: last year's actual, this year's budget, and this year's spending so far from the ERP, beside every line.</p>
+          <ul>
+            <li>A written narrative with every request</li>
+            <li>Submit to the fiscal officer; a returned request comes back with a note</li>
+            <li>Salaries and benefits calculated from positions, pay scales, and OPERS and OP&amp;F rates</li>
+          </ul>
+        </div>
+        <figure class="clip">
+          <video class="shot" data-clip muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/department-poster.webp" aria-describedby="cap-department">
+            <source src="assets/video/department.mp4" type="video/mp4">
+          </video>
+          <figcaption id="cap-department">Parks &amp; Recreation moves its playground surface to the Capital Projects fund, as the fiscal officer asked, and submits the request.</figcaption>
+        </figure>
+      </article>
+
+      <article class="feature feature--flip">
+        <div class="feature__copy">
+          <p class="eyebrow">The fiscal officer's worksheet</p>
+          <h2>The appropriation limit, checked as you type.</h2>
+          <p class="lede">Appropriations may not exceed estimated resources, fund by fund. CivicBudget shows each fund's projected ending balance next to the lines that move it, and blocks adoption while any fund is over, or warns, as each government chooses.</p>
+          <p class="cite">Beginning balance + revenues + transfers in ≥ expenditures + transfers out</p>
+        </div>
+        <figure class="clip">
+          <video class="shot" data-clip muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/worksheet-poster.webp" aria-describedby="cap-worksheet">
+            <source src="assets/video/worksheet.mp4" type="video/mp4">
+          </video>
+          <figcaption id="cap-worksheet">The fiscal officer trims the Street fund's capital outlay, and the fund comes back within its estimated resources.</figcaption>
+        </figure>
+      </article>
+
+      <article class="feature">
+        <div class="feature__copy">
+          <p class="eyebrow">Public transparency portal</p>
+          <h2>A budget residents can actually read.</h2>
+          <p class="lede">Publish the adopted budget and the portal shows where the money comes from and where it goes, fund by fund and department by department, with each department's own narrative. It loads fast, needs no sign-in, and works on any phone.</p>
+          <ul>
+            <li>Only what was published; drafts never leak</li>
+            <li>Year over year, search, and spreadsheet downloads</li>
+            <li>Your seal in the header</li>
+          </ul>
+        </div>
+        <div class="shot-pair">
+          <img class="shot" src="assets/img/portal-overview.webp" width="1600" height="1000" loading="lazy" alt="The public portal's overview of the 2026 budget: revenues, expenditures, projected ending balance, and spending by fund.">
+          <figure class="clip clip--phone">
+            <video class="shot" data-clip muted loop playsinline controls preload="none" width="390" height="844" poster="assets/video/portal-poster.webp" aria-describedby="cap-portal">
+              <source src="assets/video/portal.mp4" type="video/mp4">
+            </video>
+            <figcaption id="cap-portal">On a phone: the overview, the General Fund, and the Police department in its own words.</figcaption>
+          </figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="erp" aria-labelledby="erp-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">For ERP vendors</p>
+        <h2 id="erp-title">Built to sit beside the ERP, not replace it.</h2>
+        <p class="lede">The general ledger, payroll, and purchasing stay in the ERP. CivicBudget is the budget preparation and transparency layer your customers keep asking for, and it connects through one adapter per ERP.</p>
+      </div>
+      <div class="exchange">
+        <div class="node">
+          <h3>Your ERP</h3>
+          <p>General ledger, payroll, encumbrances. The system of record.</p>
+        </div>
+        <ul class="flows" aria-label="What moves between the ERP and CivicBudget">
+          <li class="flow"><span>Chart of accounts</span><span class="dir" aria-label="to CivicBudget">→</span><small>funds, departments, accounts</small></li>
+          <li class="flow"><span>Actuals and encumbrances</span><span class="dir" aria-label="to CivicBudget">→</span><small>by month, for pace and projection</small></li>
+          <li class="flow"><span>Employees and pay</span><span class="dir" aria-label="to CivicBudget">→</span><small>for personnel budgeting</small></li>
+          <li class="flow flow--out"><span>Adopted budget journal</span><span class="dir" aria-label="to the ERP">←</span><small>changes only, sent once per version</small></li>
+        </ul>
+        <div class="node">
+          <h3>CivicBudget</h3>
+          <p>Requests, review, adoption, the certificate, the public portal.</p>
+        </div>
+      </div>
+      <div class="vendor-note">
+        <div><h3>By API or by file</h3><p>Every exchange works through a web API or an import file, so a customer on an older release is not left out.</p></div>
+        <div><h3>One adapter per ERP</h3><p>The app speaks a small contract. Supporting a new ERP means implementing that contract, not changing the app.</p></div>
+        <div><h3>Ready to operate</h3><p>Multi-government from day one, provisioning from the command line, and the security documentation buyers ask for.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="security" class="trust" aria-labelledby="trust-title">
+    <div class="wrap">
+      <div class="section-head">
+        <p class="eyebrow">Security</p>
+        <h2 id="trust-title">Designed and built to achieve SOC 2 compliance.</h2>
+        <p class="lede">The controls an auditor examines are in the product, each mapped to its evidence and to NIST CSF 2.0 and NIST 800-53, the catalog GovRAMP uses.</p>
+      </div>
+      <div class="trust__grid">
+        <div><b>Each government kept apart</b><p>Every query is filtered to the signed-in government, and tests prove one cannot see another's data.</p></div>
+        <div><b>Two-step sign-in</b><p>Any authenticator app. A government can require it for everyone.</p></div>
+        <div><b>Sessions that end</b><p>Signed out after 30 idle minutes, with a warning first. Lockout and rate limits stop guessing.</p></div>
+        <div><b>Every change on record</b><p>An audit trail of every budget change, and a security log of every sign-in and export.</p></div>
+        <div><b>Your data, whole</b><p>Download everything at any time. When a government leaves, every row is removed.</p></div>
+        <div><b>Checked on every change</b><p>Code scanning and a known-vulnerability check on every package, before anything ships.</p></div>
+      </div>
+      <p class="trust__foot"><span>No SOC 2 report has been issued yet.</span><a href="https://github.com/SpencerSmithSite/civic-budget/tree/main/docs/security">Read the security overview and control matrix</a></p>
+    </div>
+  </section>
+
+  <section id="demo" aria-labelledby="demo-title">
+    <div class="wrap demo">
+      <div>
+        <p class="eyebrow">Live demo</p>
+        <h2 id="demo-title">Sign in as anyone in the village.</h2>
+        <p class="lede">The Village of Maple Ridge and Pine Hollow Township are fictional, and the demo is rebuilt every night, so change anything you like.</p>
+        <div class="password">
+          <span>Password for every login</span>
+          <code id="demo-password">Demo-Bpe1GyRie5-1!</code>
+          <button class="copy" type="button" id="copy-password" hidden>Copy</button>
+        </div>
+        <div class="actions">
+          <a class="btn btn--primary" href="https://civicbudget-app.ashysmoke-cd0f52a4.centralus.azurecontainerapps.io">Open the demo</a>
+          <a class="btn btn--line" href="https://civicbudget-app.ashysmoke-cd0f52a4.centralus.azurecontainerapps.io/transparency/maple-ridge-oh">See the public portal</a>
+        </div>
+        <p class="wake">The demo runs on free cloud tiers and sleeps when nobody is using it. The first visit can take about 20 seconds.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th scope="col">Sign in as</th><th scope="col">Role</th><th scope="col">Try</th></tr></thead>
+          <tbody>
+            <tr><td><code>finance@mapleridge.example</code></td><td>Fiscal Officer</td><td>The FY2027 draft, where the Street fund is over its limit on purpose; the department board; send the amendment to the ERP</td></tr>
+            <tr><td><code>streets@mapleridge.example</code></td><td>Department User</td><td>A request still being entered, and one returned with a note</td></tr>
+            <tr><td><code>police@mapleridge.example</code></td><td>Department User</td><td>A submitted request, locked until returned</td></tr>
+            <tr><td><code>admin@mapleridge.example</code></td><td>Administrator</td><td>Users, two-step sign-in, the security log, the logo</td></tr>
+            <tr><td><code>admin@pinehollow.example</code></td><td>Another government</td><td>Proof that one government never sees another's data</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="band" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Questions</p><h2 id="faq-title">What people ask first.</h2></div>
+      <div class="faq">
+        <details open><summary>Does it replace our ERP?</summary><p>No. The ERP stays the system of record for the ledger, payroll, and purchasing. CivicBudget prepares the budget, sends the adopted budget to the ERP as a journal, and reads actuals back.</p></details>
+        <details><summary>Which ERPs does it work with?</summary><p>The demo runs against a simulated ERP. Connecting a real one means writing its adapter, by API or by import file, which is the conversation to have with the vendor.</p></details>
+        <details><summary>Is it only for Ohio?</summary><p>It is built around Ohio's rules: the appropriation limit, the certificate of estimated resources, the Auditor of State's chart of accounts, OPERS and OP&amp;F. Other states would need their own rules added.</p></details>
+        <details><summary>Is it SOC 2 certified?</summary><p>It is designed and built to achieve SOC 2 compliance, with the controls, policies, and evidence documented. A SOC 2 report comes from an independent auditor, and none has been issued yet.</p></details>
+        <details><summary>Who built it?</summary><p>Spencer Smith, who worked in Ohio municipal budgeting and ERP software. It began as a portfolio project and is built the way the real thing would be.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="wrap contact">
+      <div class="section-head">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Talk about CivicBudget.</h2>
+        <p class="lede">For an ERP vendor interested in offering it, a government curious about it, or anything else.</p>
+        <p style="color: var(--muted)">Or email <a href="mailto:CivicBudget@spencersmith.site">CivicBudget@spencersmith.site</a></p>
+      </div>
+      <!-- Posts straight to Formspree without JavaScript; site.js sends it in the page instead when it can.
+           The hidden subject marks the messages as CivicBudget's in the inbox the other sites share. -->
+      <form class="form" id="contact-form" action="https://formspree.io/f/mldbgwbb" method="POST">
+        <input type="hidden" name="_subject" value="CivicBudget inquiry">
+        <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+        <div class="field"><label for="c-name">Name</label><input id="c-name" name="name" autocomplete="name" required></div>
+        <div class="field"><label for="c-email">Email</label><input id="c-email" name="email" type="email" autocomplete="email" required></div>
+        <div class="field"><label for="c-org">Organization</label><input id="c-org" name="organization" autocomplete="organization"></div>
+        <div class="field"><label for="c-kind">I am with</label>
+          <select id="c-kind" name="kind"><option>An ERP vendor</option><option>A government</option><option>Something else</option></select></div>
+        <div class="field field--wide"><label for="c-msg">Message</label><textarea id="c-msg" name="message" required></textarea></div>
+        <div class="form__foot">
+          <button class="btn btn--primary" type="submit">Send</button>
+          <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>CivicBudget, by <a href="https://spencersmith.site">Spencer Smith</a>. All demo data is fictional.</span>
+    <span><a href="https://github.com/SpencerSmithSite/civic-budget">Source on GitHub</a> · <a href="#security">Security</a> · <a href="#contact">Contact</a></span>
+  </div>
+</footer>
+
+<script src="assets/js/site.js" defer></script>
+</body>
+</html>
