@@ -6,12 +6,13 @@ public transparency portal for Ohio local government. Its product site is one st
 
 ```
 public/CivicBudget/
-  index.html            the whole site: hero, the budget year, features, ERP, security, demo, FAQ, contact
+  index.html            the whole site: hero, the budget year, the AI assistant, forecasting, features, ERP, security, demo, FAQ, contact
   assets/css/site.css   one stylesheet; colors are the app's own design tokens
-  assets/js/site.js     clips play in view with a pause button, copy the demo password, send the form
+  assets/js/site.js     clips play in view with a pause button on each, copy the demo password, send the form
   assets/fonts/         Public Sans and IBM Plex Mono, self-hosted, with their OFL licenses
-  assets/img/           the hero screenshot, the portal screenshot, the logo, the social card
-  assets/video/         three silent clips (MP4) and their poster images
+  assets/img/           the hero screenshot, the portal and question-box screenshots, the projection report, the logo, the social card
+  assets/video/         six silent clips (MP4) and their poster images: the assistant, the portal question box,
+                        the multi-year plan, a department request, the worksheet, and the portal on a phone
 ```
 
 Like Council, it is plain HTML, CSS, and a little JavaScript. Next does not build it; it is
@@ -50,6 +51,8 @@ The page's canonical link keeps search engines on one address.
     Pause/Play button, since WCAG 2.2.2 requires a way to stop moving content that lasts more
     than five seconds.
   - Each has a caption saying what happens, since there is no sound.
+  - In the two AI clips, the seconds the model spends answering play eight times faster, and the
+    caption says so. Nothing else in any clip is sped up or cut.
 - **The contact form** posts to the same Formspree endpoint as the rest of the site. A hidden
   `_subject` of "CivicBudget inquiry" tells the messages apart, and `_gotcha` is Formspree's
   honeypot.
@@ -60,12 +63,18 @@ The page's canonical link keeps search engines on one address.
 
 The clips come from the app itself, recorded by Playwright from a freshly seeded local copy. The
 script lives in the app repository, `scripts/screenshots/site-clips.mjs`, which says how to run it
-and how to encode the output. After re-recording, copy `*.mp4` and `*-poster.webp` into
-`assets/video/`.
+and how to encode the output. The assistant and question-box clips need a model connected to the
+local app (`Assistant:ApiKey` in its user-secrets), and their answers differ a little each run, so
+check the captions' figures against the new recording. After re-recording, copy `*.mp4` and
+`*-poster.webp` into `assets/video/`.
+
+`portal-ask.webp` and `projection.webp` are the app's README screenshots (`docs/screenshots`, made by
+`scripts/screenshots/capture-ai.mjs`) resized to 1600 wide; the projection is cropped to the report,
+without the app's sidebar, so it reads at the size it is shown.
 
 The hero screenshot is the FY2027 worksheet as the Fiscal Officer, at 1440 × 900 and 2× scale,
 resized to 1600 wide as WebP. The Street fund panel over it (`.check` in `index.html`) repeats
-that screenshot's figures, so update both together.
+that screenshot's figures ($21,908.68 over, every reseed), so update both together.
 
 `assets/img/social.png` (the link preview) is a screenshot of this page's own hero at
 1200 × 630.

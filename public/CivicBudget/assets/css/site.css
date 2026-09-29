@@ -185,7 +185,8 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 /* Silent looping clips, with a pause button (moving content longer than five seconds needs one). */
 .clip { position: relative; margin: 0; }
 .clip figcaption { color: var(--muted); font-size: .85rem; margin-top: 10px; }
-.clip__toggle { position: absolute; right: 10px; bottom: 40px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: rgb(15 42 68 / .78); color: #fff; font: 600 .78rem var(--sans); cursor: pointer; }
+.clip__frame { position: relative; }
+.clip__toggle { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: rgb(15 42 68 / .78); color: #fff; font: 600 .78rem var(--sans); cursor: pointer; }
 .clip__toggle:hover { background: rgb(15 42 68 / .92); }
 .clip--phone video { border-radius: 16px; }
 
