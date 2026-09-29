@@ -15,7 +15,12 @@
     var button = document.createElement("button");
     button.type = "button";
     button.className = "clip__toggle";
-    video.parentNode.insertBefore(button, video.nextSibling);
+    // The button sits on the video itself, so a long caption below cannot push it onto the text.
+    var frame = document.createElement("div");
+    frame.className = "clip__frame";
+    video.parentNode.insertBefore(frame, video);
+    frame.appendChild(video);
+    frame.appendChild(button);
 
     // The visible word leads the name (WCAG 2.5.3), and the rest says which clip it is.
     var name = video.getAttribute("data-clip") || "clip";
