@@ -6,7 +6,8 @@
  * IBM Plex Mono sets account numbers and statute citations. Both are self-hosted: a page selling
  * security should not hand its visitors to a third-party font host.
  *
- * Every color is a custom property, declared once for light and once for dark.
+ * Every color is a custom property. The page is always light, with navy bands where the app is navy
+ * (the hero, security, the footer): a dark scheme turned every section dark, which was too much.
  */
 
 @font-face { font-family: "Public Sans"; src: url("../fonts/PublicSans-Variable.woff2") format("woff2"); font-weight: 400 800; font-display: swap; }
@@ -48,23 +49,6 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    color-scheme: dark;
-    --bg: #0B1622;
-    --bg-band: #0F1E2E;
-    --surface: #13243A;
-    --text: #E3EAF2;
-    --muted: #9AAABB;
-    --lede: #C2CDD9;
-    --border: #22384F;
-    --field-border: #6B8199;
-    --link: #7DB4F0;
-    --teal: #3FB6C4;
-    --ok: #5CC98E;
-    --err: #F08A80;
-  }
-}
 
 /* ---------------------------------------------------------------- base -- */
 
@@ -126,7 +110,6 @@ p { margin: 0; }
 .hero h1 { font-size: clamp(2.3rem, 4.8vw, 3.7rem); font-weight: 800; color: #fff; }
 .hero__lede { color: var(--on-ink); font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.5; margin-top: 22px; max-width: 34ch; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.hero__trust { margin-top: 26px; font-size: .88rem; color: var(--on-ink-muted); }
 
 /* What it does, in five words each, under the hero: the page's table of contents for a skimmer. */
 .points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: rgb(255 255 255 / .1); border-radius: var(--radius); overflow: hidden; }
@@ -155,7 +138,6 @@ p { margin: 0; }
 @keyframes fill { from { transform: scaleX(.2); background: var(--success); } 70% { background: var(--success); } to { transform: scaleX(1); background: var(--danger); } }
 @media (prefers-reduced-motion: reduce) { .bar__fill { animation: none; } }
 @media (max-width: 560px) { .check { position: relative; left: 0; bottom: 0; margin-top: -24px; margin-inline: 12px; width: auto; } }
-@media (prefers-color-scheme: dark) { .check { --danger: #F08A80; } }
 
 /* ------------------------------------------------------------ sections -- */
 
