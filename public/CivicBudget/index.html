@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>CivicBudget | Budget preparation for Ohio local government</title>
-<meta name="description" content="Budget preparation, five-year forecasting, an AI assistant that works as the signed-in user, and a public transparency portal residents can question, for Ohio villages, townships, cities, and counties. Built to work beside the ERP.">
+<title>CivicBudget | Budget preparation for local government</title>
+<meta name="description" content="Budget preparation, five-year forecasting, an AI assistant that works as the signed-in user, and a public transparency portal residents can question, for villages, townships, cities, and counties. Built to work beside the ERP.">
 <link rel="canonical" href="https://spencersmith.site/CivicBudget/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="CivicBudget: the budget, built the way Ohio builds it">
-<meta property="og:description" content="Budget preparation, forecasting, and an AI assistant for Ohio local government, with a public portal residents can question. Built to work beside the ERP.">
+<meta property="og:title" content="CivicBudget: the budget, built for the way you work">
+<meta property="og:description" content="Budget preparation, forecasting, and an AI assistant for local government, with a public portal residents can question. Built to work beside the ERP.">
 <meta property="og:url" content="https://spencersmith.site/CivicBudget/">
 <meta property="og:image" content="https://spencersmith.site/CivicBudget/assets/img/social.png">
 <meta property="og:image:width" content="1200">
@@ -59,30 +59,33 @@
   <section class="hero" aria-labelledby="hero-title">
     <div class="wrap hero__inner">
       <div>
-        <p class="eyebrow">Budget preparation for Ohio local government</p>
-        <h1 id="hero-title">The budget, built the way Ohio builds it.</h1>
-        <p class="hero__lede">Departments enter their own requests. Every fund is checked against its certified resources as the numbers change, and projected five years ahead. An AI assistant answers from your own budget and drafts the changes you confirm. Council adopts, the ERP receives the journal, and residents get a budget they can read, and ask about, on a phone.</p>
+        <h1 id="hero-title">The budget, built for the way you work.</h1>
+        <p class="hero__lede">Budget preparation, forecasting, and public transparency for local government, with an AI assistant that drafts the work and waits for your click.</p>
         <div class="actions">
           <a class="btn btn--primary" href="#demo">Try the live demo</a>
           <a class="btn btn--ghost" href="#product">See how it works</a>
         </div>
-        <ul class="hero__proof">
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Works beside your ERP</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>An AI assistant that sees only what you can</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Five-year forecasts, fund by fund</li>
-          <li><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Designed and built to achieve SOC 2 compliance</li>
-        </ul>
+        <p class="hero__trust">Works beside your ERP <span aria-hidden="true">·</span> Designed and built to achieve SOC 2 compliance</p>
       </div>
       <div class="stage">
-        <img class="stage__shot" src="assets/img/worksheet.webp" width="1600" height="1000" fetchpriority="high" alt="The FY2027 budget worksheet: account lines with last year's actual, this year's budget, the proposed amount and the change, beside each fund's balance checked against the Ohio limit. The Street fund is over.">
+        <img class="stage__shot" src="assets/img/worksheet.webp" width="1600" height="1000" fetchpriority="high" alt="The FY2027 budget worksheet: account lines with last year's actual, this year's budget, the proposed amount and the change, beside each fund's balance checked against its appropriation limit. The Street fund is over.">
         <div class="check" role="img" aria-label="Example fund check: the Street Construction fund's appropriations of $429,440.68 exceed its estimated resources of $407,532.00 by $21,908.68.">
-          <div class="check__head"><span class="check__fund"><span class="mono">2011</span> Street Construction</span><span class="check__law">ORC 5705.39</span></div>
+          <div class="check__head"><span class="check__fund"><span class="mono">2011</span> Street Construction</span><span class="check__law">Limit check</span></div>
           <div class="check__row"><span>Estimated resources</span><span>$407,532.00</span></div>
           <div class="check__row"><span>Appropriations</span><span>$429,440.68</span></div>
           <div class="bar"><div class="bar__fill"></div><div class="bar__limit"></div></div>
           <p class="check__verdict">Over by $21,908.68. Council cannot adopt until it balances.</p>
         </div>
       </div>
+    </div>
+    <div class="wrap">
+      <ul class="points" aria-label="What CivicBudget does">
+        <li><a href="#departments"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg><b>Departments request</b><span>Each enters its own lines, then submits.</span></a></li>
+        <li><a href="#worksheet"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><b>Every fund checked</b><span>Against its limit, as numbers change.</span></a></li>
+        <li><a href="#forecast"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 7 13.5 15.5 8.5 10.5 2 17"/><path d="M16 7h6v6"/></svg><b>Five years ahead</b><span>Every fund's balance, projected forward.</span></a></li>
+        <li><a href="#ai"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/><path d="M19 15l.9 2.1L22 18l-2.1.9L19 21l-.9-2.1L16 18l2.1-.9z"/></svg><b>An AI assistant</b><span>Drafts changes; nothing happens until you click.</span></a></li>
+        <li><a href="#portal"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg><b>Residents read and ask</b><span>On any phone, with no sign-in.</span></a></li>
+      </ul>
     </div>
   </section>
 
@@ -91,12 +94,12 @@
       <div class="section-head">
         <p class="eyebrow">The whole budget year</p>
         <h2 id="cycle-title">From the chart of accounts to the public portal, in one place.</h2>
-        <p class="lede">CivicBudget follows the Ohio budget calendar and hands off to the ERP where the ERP is the system of record. Nothing is re-keyed.</p>
+        <p class="lede">It follows your budget calendar and hands off to the ERP wherever the ERP keeps the books. Nothing is re-keyed.</p>
       </div>
       <ol class="cycle">
         <li class="erp"><em class="erp-tag">ERP</em><b>Chart from the ERP</b><span>Funds, departments, and accounts arrive by API or file.</span></li>
         <li><b>Departments request</b><span>Each department enters its own lines and a narrative, then submits.</span></li>
-        <li><b>Fiscal review</b><span>Every fund checked against estimated resources as numbers change.</span></li>
+        <li><b>Fiscal review</b><span>Every fund checked against its estimated resources as numbers change.</span></li>
         <li><b>Council adopts</b><span>Draft, proposed, adopted by resolution, with the certificate.</span></li>
         <li class="erp"><em class="erp-tag">ERP</em><b>Journal to the ERP</b><span>The adopted budget posts as a journal of changes, once.</span></li>
         <li><b>Residents read it</b><span>A public portal that works on any phone, with no sign-in.</span></li>
@@ -111,37 +114,40 @@
       <div class="section-head">
         <p class="eyebrow">AI assistant</p>
         <h2 id="ai-title">Ask your budget. Let it do the work. Nothing changes until you click.</h2>
-        <p class="lede">The assistant sits beside every page. It answers from the same reports the screens show, finds the page you need, checks a budget before it goes to council, and drafts changes: a five-year plan, a raise across lines, a department's narrative. Every change comes back as a card, and only your click makes it.</p>
+        <p class="lede">An assistant beside every page that answers from your own reports and drafts the changes you ask for.</p>
       </div>
       <article class="feature">
         <div class="feature__copy">
           <p class="eyebrow">For the fiscal officer</p>
-          <h2>"Raise utilities 5%." Here is every line it would change.</h2>
-          <p class="lede">Ask in plain words. The assistant works the change out with the same code the page uses and shows each line before and after, with the total. Confirm, and the worksheet updates; if someone changed a line in the meantime, nothing is changed and it says which one.</p>
+          <h3 class="feature__title">Say what you want. See every line it would change.</h3>
+          <p class="lede">It works the change out with the page's own rules and shows each line before and after. Your click makes it.</p>
           <ul>
-            <li>"How are actuals compared to our budget so far this year?"</li>
-            <li>"Check my budget before I propose it," then "fix the Street fund"</li>
-            <li>"Build a five-year plan where each year goes up 4%"</li>
-            <li>Every confirmed change is in the audit trail, marked as the assistant's</li>
+            <li><b>Ask</b> "How are actuals compared to our budget so far this year?"</li>
+            <li><b>Review</b> "Check my budget before I propose it."</li>
+            <li><b>Change</b> "Raise utilities 5%." "Build a five-year plan at 4% a year."</li>
+            <li><b>On the record</b> Every confirmed change is in the audit trail.</li>
           </ul>
         </div>
         <figure class="clip">
           <video class="shot" data-clip="assistant clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/assistant-poster.webp" aria-describedby="cap-assistant">
             <source src="assets/video/assistant.mp4" type="video/mp4">
           </video>
-          <figcaption id="cap-assistant">The fiscal officer asks the assistant to raise utilities 5% in the FY2027 draft. It proposes a card with all six utilities lines, $220,139.00 becoming $231,145.95, and changes nothing. After the click on "Change 6 lines", the worksheet shows the new amounts. The model's few seconds of thinking are shown eight times faster.</figcaption>
+          <figcaption>Asked to raise utilities 5%, the assistant proposes six lines, and one click applies them.
+            <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-assistant">The fiscal officer asks the assistant to raise utilities 5% in the FY2027 draft. It proposes a card with all six utilities lines, $220,139.00 becoming $231,145.95, and changes nothing. After the click on "Change 6 lines", the worksheet shows the new amounts. The model's few seconds of thinking are shown eight times faster.</p></details>
+          </figcaption>
         </figure>
       </article>
 
       <article class="feature">
         <div class="feature__copy">
           <p class="eyebrow">For residents</p>
-          <h2>A question box that knows only what you published.</h2>
-          <p class="lede">On the public portal, anyone can ask about the adopted budget in their own words and get a short answer with a link to the page that shows it. It reads the published budget and nothing else, so it cannot reveal a draft, spending to date, or anything about a person, and it says so when something is not published.</p>
+          <h3 class="feature__title">A question box that only knows what you published.</h3>
+          <p class="lede">Residents ask in their own words and get a short answer with a link to the page that shows it.</p>
           <ul>
-            <li>No opinions, no predictions: it describes what the budget says</li>
-            <li>Works without JavaScript, like the rest of the portal</li>
-            <li>Its own switch, and a set number of questions a month</li>
+            <li><b>Published only</b> No drafts, no spending to date, nothing about people.</li>
+            <li><b>No opinions</b> It describes what the budget says.</li>
+            <li><b>Works anywhere</b> Any phone, even with JavaScript off.</li>
+            <li><b>Capped</b> Its own switch, and a set number of questions a month.</li>
           </ul>
         </div>
         <div class="shot-pair">
@@ -150,16 +156,18 @@
             <video class="shot" data-clip="portal question clip" muted loop playsinline controls preload="none" width="390" height="844" poster="assets/video/ask-poster.webp" aria-describedby="cap-ask">
               <source src="assets/video/ask.mp4" type="video/mp4">
             </video>
-            <figcaption id="cap-ask">On a phone, a resident asks where the money for roads comes from. The answer comes from the published budget: the Street fund's $335,780.00, nearly all state gasoline and license taxes, with a link to the fund. The wait for the model is shown eight times faster.</figcaption>
+            <figcaption>A resident asks where road money comes from.
+              <details class="clip__more"><summary>What happens</summary><p id="cap-ask">On a phone, a resident asks where the money for roads comes from. The answer comes from the published budget: the Street fund's $335,780.00, nearly all state gasoline and license taxes, with a link to the fund. The wait for the model is shown eight times faster.</p></details>
+            </figcaption>
           </figure>
         </div>
       </article>
 
-      <div class="vendor-note">
-        <div><h3>It acts as you</h3><p>Its tools are the app's own services, run as the signed-in user. A department head's assistant sees one department; a Viewer's cannot change anything. The model never touches the database.</p></div>
-        <div><h3>Nothing changes until you click</h3><p>No tool can commit or confirm. A proposal is used once, belongs to your browser tab, and is checked again when you confirm it.</p></div>
-        <div><h3>Your choice of model</h3><p>Claude by default, through a standard interface, so an operator can choose another. Off until a government's Administrator turns it on. Questions are never stored.</p></div>
-      </div>
+      <ul class="guards" aria-label="What keeps the assistant safe">
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><h3>It acts as you</h3><p>It sees what your account sees and nothing more. The model never touches the database.</p></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg><h3>Nothing changes until you click</h3><p>No tool can commit. A proposal is used once and checked again when you confirm it.</p></li>
+        <li><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg><h3>Your choice of model</h3><p>Claude by default, or another provider. Off until your Administrator turns it on.</p></li>
+      </ul>
     </div>
   </section>
 
@@ -168,36 +176,38 @@
       <div class="section-head">
         <p class="eyebrow">Forecasting</p>
         <h2 id="forecast-title">See five years ahead, and where this year is really heading.</h2>
-        <p class="lede">A budget that balances this year can still run a fund dry in three. CivicBudget carries a multi-year plan with every budget, and paces this year's actuals from the ERP against last year's calendar, so both questions have an answer before council asks them.</p>
+        <p class="lede">Every budget carries a multi-year plan, and this year's actuals are projected from last year's pattern.</p>
       </div>
       <article class="feature">
         <div class="feature__copy">
           <p class="eyebrow">Multi-year plan</p>
-          <h2>Change an assumption, watch every fund roll forward.</h2>
-          <p class="lede">Set how revenues and spending change each year, type over the years where a project or a grant breaks the pattern, and every fund's balance is worked out to the end of the plan, with the Ohio limit checked in each year.</p>
+          <h3 class="feature__title">Change an assumption. Watch every fund roll forward.</h3>
+          <p class="lede">Set how revenues and spending grow each year, and every fund's balance is worked out to the end of the plan.</p>
           <ul>
-            <li>Up to ten years; nothing projected is stored, so it never disagrees with the budget</li>
-            <li>Moves on a year when next year's budget starts</li>
-            <li>Published to residents as an outlook, with the assumptions shown</li>
+            <li><b>Up to ten years</b> with the appropriation limit checked in each one</li>
+            <li><b>Exceptions</b> Type over a year where a project or a grant breaks the pattern.</li>
+            <li><b>Published</b> to residents as an outlook, assumptions shown</li>
           </ul>
         </div>
         <figure class="clip">
           <video class="shot" data-clip="multi-year plan clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/plan-poster.webp" aria-describedby="cap-plan">
             <source src="assets/video/plan.mp4" type="video/mp4">
           </video>
-          <figcaption id="cap-plan">The fiscal officer sets the FY2027 plan to 4% more revenue and 3% more spending each year through FY2031, and saves. Every fund's ending balance is worked out again: the General Fund ends FY2031 at $1,849,189.00 instead of $1,458,404.00, and the plan still flags the years the Street and Capital Projects funds would overspend.</figcaption>
+          <figcaption>4% more revenue and 3% more spending a year, saved; every fund's balance moves.
+            <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-plan">The fiscal officer sets the FY2027 plan to 4% more revenue and 3% more spending each year through FY2031, and saves. Every fund's ending balance is worked out again: the General Fund ends FY2031 at $1,849,189.00 instead of $1,458,404.00, and the plan still flags the years the Street and Capital Projects funds would overspend.</p></details>
+          </figcaption>
         </figure>
       </article>
 
       <article class="feature feature--flip">
         <div class="feature__copy">
           <p class="eyebrow">This year, on pace</p>
-          <h2>Projections that know the seasons.</h2>
-          <p class="lede">By August a village has collected nearly all its property tax and two-thirds of little else. So each account is paced by where it stood last year at the same month, not by a straight line, and each fund's year-end balance is projected from that.</p>
+          <h3 class="feature__title">Projections that know the seasons.</h3>
+          <p class="lede">Each account is paced by where it stood last year at the same month, not by a straight line.</p>
           <ul>
-            <li>Budget against actual, revenue against receipts, projected fund balances</li>
-            <li>Encumbrances count as spent</li>
-            <li>Trends across years, and the appropriation measure, from the ERP's books</li>
+            <li><b>Budget against actual</b> and revenue against receipts, month by month</li>
+            <li><b>Year-end balances</b> projected fund by fund</li>
+            <li><b>Encumbrances</b> count as spent</li>
           </ul>
         </div>
         <img class="shot" src="assets/img/projection.webp" width="1600" height="840" loading="lazy" alt="The Projected Fund Balances report for FY2026 through August 31: for each fund, the beginning balance, budgeted and projected receipts, appropriations and projected spending, and the budgeted and projected ending balance. All funds together end $119,624.88 better than budgeted.">
@@ -207,50 +217,54 @@
 
   <section class="band" aria-label="Features">
     <div class="wrap">
-      <article class="feature">
+      <article class="feature" id="departments">
         <div class="feature__copy">
           <p class="eyebrow">Department requests</p>
           <h2>Department heads budget for themselves.</h2>
-          <p class="lede">Each department user sees only their own programs: last year's actual, this year's budget, and this year's spending so far from the ERP, beside every line.</p>
+          <p class="lede">Each sees only their own programs, with last year's actual and this year's spending beside every line.</p>
           <ul>
-            <li>A written narrative with every request</li>
-            <li>Submit to the fiscal officer; a returned request comes back with a note</li>
-            <li>Salaries and benefits calculated from positions, pay scales, and OPERS and OP&amp;F rates</li>
+            <li><b>A narrative</b> with every request</li>
+            <li><b>Submit and return</b> A returned request comes back with a note.</li>
+            <li><b>Salaries calculated</b> from positions, pay scales, and pension rates</li>
           </ul>
         </div>
         <figure class="clip">
           <video class="shot" data-clip="department request clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/department-poster.webp" aria-describedby="cap-department">
             <source src="assets/video/department.mp4" type="video/mp4">
           </video>
-          <figcaption id="cap-department">Parks &amp; Recreation's request was returned with a note asking for the playground surface to come from the Capital Projects fund. The department user sets the General Fund capital outlay line to 0, raises the Capital Projects line by the same $12,793 to $39,444, and submits to the fiscal officer. The request total stays $110,771.00, because only the fund changed.</figcaption>
+          <figcaption>A returned request, fixed and submitted again.
+            <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-department">Parks &amp; Recreation's request was returned with a note asking for the playground surface to come from the Capital Projects fund. The department user sets the General Fund capital outlay line to 0, raises the Capital Projects line by the same $12,793 to $39,444, and submits to the fiscal officer. The request total stays $110,771.00, because only the fund changed.</p></details>
+          </figcaption>
         </figure>
       </article>
 
-      <article class="feature feature--flip">
+      <article class="feature feature--flip" id="worksheet">
         <div class="feature__copy">
           <p class="eyebrow">The fiscal officer's worksheet</p>
           <h2>The appropriation limit, checked as you type.</h2>
-          <p class="lede">Appropriations may not exceed estimated resources, fund by fund. CivicBudget shows each fund's projected ending balance next to the lines that move it, and blocks adoption while any fund is over, or warns, as each government chooses.</p>
+          <p class="lede">Each fund's projected ending balance sits beside the lines that move it, and adoption is blocked, or warned, while any fund is over.</p>
           <p class="cite">Beginning balance + revenues + transfers in ≥ expenditures + transfers out</p>
         </div>
         <figure class="clip">
           <video class="shot" data-clip="worksheet clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/worksheet-poster.webp" aria-describedby="cap-worksheet">
             <source src="assets/video/worksheet.mp4" type="video/mp4">
           </video>
-          <figcaption id="cap-worksheet">The Street Construction fund starts $21,908.68 over its estimated resources, and its balance card is red. The fiscal officer changes the fund's infrastructure capital outlay from 120,000.00 to 95,000.00, and the card turns green with $3,091.32 to spare.</figcaption>
+          <figcaption>One line changed, and the Street fund goes from red to green.
+            <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-worksheet">The Street Construction fund starts $21,908.68 over its estimated resources, and its balance card is red. The fiscal officer changes the fund's infrastructure capital outlay from 120,000.00 to 95,000.00, and the card turns green with $3,091.32 to spare.</p></details>
+          </figcaption>
         </figure>
       </article>
 
-      <article class="feature">
+      <article class="feature" id="portal">
         <div class="feature__copy">
           <p class="eyebrow">Public transparency portal</p>
           <h2>A budget residents can actually read.</h2>
-          <p class="lede">Publish the adopted budget and the portal shows where the money comes from and where it goes, fund by fund and department by department, with each department's own narrative. It loads fast, needs no sign-in, and works on any phone.</p>
+          <p class="lede">Publish, and residents see where the money comes from and where it goes, on any phone, with no sign-in.</p>
           <ul>
-            <li>Only what was published; drafts never leak</li>
-            <li>Year over year, a multi-year outlook, search, and spreadsheet downloads</li>
-            <li>Residents can <a href="#ai">ask it questions</a> in their own words</li>
-            <li>Your seal in the header</li>
+            <li><b>Only what was published</b> Drafts never leak.</li>
+            <li><b>Outlook, history, search</b> and spreadsheet downloads</li>
+            <li><b>Ask a question</b> in their own words (<a href="#ai">see above</a>)</li>
+            <li><b>Your seal</b> in the header</li>
           </ul>
         </div>
         <div class="shot-pair">
@@ -259,7 +273,9 @@
             <video class="shot" data-clip="portal clip" muted loop playsinline controls preload="none" width="390" height="844" poster="assets/video/portal-poster.webp" aria-describedby="cap-portal">
               <source src="assets/video/portal.mp4" type="video/mp4">
             </video>
-            <figcaption id="cap-portal">On a phone, a resident scrolls the 2026 overview (revenues, expenditures, and where the money goes by fund), opens the General Fund and its departments, then the Police department, which explains its request in its own words.</figcaption>
+            <figcaption>The portal on a phone.
+              <details class="clip__more"><summary>What happens</summary><p id="cap-portal">On a phone, a resident scrolls the 2026 overview (revenues, expenditures, and where the money goes by fund), opens the General Fund and its departments, then the Police department, which explains its request in its own words.</p></details>
+            </figcaption>
           </figure>
         </div>
       </article>
@@ -359,7 +375,7 @@
         <details><summary>Which AI model does it use?</summary><p>Anthropic's Claude by default, through a standard interface, so an operator can choose another provider. The live demo runs GLM 5.3 Flash, a small, fast model, so an answer takes a few seconds and can be wrong; the linked pages always hold the official figures.</p></details>
         <details><summary>What can the public question box say?</summary><p>Only what the portal publishes. It reads the published budget and nothing else, says plainly when something is not published (like spending so far this year, or a draft), gives no opinions, and has limits per visitor and per month.</p></details>
         <details><summary>Which ERPs does it work with?</summary><p>The demo runs against a simulated ERP. Connecting a real one means writing its adapter, by API or by import file, which is the conversation to have with the vendor.</p></details>
-        <details><summary>Is it only for Ohio?</summary><p>It is built around Ohio's rules: the appropriation limit, the certificate of estimated resources, the Auditor of State's chart of accounts, OPERS and OP&amp;F. Other states would need their own rules added.</p></details>
+        <details><summary>Does it work outside Ohio?</summary><p>It was built on Ohio's rules first, and most of what differs between states is already a setting: whether an over-limit fund blocks adoption or only warns, the chart of accounts and how account numbers are written, which accounts each report column counts, and the pension plans and their rates. What a new state adds is its own legal forms, like Ohio's certificate of estimated resources, and that is a conversation worth having.</p></details>
         <details><summary>Is it SOC 2 certified?</summary><p>It is designed and built to achieve SOC 2 compliance, with the controls, policies, and evidence documented. A SOC 2 report comes from an independent auditor, and none has been issued yet.</p></details>
       </div>
     </div>

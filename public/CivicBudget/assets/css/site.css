@@ -29,6 +29,7 @@
   --surface: #FFFFFF;
   --text: #1F2937;
   --muted: #5B6B7B;
+  --lede: #3B4A5A; /* lead paragraphs: darker than captions, so the sentence that matters is read */
   --border: #E3E8EF;
   --field-border: #848F9B; /* a field's edge needs 3:1 against the page; --border is for rules */
   --link: #1565C0;
@@ -55,6 +56,7 @@
     --surface: #13243A;
     --text: #E3EAF2;
     --muted: #9AAABB;
+    --lede: #C2CDD9;
     --border: #22384F;
     --field-border: #6B8199;
     --link: #7DB4F0;
@@ -83,7 +85,7 @@ p { margin: 0; }
 .wrap { max-width: var(--max); margin-inline: auto; padding-inline: clamp(16px, 4vw, 40px); }
 .mono { font-family: var(--mono); font-size: .88em; }
 .eyebrow { font-size: .75rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--teal); }
-.lede { color: var(--muted); font-size: 1.1rem; max-width: 62ch; }
+.lede { color: var(--lede); font-size: 1.12rem; max-width: 58ch; }
 .skip { position: absolute; left: -9999px; top: 8px; z-index: 100; background: var(--surface); color: var(--text); padding: 8px 14px; border-radius: 6px; }
 .skip:focus { left: 8px; }
 
@@ -121,12 +123,20 @@ p { margin: 0; }
 .hero { background: var(--ink); color: var(--on-ink); overflow: hidden; padding-block: 0; } /* the inner grid carries the padding */
 .hero__inner { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr); gap: clamp(32px, 5vw, 64px); align-items: center; padding-block: clamp(48px, 7vw, 88px) clamp(56px, 7vw, 96px); }
 .hero .eyebrow { color: var(--teal-bright); }
-.hero h1 { font-size: clamp(2.2rem, 4.6vw, 3.5rem); font-weight: 800; color: #fff; margin-top: 14px; }
-.hero__lede { color: var(--on-ink-muted); font-size: 1.12rem; margin-top: 20px; max-width: 54ch; }
+.hero h1 { font-size: clamp(2.3rem, 4.8vw, 3.7rem); font-weight: 800; color: #fff; }
+.hero__lede { color: var(--on-ink); font-size: clamp(1.1rem, 1.6vw, 1.3rem); line-height: 1.5; margin-top: 22px; max-width: 34ch; }
 .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
-.hero__proof { display: flex; flex-wrap: wrap; gap: 8px 22px; margin: 34px 0 0; padding: 0; list-style: none; font-size: .88rem; color: var(--on-ink-muted); }
-.hero__proof li { display: flex; align-items: center; gap: 8px; }
-.hero__proof svg { color: var(--teal-bright); flex: none; }
+.hero__trust { margin-top: 26px; font-size: .88rem; color: var(--on-ink-muted); }
+
+/* What it does, in five words each, under the hero: the page's table of contents for a skimmer. */
+.points { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 1px; background: rgb(255 255 255 / .1); border-radius: var(--radius); overflow: hidden; }
+.points a { display: grid; gap: 6px; align-content: start; height: 100%; padding: 18px 18px 20px; background: var(--ink-2); color: var(--on-ink-muted); text-decoration: none; font-size: .9rem; line-height: 1.45; }
+.points a:hover { background: #1B4067; }
+.points svg { color: var(--teal-bright); margin-bottom: 4px; }
+.points b { color: #fff; font-size: 1rem; }
+@media (max-width: 1000px) { .points { grid-template-columns: repeat(2, minmax(0, 1fr)); } .points li:last-child { grid-column: 1 / -1; } }
+@media (max-width: 480px) { .points a { padding: 14px 14px 16px; font-size: .84rem; } .points b { font-size: .92rem; } }
+.hero > .wrap:last-child { padding-bottom: clamp(40px, 5vw, 64px); }
 
 .stage { position: relative; }
 .stage__shot { border-radius: 10px; box-shadow: var(--shadow-lg); border: 1px solid rgb(255 255 255 / .1); transform: perspective(1600px) rotateY(-6deg) rotateX(2deg); transform-origin: left center; }
@@ -171,9 +181,13 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 
 .feature { display: grid; grid-template-columns: minmax(0, .9fr) minmax(0, 1.25fr); gap: clamp(28px, 5vw, 64px); align-items: center; }
 .feature + .feature { margin-top: clamp(64px, 8vw, 104px); }
+.feature--flip { grid-template-columns: minmax(0, 1.25fr) minmax(0, .9fr); } /* the picture keeps the wide column */
 .feature--flip .feature__copy { order: 2; }
 .feature__copy { display: grid; gap: 14px; }
 .feature__copy ul { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 10px; }
+.feature__copy li b { color: var(--text); font-weight: 700; margin-right: 4px; }
+/* Inside a section that has its own h2, a feature's title is one step down. */
+.feature__title { font-size: clamp(1.3rem, 2.2vw, 1.65rem); font-weight: 700; }
 .feature__copy li { padding-left: 22px; position: relative; }
 .feature__copy li::before { content: ""; position: absolute; left: 0; top: .62em; width: 10px; height: 2px; background: var(--teal); }
 .shot { border-radius: var(--radius); border: 1px solid var(--border); box-shadow: var(--shadow); background: var(--surface); }
@@ -184,7 +198,11 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 
 /* Silent looping clips, with a pause button (moving content longer than five seconds needs one). */
 .clip { position: relative; margin: 0; }
-.clip figcaption { color: var(--muted); font-size: .85rem; margin-top: 10px; }
+.clip figcaption { color: var(--muted); font-size: .9rem; margin-top: 10px; }
+/* The full step-by-step stays one click away; screen readers get it through aria-describedby. */
+.clip__more { margin-top: 4px; }
+.clip__more summary { cursor: pointer; color: var(--link); font-size: .85rem; font-weight: 600; width: fit-content; }
+.clip__more p { margin-top: 6px; font-size: .85rem; line-height: 1.55; }
 .clip__frame { position: relative; }
 .clip__toggle { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: rgb(15 42 68 / .78); color: #fff; font: 600 .78rem var(--sans); cursor: pointer; }
 .clip__toggle:hover { background: rgb(15 42 68 / .92); }
@@ -200,6 +218,13 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .flow .dir { font-family: var(--mono); font-size: .8rem; color: var(--teal); font-weight: 500; }
 .flow--out { border-style: solid; border-color: var(--teal); }
 @media (max-width: 860px) { .exchange { grid-template-columns: minmax(0, 1fr); } .flows { min-width: 0; } }
+/* What keeps the assistant safe: three cards, each led by an icon. */
+.guards { list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.guards li { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow); }
+.guards svg { color: var(--teal); }
+.guards h3 { margin-top: 10px; font-size: 1.05rem; }
+.guards p { color: var(--lede); font-size: .92rem; margin-top: 6px; }
+@media (max-width: 760px) { .guards { grid-template-columns: minmax(0, 1fr); } }
 .vendor-note { margin-top: 36px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
 .vendor-note div { border-top: 2px solid var(--navy); padding-top: 14px; }
 .vendor-note p { color: var(--muted); font-size: .92rem; margin-top: 6px; }
