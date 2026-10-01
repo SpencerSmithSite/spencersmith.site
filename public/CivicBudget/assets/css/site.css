@@ -212,17 +212,14 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .flow .dir { font-family: var(--mono); font-size: .8rem; color: var(--teal); font-weight: 500; }
 .flow--out { border-style: solid; border-color: var(--teal); }
 @media (max-width: 860px) { .exchange { grid-template-columns: minmax(0, 1fr); } .flows { min-width: 0; } }
-/* A screen with one detail lifted off it, like the hero's fund check: the screen tilts slightly
-   one way, the detail card the other, over a corner and casting the deeper shadow. Used only where
-   the detail says something the screen does not make obvious. */
+/* A screen with one detail card overlapping a corner, both square to the page: the card casts the
+   deeper shadow, so it reads as lifted without a tilt. Used only where the detail says something the
+   screen does not make obvious. */
 .lift { position: relative; margin-bottom: 44px; }
-.lift > .clip__frame, .lift > video, .lift > img:not(.callout) { transform: rotate(-1.4deg); }
-.lift--flip > .clip__frame, .lift--flip > video, .lift--flip > img:not(.callout) { transform: rotate(1.4deg); }
-.callout { position: absolute; z-index: 1; left: -36px; bottom: -40px; width: min(280px, 46%); padding: 14px 16px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); font-size: .84rem; line-height: 1.45; transform: rotate(2.4deg); }
-.callout--right { left: auto; right: -36px; transform: rotate(-2.4deg); }
+.callout { position: absolute; z-index: 1; left: -36px; bottom: -40px; width: min(280px, 46%); padding: 14px 16px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); font-size: .84rem; line-height: 1.45; }
+.callout--right { left: auto; right: -36px; }
 .callout__title { font-weight: 700; font-size: .9rem; }
 .callout__foot { color: var(--muted); font-size: .78rem; margin-top: 10px; }
-.callout__foot { margin-top: 10px; }
 /* Receipts against last year's pace: the bar is this year, the tick is last year by now. */
 .pace { margin-top: 10px; }
 .pace__head { display: flex; justify-content: space-between; font-size: .82rem; }
