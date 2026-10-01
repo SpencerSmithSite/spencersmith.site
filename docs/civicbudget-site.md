@@ -52,7 +52,8 @@ The page's canonical link keeps search engines on one address.
   its proportions, so the overlap holds at every width; on a phone, the phone clip grows.
 - **Layering only where it adds something.** Three places overlap one thing on another: the hero's
   fund check, the screen-and-phone pairs (`.stack`), and the pace card on the projections report
-  (`.lift` with a `.callout`), because a dense table does not make "on pace with last year" obvious.
+  (`.lift` with a `.callout`, both square to the page), because a dense table does not make "on pace
+  with last year" obvious.
   Everything else sits straight. The pace card's figures come from the seed; re-check them after a
   reseed changes the data.
 - **Always light, with navy bands.** The hero, the security section, and the footer are navy like
