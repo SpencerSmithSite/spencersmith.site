@@ -42,6 +42,22 @@ The page's canonical link keeps search engines on one address.
 
 ## Choices worth knowing
 
+- **Built to be skimmed.** The hero is a headline, one sentence, and two buttons; five short points
+  under it say what the product does and jump to each section. Lead paragraphs are a sentence or
+  two in darker text than captions, bullets start with a bold label, and a feature inside a section
+  is a smaller heading than the section itself.
+- **A screen and a phone, staged together.** Where a desktop screenshot and a phone clip show the
+  same thing, they are one composition (`.stack`): the screen behind, tilted slightly one way, the
+  phone over its lower-right corner, tilted the other, with one caption under both. The stage keeps
+  its proportions, so the overlap holds at every width; on a phone, the phone clip grows.
+- **Layering only where it adds something.** Three places overlap one thing on another: the hero's
+  fund check, the screen-and-phone pairs (`.stack`), and the pace card on the projections report
+  (`.lift` with a `.callout`), because a dense table does not make "on pace with last year" obvious.
+  Everything else sits straight. The pace card's figures come from the seed; re-check them after a
+  reseed changes the data.
+- **Not only for Ohio.** The page speaks to local government generally. Ohio comes up once, in the
+  FAQ, which says honestly which rules are settings and which forms a new state would add.
+
 - **Fonts are self-hosted.** A page that sells security should not hand every visitor's address
   to a font host. Only the Latin subsets are included. Public Sans is the U.S. government's
   typeface (USWDS); IBM Plex Mono sets account numbers and statute citations.
@@ -50,7 +66,8 @@ The page's canonical link keeps search engines on one address.
   - They start only when on screen, never under `prefers-reduced-motion`, and each has a
     Pause/Play button, since WCAG 2.2.2 requires a way to stop moving content that lasts more
     than five seconds.
-  - Each has a caption saying what happens, since there is no sound.
+  - Each has a one-line caption, and the full step-by-step under "What happens in this clip". The
+    video's `aria-describedby` points at the full text, so a screen reader gets all of it either way.
   - In the two AI clips, the seconds the model spends answering play eight times faster, and the
     caption says so. Nothing else in any clip is sped up or cut.
 - **The contact form** posts to the same Formspree endpoint as the rest of the site. A hidden
