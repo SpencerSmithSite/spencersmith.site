@@ -165,7 +165,7 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 
 /* The budget year, drawn as the app's own workflow stepper. */
 .cycle { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; list-style: none; margin: 0; padding: 0; counter-reset: step; }
-.cycle li { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 16px 14px 18px; counter-increment: step; }
+.cycle li { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 16px 14px 18px; counter-increment: step; box-shadow: var(--shadow); }
 .cycle li::before { content: counter(step); display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--navy); color: #fff; font-size: .78rem; font-weight: 700; }
 .cycle b { display: block; margin-top: 10px; font-size: .95rem; }
 .cycle span { display: block; color: var(--muted); font-size: .85rem; margin-top: 4px; line-height: 1.45; }
@@ -219,12 +219,54 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .exchange { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 20px; align-items: center; }
 .node { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 22px; box-shadow: var(--shadow); }
 .node p { color: var(--muted); font-size: .92rem; margin-top: 6px; }
+/* The two ends of the exchange as real objects: the ERP in navy, CivicBudget with its mark. */
+.node { box-shadow: var(--shadow-lg); }
+.node--erp { background: var(--ink); border-color: var(--ink); color: #fff; transform: rotate(-1.5deg); }
+.node--erp p { color: var(--on-ink-muted); }
+.node--cb { border-top: 4px solid var(--teal); transform: rotate(1.5deg); }
+.node--cb h3 { display: flex; align-items: center; gap: 8px; }
 .flows { display: grid; gap: 10px; list-style: none; margin: 0; padding: 0; min-width: 250px; }
 .flow { display: grid; grid-template-columns: 1fr auto; gap: 4px 10px; align-items: center; font-size: .9rem; padding: 10px 14px; border-radius: 6px; background: var(--surface); border: 1px dashed var(--border); }
 .flow small { grid-column: 1 / -1; color: var(--muted); font-size: .8rem; }
 .flow .dir { font-family: var(--mono); font-size: .8rem; color: var(--teal); font-weight: 500; }
 .flow--out { border-style: solid; border-color: var(--teal); }
 @media (max-width: 860px) { .exchange { grid-template-columns: minmax(0, 1fr); } .flows { min-width: 0; } }
+/* A screen with one detail lifted off it, like the hero's fund check: the screen tilts slightly
+   one way, the detail card the other, over a corner and casting the deeper shadow. Callouts sit on
+   the left or top so they never cover a clip's Play button (bottom right). */
+.lift { position: relative; margin-bottom: 44px; }
+.lift > .clip__frame, .lift > video, .lift > img:not(.callout) { transform: rotate(-1.4deg); }
+.lift--flip > .clip__frame, .lift--flip > video, .lift--flip > img:not(.callout) { transform: rotate(1.4deg); }
+.callout { position: absolute; z-index: 1; left: -36px; bottom: -40px; width: min(280px, 46%); padding: 14px 16px; background: var(--surface); color: var(--text); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow-lg); font-size: .84rem; line-height: 1.45; transform: rotate(2.4deg); }
+.callout--img { padding: 0; width: min(230px, 40%); overflow: hidden; }
+.callout--top { bottom: auto; top: -28px; width: min(220px, 40%); transform: rotate(-2.4deg); }
+.callout--right { left: auto; right: -36px; transform: rotate(-2.4deg); }
+.callout__title { font-weight: 700; font-size: .9rem; }
+.callout__sub, .callout__foot { color: var(--muted); font-size: .78rem; }
+.callout__sub { margin-top: 2px; }
+.callout__foot { margin-top: 10px; }
+.callout__formula { margin-top: 8px; font-family: var(--mono); font-size: .8rem; line-height: 1.6; }
+.callout__formula b { color: var(--teal); }
+/* The department's view of a returned request, in the app's own amber. */
+.callout--note { background: #FFF3CD; border-color: #FFE69C; color: #664D03; }
+.callout--note p + p { margin-top: 6px; }
+/* Published ending balances, as five bars. */
+.mini-bars { display: flex; align-items: flex-end; gap: 8px; height: 92px; margin-top: 12px; }
+.mini-bars { padding-bottom: 18px; }
+.mini-bars span { flex: 1; height: var(--h); background: var(--teal); border-radius: 3px 3px 0 0; position: relative; font-size: 0; }
+.mini-bars span::after { content: attr(data-y); position: absolute; left: 50%; bottom: -18px; transform: translateX(-50%); font-size: .68rem; color: var(--muted); }
+/* Receipts against last year's pace: the bar is this year, the tick is last year by now. */
+.pace { margin-top: 10px; }
+.pace__head { display: flex; justify-content: space-between; font-size: .82rem; }
+.pace__bar { position: relative; height: 8px; margin-top: 4px; background: var(--bg-band); border-radius: 4px; }
+.pace__bar i { position: absolute; inset: 0 auto 0 0; width: var(--p); background: var(--teal); border-radius: 4px; }
+.pace__bar u { position: absolute; top: -3px; bottom: -3px; left: var(--t); width: 2px; background: var(--text); }
+@media (max-width: 560px) {
+  .lift { margin-bottom: 16px; }
+  .callout, .callout--top, .callout--right, .callout--img { position: relative; left: auto; right: auto; top: auto; bottom: auto; width: auto; max-width: 300px; margin: -20px 0 0 12px; }
+  .callout--img { max-width: 220px; }
+}
+
 /* What keeps the assistant safe: three cards, each led by an icon. */
 .guards { list-style: none; margin: clamp(48px, 6vw, 72px) 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .guards li { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); padding: 20px 22px; box-shadow: var(--shadow); }
@@ -245,6 +287,7 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .trust__grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1px; background: rgb(255 255 255 / .1); border: 1px solid rgb(255 255 255 / .1); border-radius: var(--radius); overflow: hidden; }
 .trust__grid div { background: var(--ink-2); padding: 22px; }
 .trust__grid b { color: #fff; }
+.trust__grid svg { display: block; color: var(--teal-bright); margin-bottom: 10px; }
 .trust__grid p { color: var(--on-ink-muted); font-size: .9rem; margin-top: 6px; }
 .trust__foot { display: flex; flex-wrap: wrap; gap: 12px 28px; align-items: center; margin-top: 28px; color: var(--on-ink-muted); font-size: .9rem; }
 .trust__foot a { color: #fff; }
@@ -256,7 +299,7 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .password { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
 .password code { font-family: var(--mono); font-size: 1rem; font-weight: 500; }
 .copy { font: 600 .82rem var(--sans); border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 5px; padding: 6px 10px; cursor: pointer; margin-left: auto; }
-.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); }
+.table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
 table { border-collapse: collapse; width: 100%; font-size: .9rem; }
 th { text-align: left; font-size: .72rem; letter-spacing: .07em; text-transform: uppercase; color: var(--muted); padding: 12px 16px; border-bottom: 1px solid var(--border); white-space: nowrap; }
 td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }

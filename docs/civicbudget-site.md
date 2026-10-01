@@ -50,6 +50,13 @@ The page's canonical link keeps search engines on one address.
   same thing, they are one composition (`.stack`): the screen behind, tilted slightly one way, the
   phone over its lower-right corner, tilted the other, with one caption under both. The stage keeps
   its proportions, so the overlap holds at every width; on a phone, the phone clip grows.
+- **One detail lifted off each screen.** Every other clip or screenshot is a `.lift`: the screen
+  tilts slightly, and one detail card (`.callout`) overlaps a corner, tilted the other way, like the
+  hero's fund check. The assistant's card is a real screenshot of its proposal; the others (the
+  published outlook as bars, receipts against last year's pace, the returned note, the limit's
+  formula) are HTML, so they stay sharp and readable to a screen reader, and their figures come from
+  the seed (re-check them after a reseed changes the data). Callouts sit left or top so they never
+  cover a clip's Play button; on a phone they drop below the screen.
 - **Not only for Ohio.** The page speaks to local government generally. Ohio comes up once, in the
   FAQ, which says honestly which rules are settings and which forms a new state would add.
 

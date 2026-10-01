@@ -129,9 +129,12 @@
           </ul>
         </div>
         <figure class="clip">
-          <video class="shot" data-clip="assistant clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/assistant-poster.webp" aria-describedby="cap-assistant">
-            <source src="assets/video/assistant.mp4" type="video/mp4">
-          </video>
+          <div class="lift">
+            <video class="shot" data-clip="assistant clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/assistant-poster.webp" aria-describedby="cap-assistant">
+              <source src="assets/video/assistant.mp4" type="video/mp4">
+            </video>
+            <img class="callout callout--img" src="assets/img/callout-proposal.webp" width="363" height="415" loading="lazy" alt="The assistant's proposal card: the utilities lines with their current and proposed amounts, $220,139.00 becoming $231,145.95, and Change 6 lines and Cancel buttons.">
+          </div>
           <figcaption>Asked to raise utilities 5%, the assistant proposes six lines, and one click applies them.
             <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-assistant">The fiscal officer asks the assistant to raise utilities 5% in the FY2027 draft. It proposes a card with all six utilities lines, $220,139.00 becoming $231,145.95, and changes nothing. After the click on "Change 6 lines", the worksheet shows the new amounts. The model's few seconds of thinking are shown eight times faster.</p></details>
           </figcaption>
@@ -192,9 +195,17 @@
           </ul>
         </div>
         <figure class="clip">
-          <video class="shot" data-clip="multi-year plan clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/plan-poster.webp" aria-describedby="cap-plan">
-            <source src="assets/video/plan.mp4" type="video/mp4">
-          </video>
+          <div class="lift">
+            <video class="shot" data-clip="multi-year plan clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/plan-poster.webp" aria-describedby="cap-plan">
+              <source src="assets/video/plan.mp4" type="video/mp4">
+            </video>
+            <div class="callout" role="img" aria-label="The outlook published with the 2026 budget: all funds end FY2026 with $1,998,306 and, under the plan, $3,729,012 by FY2030.">
+              <p class="callout__title">Published to residents</p>
+              <p class="callout__sub">Ending balance, all funds</p>
+              <div class="mini-bars" aria-hidden="true"><span style="--h: 54%" data-y="FY26"></span><span style="--h: 65%" data-y="FY27"></span><span style="--h: 77%" data-y="FY28"></span><span style="--h: 89%" data-y="FY29"></span><span style="--h: 100%" data-y="FY30"></span></div>
+              <p class="callout__foot">$1,998,306 to $3,729,012 by FY2030</p>
+            </div>
+          </div>
           <figcaption>4% more revenue and 3% more spending a year, saved; every fund's balance moves.
             <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-plan">The fiscal officer sets the FY2027 plan to 4% more revenue and 3% more spending each year through FY2031, and saves. Every fund's ending balance is worked out again: the General Fund ends FY2031 at $1,849,189.00 instead of $1,458,404.00, and the plan still flags the years the Street and Capital Projects funds would overspend.</p></details>
           </figcaption>
@@ -212,7 +223,15 @@
             <li><b>Encumbrances</b> count as spent</li>
           </ul>
         </div>
-        <img class="shot" src="assets/img/projection.webp" width="1600" height="840" loading="lazy" alt="The Projected Fund Balances report for FY2026 through August 31: for each fund, the beginning balance, budgeted and projected receipts, appropriations and projected spending, and the budgeted and projected ending balance. All funds together end $119,624.88 better than budgeted.">
+        <div class="lift lift--flip">
+          <img class="shot" src="assets/img/projection.webp" width="1600" height="840" loading="lazy" alt="The Projected Fund Balances report for FY2026 through August 31: for each fund, the beginning balance, budgeted and projected receipts, appropriations and projected spending, and the budgeted and projected ending balance. All funds together end $119,624.88 better than budgeted.">
+          <div class="callout callout--right" role="img" aria-label="Receipts through August 31: real estate taxes 96% collected, against 95% normally by now; municipal income tax 67% collected, against 65% normally by now.">
+            <p class="callout__title">Through August 31</p>
+            <div class="pace"><div class="pace__head"><span>Real estate taxes</span><b>96%</b></div><div class="pace__bar"><i style="--p: 96%"></i><u style="--t: 95%"></u></div></div>
+            <div class="pace"><div class="pace__head"><span>Income tax</span><b>67%</b></div><div class="pace__bar"><i style="--p: 67%"></i><u style="--t: 65%"></u></div></div>
+            <p class="callout__foot">The tick is where last year stood by August.</p>
+          </div>
+        </div>
       </article>
     </div>
   </section>
@@ -231,9 +250,15 @@
           </ul>
         </div>
         <figure class="clip">
-          <video class="shot" data-clip="department request clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/department-poster.webp" aria-describedby="cap-department">
-            <source src="assets/video/department.mp4" type="video/mp4">
-          </video>
+          <div class="lift">
+            <video class="shot" data-clip="department request clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/department-poster.webp" aria-describedby="cap-department">
+              <source src="assets/video/department.mp4" type="video/mp4">
+            </video>
+            <div class="callout callout--note">
+              <p class="callout__title"><span aria-hidden="true">&#8629;</span> Returned by the fiscal officer</p>
+              <p>Council asked that the playground surface come from the Capital Projects fund, not the General Fund. Please move the capital outlay line and resubmit.</p>
+            </div>
+          </div>
           <figcaption>A returned request, fixed and submitted again.
             <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-department">Parks &amp; Recreation's request was returned with a note asking for the playground surface to come from the Capital Projects fund. The department user sets the General Fund capital outlay line to 0, raises the Capital Projects line by the same $12,793 to $39,444, and submits to the fiscal officer. The request total stays $110,771.00, because only the fund changed.</p></details>
           </figcaption>
@@ -245,12 +270,17 @@
           <p class="eyebrow">The fiscal officer's worksheet</p>
           <h2>The appropriation limit, checked as you type.</h2>
           <p class="lede">Each fund's projected ending balance sits beside the lines that move it, and adoption is blocked, or warned, while any fund is over.</p>
-          <p class="cite">Beginning balance + revenues + transfers in ≥ expenditures + transfers out</p>
         </div>
         <figure class="clip">
-          <video class="shot" data-clip="worksheet clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/worksheet-poster.webp" aria-describedby="cap-worksheet">
-            <source src="assets/video/worksheet.mp4" type="video/mp4">
-          </video>
+          <div class="lift lift--flip">
+            <video class="shot" data-clip="worksheet clip" muted loop playsinline controls preload="none" width="1200" height="900" poster="assets/video/worksheet-poster.webp" aria-describedby="cap-worksheet">
+              <source src="assets/video/worksheet.mp4" type="video/mp4">
+            </video>
+            <div class="callout callout--top" role="img" aria-label="The appropriation limit, fund by fund: beginning balance plus revenues plus transfers in must be at least expenditures plus transfers out.">
+              <p class="callout__title">The limit, fund by fund</p>
+              <p class="callout__formula">Beginning balance<br>+ revenues<br>+ transfers in<br><b>&ge;</b> expenditures<br>+ transfers out</p>
+            </div>
+          </div>
           <figcaption>One line changed, and the Street fund goes from red to green.
             <details class="clip__more"><summary>What happens in this clip</summary><p id="cap-worksheet">The Street Construction fund starts $21,908.68 over its estimated resources, and its balance card is red. The fiscal officer changes the fund's infrastructure capital outlay from 120,000.00 to 95,000.00, and the card turns green with $3,091.32 to spare.</p></details>
           </figcaption>
@@ -294,7 +324,7 @@
         <p class="lede">The general ledger, payroll, and purchasing stay in the ERP. CivicBudget is the budget preparation and transparency layer your customers keep asking for, and it connects through one adapter per ERP.</p>
       </div>
       <div class="exchange">
-        <div class="node">
+        <div class="node node--erp">
           <h3>Your ERP</h3>
           <p>General ledger, payroll, encumbrances. The system of record.</p>
         </div>
@@ -304,8 +334,8 @@
           <li class="flow"><span>Employees and pay</span><span class="dir"><span aria-hidden="true">→</span><span class="visually-hidden">, to CivicBudget</span></span><small>for personnel budgeting</small></li>
           <li class="flow flow--out"><span>Adopted budget journal</span><span class="dir"><span aria-hidden="true">←</span><span class="visually-hidden">, to the ERP</span></span><small>changes only, sent once per version</small></li>
         </ul>
-        <div class="node">
-          <h3>CivicBudget</h3>
+        <div class="node node--cb">
+          <h3><img src="assets/img/logo.svg" width="24" height="24" alt="">CivicBudget</h3>
           <p>Requests, review, adoption, the certificate, the public portal.</p>
         </div>
       </div>
@@ -325,12 +355,12 @@
         <p class="lede">The controls an auditor examines are in the product, each mapped to its evidence and to NIST CSF 2.0 and NIST 800-53, the catalog GovRAMP uses.</p>
       </div>
       <div class="trust__grid">
-        <div><b>Each government kept apart</b><p>Every query is filtered to the signed-in government, and tests prove one cannot see another's data.</p></div>
-        <div><b>Two-step sign-in</b><p>Any authenticator app. A government can require it for everyone.</p></div>
-        <div><b>Sessions that end</b><p>Signed out after 30 idle minutes, with a warning first. Lockout and rate limits stop guessing.</p></div>
-        <div><b>Every change on record</b><p>An audit trail of every budget change, and a security log of every sign-in and export.</p></div>
-        <div><b>Your data, whole</b><p>Download everything at any time. When a government leaves, every row is removed.</p></div>
-        <div><b>Checked on every change</b><p>Code scanning and a known-vulnerability check on every package, before anything ships.</p></div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg><b>Each government kept apart</b><p>Every query is filtered to the signed-in government, and tests prove one cannot see another's data.</p></div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 6h2M12 15v2"/></svg><b>Two-step sign-in</b><p>Any authenticator app. A government can require it for everyone.</p></div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2.5M9 2h6"/></svg><b>Sessions that end</b><p>Signed out after 30 idle minutes, with a warning first. Lockout and rate limits stop guessing.</p></div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4h6v3H9z"/><path d="M15 5h3a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h3M9 12h6M9 16h4"/></svg><b>Every change on record</b><p>An audit trail of every budget change, and a security log of every sign-in and export.</p></div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg><b>Your data, whole</b><p>Download everything at any time. When a government leaves, every row is removed.</p></div>
+        <div><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6z"/><path d="M9 12l2 2 4-4"/></svg><b>Checked on every change</b><p>Code scanning and a known-vulnerability check on every package, before anything ships.</p></div>
       </div>
       <p class="trust__foot"><span>No SOC 2 report has been issued yet.</span><a href="https://github.com/SpencerSmithSite/civic-budget/tree/main/docs/security">Read the security overview and control matrix</a></p>
     </div>
