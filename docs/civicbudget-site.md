@@ -6,12 +6,12 @@ public transparency portal for Ohio local government. Its product site is one st
 
 ```
 public/CivicBudget/
-  index.html            the whole site: hero, the budget year, the AI assistant, forecasting, features, ERP, security, demo, FAQ, contact
+  index.html            the whole site: hero, the budget year, Civic Buddy (the AI assistant), forecasting, features, ERP, security, demo, FAQ, contact
   assets/css/site.css   one stylesheet; colors are the app's own design tokens
   assets/js/site.js     clips play in view with a pause button on each, copy the demo password, send the form
   assets/fonts/         Public Sans and IBM Plex Mono, self-hosted, with their OFL licenses
-  assets/img/           the hero screenshot, the portal and question-box screenshots, the projection report, the logo, the social card
-  assets/video/         six silent clips (MP4) and their poster images: the assistant, the portal question box,
+  assets/img/           the hero screenshot, the portal overview, a Civic Buddy answer on the portal, the projection report, the logo, the social card
+  assets/video/         six silent clips (MP4) and their poster images: Civic Buddy in the admin app, Civic Buddy on the portal,
                         the multi-year plan, a department request, the worksheet, and the portal on a phone
 ```
 
@@ -84,14 +84,16 @@ The page's canonical link keeps search engines on one address.
 
 The clips come from the app itself, recorded by Playwright from a freshly seeded local copy. The
 script lives in the app repository, `scripts/screenshots/site-clips.mjs`, which says how to run it
-and how to encode the output. The assistant and question-box clips need a model connected to the
+and how to encode the output. The two Civic Buddy clips need a model connected to the
 local app (`Assistant:ApiKey` in its user-secrets), and their answers differ a little each run, so
 check the captions' figures against the new recording. After re-recording, copy `*.mp4` and
 `*-poster.webp` into `assets/video/`.
 
-`portal-ask.webp` and `projection.webp` are the app's README screenshots (`docs/screenshots`, made by
-`scripts/screenshots/capture-ai.mjs`) resized to 1600 wide; the projection is cropped to the report,
-without the app's sidebar, so it reads at the size it is shown.
+`portal-overview.webp` and `projection.webp` are the app's README screenshots (`docs/screenshots`,
+made by `scripts/screenshots/capture.mjs` and `capture-ai.mjs`) resized to 1600 wide; the
+projection is cropped to the report, without the app's sidebar, so it reads at the size it is
+shown. `portal-ask.webp` is the README's Civic Buddy answer page (`portal-ask.png`), resized the
+same way.
 
 The hero screenshot is the FY2027 worksheet as the Fiscal Officer, at 1440 × 900 and 2× scale,
 resized to 1600 wide as WebP. The Street fund panel over it (`.check` in `index.html`) repeats
