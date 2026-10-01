@@ -47,6 +47,21 @@
     }
   });
 
+  /* ------------------------------------------------------- warm demo --- */
+  // The live demo sleeps when nobody uses it (its container scales to zero, and its free database
+  // pauses), so the first visit waits about a minute. A reader who opens this page may well try it,
+  // so one quiet request to the demo's /health starts it waking while they read. Starting the
+  // container also wakes the database. /health never touches the database itself, and the request
+  // carries no cookies or referrer. It is skipped for readers who asked to save data, and for
+  // automated browsers, so crawlers and screenshot scripts do not spend the demo's free allowance.
+  var demo = document.querySelector("a[data-demo]");
+  var saveData = navigator.connection && navigator.connection.saveData;
+  if (demo && window.fetch && !saveData && !navigator.webdriver) {
+    fetch(new URL("/health", demo.href).href, {
+      mode: "no-cors", cache: "no-store", credentials: "omit", referrerPolicy: "no-referrer", keepalive: true
+    }).catch(function () {});
+  }
+
   /* --------------------------------------------------------- password --- */
   var copy = document.getElementById("copy-password");
   var password = document.getElementById("demo-password");

@@ -77,6 +77,14 @@ The page's canonical link keeps search engines on one address.
 - **The contact form** posts to the same Formspree endpoint as the rest of the site. A hidden
   `_subject` of "CivicBudget inquiry" tells the messages apart, and `_gotcha` is Formspree's
   honeypot.
+- **The page wakes the demo.** The live demo sleeps when idle (the container scales to zero and
+  the free database pauses), so a first visit waits about a minute. `site.js` sends one request to
+  the demo's `/health` when this page loads, so the demo starts waking while the reader is still
+  here. Starting the container also wakes the database; if the container is already up and only the
+  database is asleep, the request does not wake it. It costs nothing while nobody visits, and it is
+  skipped under Save-Data and in automated browsers (`navigator.webdriver`), so crawlers and the
+  screenshot scripts do not spend the demo's free allowance. The demo's address is read from the
+  "Open the demo" link (`data-demo`), so it lives in one place.
 - **The demo password is on the page on purpose.** It is public in the app's README too. The demo
   holds only fictional data and is rebuilt every night.
 
