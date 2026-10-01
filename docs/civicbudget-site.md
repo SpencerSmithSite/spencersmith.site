@@ -46,6 +46,10 @@ The page's canonical link keeps search engines on one address.
   under it say what the product does and jump to each section. Lead paragraphs are a sentence or
   two in darker text than captions, bullets start with a bold label, and a feature inside a section
   is a smaller heading than the section itself.
+- **A screen and a phone, staged together.** Where a desktop screenshot and a phone clip show the
+  same thing, they are one composition (`.stack`): the screen behind, tilted slightly one way, the
+  phone over its lower-right corner, tilted the other, with one caption under both. The stage keeps
+  its proportions, so the overlap holds at every width; on a phone, the phone clip grows.
 - **Not only for Ohio.** The page speaks to local government generally. Ohio comes up once, in the
   FAQ, which says honestly which rules are settings and which forms a new state would add.
 
