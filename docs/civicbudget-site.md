@@ -55,6 +55,9 @@ The page's canonical link keeps search engines on one address.
   (`.lift` with a `.callout`), because a dense table does not make "on pace with last year" obvious.
   Everything else sits straight. The pace card's figures come from the seed; re-check them after a
   reseed changes the data.
+- **Always light, with navy bands.** The hero, the security section, and the footer are navy like
+  the app's sidebar; everything else is light. There is no dark color scheme: one turned every
+  section dark on a device set to dark mode, which buried the contrast between the bands.
 - **Not only for Ohio.** The page speaks to local government generally. Ohio comes up once, in the
   FAQ, which says honestly which rules are settings and which forms a new state would add.
 
