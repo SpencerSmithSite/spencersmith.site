@@ -78,10 +78,11 @@ The page's canonical link keeps search engines on one address.
   `_subject` of "CivicBudget inquiry" tells the messages apart, and `_gotcha` is Formspree's
   honeypot.
 - **The page wakes the demo.** The live demo sleeps when idle (the container scales to zero and
-  the free database pauses), so a first visit waits about a minute. `site.js` sends one request to
-  the demo's `/health` when this page loads, so the demo starts waking while the reader is still
-  here. Starting the container also wakes the database; if the container is already up and only the
-  database is asleep, the request does not wake it. It costs nothing while nobody visits, and it is
+  the free database pauses), so a first visit waits about a minute. `site.js` sends one `POST` to
+  the demo's `/health/wake` when this page loads, so the demo starts waking while the reader is still
+  here. The request starts a sleeping container, which wakes the database, and the endpoint wakes a
+  database that paused behind a running container. The app does nothing unless a wake is due, so the
+  ping cannot hold the database awake. It costs nothing while nobody visits, and it is
   skipped under Save-Data and in automated browsers (`navigator.webdriver`), so crawlers and the
   screenshot scripts do not spend the demo's free allowance. The demo's address is read from the
   "Open the demo" link (`data-demo`), so it lives in one place.
