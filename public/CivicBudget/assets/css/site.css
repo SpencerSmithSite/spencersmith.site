@@ -270,6 +270,11 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .creds code { font-family: var(--mono); font-size: .98rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
 .creds .copy { background: var(--surface); }
 .start__go { margin-top: 16px; width: 100%; justify-content: center; }
+/* What to expect if the demo is asleep, said where the reader decides to click, in the words the
+   app's own waiting screen uses. */
+.sleep { display: flex; gap: 12px; align-items: flex-start; margin-top: 14px; padding: 12px 14px; background: #EAF5F7; border: 1px solid #BFE3E8; border-radius: 6px; color: var(--text); font-size: .88rem; line-height: 1.5; }
+.sleep svg { flex: none; color: var(--teal); margin-top: 1px; }
+.sleep__title { font-weight: 600; margin-bottom: 2px; }
 .start__hint { margin-top: 12px; color: var(--muted); font-size: .86rem; }
 .logins__title { font-size: 1.05rem; }
 .demo .actions { margin-top: 16px; }
@@ -281,7 +286,6 @@ th { text-align: left; font-size: .72rem; letter-spacing: .07em; text-transform:
 td { padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
 tr:last-child td { border-bottom: 0; }
 td code { font-family: var(--mono); font-size: .84rem; white-space: nowrap; }
-.wake { margin-top: 16px; color: var(--muted); font-size: .88rem; }
 @media (max-width: 860px) { .demo { grid-template-columns: minmax(0, 1fr); } }
 
 /* Questions. */

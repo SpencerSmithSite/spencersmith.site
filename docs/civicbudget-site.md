@@ -86,6 +86,8 @@ The page's canonical link keeps search engines on one address.
   skipped under Save-Data and in automated browsers (`navigator.webdriver`), so crawlers and the
   screenshot scripts do not spend the demo's free allowance. The demo's address is read from the
   "Open the demo" link (`data-demo`), so it lives in one place.
+  Under that link, a note says what to expect if the demo is still asleep, in the words of the
+  app's own "Waking up the demo" screen, and to refresh if it takes more than a couple of minutes.
 - **The Administrator login comes first.** Most people trying the demo want to see everything, so
   the demo section opens with a "Start here" card for `admin@mapleridge.example`: the email and
   password, each with a copy button, and the way in. The other logins sit beside it in a table, one
