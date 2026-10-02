@@ -275,7 +275,6 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .sleep { display: flex; gap: 12px; align-items: flex-start; margin-top: 14px; padding: 12px 14px; background: #EAF5F7; border: 1px solid #BFE3E8; border-radius: 6px; color: var(--text); font-size: .88rem; line-height: 1.5; }
 .sleep svg { flex: none; color: var(--teal); margin-top: 1px; }
 .sleep__title { font-weight: 600; margin-bottom: 2px; }
-.start__hint { margin-top: 12px; color: var(--muted); font-size: .86rem; }
 .logins__title { font-size: 1.05rem; }
 .demo .actions { margin-top: 16px; }
 .logins__note { margin: 4px 0 12px; color: var(--muted); font-size: .88rem; }
