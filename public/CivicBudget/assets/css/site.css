@@ -198,6 +198,9 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .clip__toggle { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: rgb(15 42 68 / .78); color: #fff; font: 600 .78rem var(--sans); cursor: pointer; }
 .clip__toggle:hover { background: rgb(15 42 68 / .92); }
 .clip--phone video { border-radius: 16px; }
+/* The portal's own "Ask Civic Buddy" launcher sits in a phone clip's bottom-right corner, so the pause
+   button takes the bottom-left there. */
+.clip--phone .clip__toggle { right: auto; left: 12px; }
 
 /* ERP exchange: three flows in, one out. */
 .exchange { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 20px; align-items: center; }
