@@ -260,8 +260,20 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 /* Demo logins. */
 .demo { display: grid; grid-template-columns: minmax(0, .85fr) minmax(0, 1.15fr); gap: clamp(28px, 5vw, 56px); align-items: start; }
 .demo h2, .demo .lede { margin-top: 14px; }
-.password { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 18px; padding: 12px 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; }
-.password code { font-family: var(--mono); font-size: 1rem; font-weight: 500; }
+/* The login most people want, set apart: the credentials, each with a copy button, and the way in. */
+.start { margin-top: 22px; padding: 20px 20px 18px; background: var(--surface); border: 1px solid var(--border); border-top: 4px solid var(--teal); border-radius: var(--radius); box-shadow: var(--shadow); }
+.start__label { font-size: .75rem; font-weight: 700; letter-spacing: .09em; text-transform: uppercase; color: var(--teal); }
+.creds { margin: 14px 0 0; display: grid; gap: 8px; }
+.creds__row { display: grid; gap: 2px; padding: 10px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 6px; }
+.creds dt { font-size: .78rem; font-weight: 600; color: var(--muted); }
+.creds dd { margin: 0; display: flex; align-items: center; gap: 10px; min-width: 0; }
+.creds code { font-family: var(--mono); font-size: .98rem; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; }
+.creds .copy { background: var(--surface); }
+.start__go { margin-top: 16px; width: 100%; justify-content: center; }
+.start__hint { margin-top: 12px; color: var(--muted); font-size: .86rem; }
+.logins__title { font-size: 1.05rem; }
+.demo .actions { margin-top: 16px; }
+.logins__note { margin: 4px 0 12px; color: var(--muted); font-size: .88rem; }
 .copy { font: 600 .82rem var(--sans); border: 1px solid var(--border); background: var(--bg); color: var(--text); border-radius: 5px; padding: 6px 10px; cursor: pointer; margin-left: auto; }
 .table-wrap { overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
 table { border-collapse: collapse; width: 100%; font-size: .9rem; }

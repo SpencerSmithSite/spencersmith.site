@@ -86,6 +86,10 @@ The page's canonical link keeps search engines on one address.
   skipped under Save-Data and in automated browsers (`navigator.webdriver`), so crawlers and the
   screenshot scripts do not spend the demo's free allowance. The demo's address is read from the
   "Open the demo" link (`data-demo`), so it lives in one place.
+- **The Administrator login comes first.** Most people trying the demo want to see everything, so
+  the demo section opens with a "Start here" card for `admin@mapleridge.example`: the email and
+  password, each with a copy button, and the way in. The other logins sit beside it in a table, one
+  role at a time.
 - **The demo password is on the page on purpose.** It is public in the app's README too. The demo
   holds only fictional data and is rebuilt every night.
 

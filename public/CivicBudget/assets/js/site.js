@@ -63,32 +63,36 @@
     }).catch(function () {});
   }
 
-  /* --------------------------------------------------------- password --- */
-  var copy = document.getElementById("copy-password");
-  var password = document.getElementById("demo-password");
+  /* ------------------------------------------------------------- copy --- */
+  // Each copy button names the element it copies (data-copy). Without script the buttons stay
+  // hidden and the text can be selected as usual.
   var copyStatus = document.getElementById("copy-status");
-  if (copy && password) {
+  document.querySelectorAll("button[data-copy]").forEach(function (copy) {
+    var source = document.getElementById(copy.getAttribute("data-copy"));
+    if (!source) { return; }
+    var name = copy.getAttribute("data-copy-name") || "Text";
+    copy.setAttribute("aria-label", "Copy the " + name.toLowerCase());
     copy.hidden = false;
     copy.addEventListener("click", function () {
       var done = function (text) {
         copy.textContent = text;
         // The button's own text changing is not announced; the status region is.
-        if (copyStatus) { copyStatus.textContent = text === "Copied" ? "Password copied" : "Password selected"; }
+        if (copyStatus) { copyStatus.textContent = name + (text === "Copied" ? " copied" : " selected"); }
         setTimeout(function () { copy.textContent = "Copy"; if (copyStatus) { copyStatus.textContent = ""; } }, 2000);
       };
       if (navigator.clipboard) {
-        navigator.clipboard.writeText(password.textContent).then(function () { done("Copied"); }, select);
+        navigator.clipboard.writeText(source.textContent).then(function () { done("Copied"); }, select);
       } else { select(); }
       function select() {
         var range = document.createRange();
-        range.selectNodeContents(password);
+        range.selectNodeContents(source);
         var selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
         done("Selected");
       }
     });
-  }
+  });
 
   /* ------------------------------------------------------------- menu --- */
   // The phone menu is a <details>; it closes when a link in it is chosen, and on Escape, which
