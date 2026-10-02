@@ -347,31 +347,43 @@
     <div class="wrap demo">
       <div>
         <p class="eyebrow">Live demo</p>
-        <h2 id="demo-title">Sign in as anyone in the village.</h2>
-        <p class="lede">The Village of Maple Ridge and Pine Hollow Township are fictional, and the demo is rebuilt every night, so change anything you like. The AI features are on for Maple Ridge, on a small, fast model: try Civic Buddy in the top bar, and "Ask Civic Buddy" in the corner of the portal.</p>
-        <div class="password">
-          <span>Password for every login</span>
-          <code id="demo-password">Demo-Bpe1GyRie5-1!</code>
-          <button class="copy" type="button" id="copy-password" hidden>Copy</button>
+        <h2 id="demo-title">Sign in as the Administrator and try everything.</h2>
+        <p class="lede">The Administrator sees every budget and report, can use Civic Buddy, and manages users and settings. The Village of Maple Ridge is fictional and rebuilt every night, so change anything you like.</p>
+        <div class="start">
+          <p class="start__label">Start here · Administrator</p>
+          <dl class="creds">
+            <div class="creds__row">
+              <dt>Email</dt>
+              <dd><code id="demo-email">admin@mapleridge.example</code><button class="copy" type="button" data-copy="demo-email" data-copy-name="Email" hidden>Copy</button></dd>
+            </div>
+            <div class="creds__row">
+              <dt>Password</dt>
+              <dd><code id="demo-password">Demo-Bpe1GyRie5-1!</code><button class="copy" type="button" data-copy="demo-password" data-copy-name="Password" hidden>Copy</button></dd>
+            </div>
+          </dl>
           <span class="visually-hidden" id="copy-status" role="status"></span>
+          <a class="btn btn--primary start__go" href="https://civicbudget-app.ashysmoke-cd0f52a4.centralus.azurecontainerapps.io" data-demo>Open the demo</a>
+          <p class="start__hint">Civic Buddy is in the top bar. The AI runs on a small, fast model, so answers take a few seconds.</p>
         </div>
         <div class="actions">
-          <a class="btn btn--primary" href="https://civicbudget-app.ashysmoke-cd0f52a4.centralus.azurecontainerapps.io" data-demo>Open the demo</a>
           <a class="btn btn--line" href="https://civicbudget-app.ashysmoke-cd0f52a4.centralus.azurecontainerapps.io/transparency/maple-ridge-oh">See the public portal</a>
         </div>
         <p class="wake">The demo runs on free cloud tiers and sleeps when nobody is using it. The first visit can take about 20 seconds.</p>
       </div>
-      <div class="table-wrap" tabindex="0" role="region" aria-label="Table of demo logins">
-        <table>
-          <thead><tr><th scope="col">Sign in as</th><th scope="col">Role</th><th scope="col">Try</th></tr></thead>
-          <tbody>
-            <tr><td><code>finance@mapleridge.example</code></td><td>Fiscal Officer</td><td>Ask Civic Buddy to raise utilities 5% and confirm the card; the five-year plan; the FY2027 draft, where the Street fund is over its limit on purpose; send the amendment to the ERP</td></tr>
-            <tr><td><code>streets@mapleridge.example</code></td><td>Department User</td><td>A request still being entered, and one returned with a note</td></tr>
-            <tr><td><code>police@mapleridge.example</code></td><td>Department User</td><td>A submitted request, locked until returned</td></tr>
-            <tr><td><code>admin@mapleridge.example</code></td><td>Administrator</td><td>Users, two-step sign-in, the security log, the logo</td></tr>
-            <tr><td><code>admin@pinehollow.example</code></td><td>Another government</td><td>Proof that one government never sees another's data</td></tr>
-          </tbody>
-        </table>
+      <div class="logins">
+        <h3 class="logins__title">Or see it one role at a time</h3>
+        <p class="logins__note">Same password for every login.</p>
+        <div class="table-wrap" tabindex="0" role="region" aria-label="Table of other demo logins">
+          <table>
+            <thead><tr><th scope="col">Sign in as</th><th scope="col">Role</th><th scope="col">Try</th></tr></thead>
+            <tbody>
+              <tr><td><code>finance@mapleridge.example</code></td><td>Fiscal Officer</td><td>Ask Civic Buddy to raise utilities 5% and confirm the card; the five-year plan; the FY2027 draft, where the Street fund is over its limit on purpose; send the amendment to the ERP</td></tr>
+              <tr><td><code>streets@mapleridge.example</code></td><td>Department User</td><td>A request still being entered, and one returned with a note</td></tr>
+              <tr><td><code>police@mapleridge.example</code></td><td>Department User</td><td>A submitted request, locked until returned</td></tr>
+              <tr><td><code>admin@pinehollow.example</code></td><td>Another government</td><td>Proof that one government never sees another's data</td></tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </section>
