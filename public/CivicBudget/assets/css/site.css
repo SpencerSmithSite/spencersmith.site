@@ -201,6 +201,9 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 /* The portal's own "Ask Civic Buddy" launcher sits in a phone clip's bottom-right corner, so the pause
    button takes the bottom-left there. */
 .clip--phone .clip__toggle { right: auto; left: 12px; }
+/* Wide enough, and there is room beside the phone: the button sits just outside its right edge, level
+   with the page, and covers nothing. Narrower, it stays inside, where it cannot widen the page. */
+@media (min-width: 1240px) { .clip--phone .clip__toggle { left: calc(100% + 16px); bottom: 6px; transform: rotate(-3.5deg); } }
 
 /* ERP exchange: three flows in, one out. */
 .exchange { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 20px; align-items: center; }
