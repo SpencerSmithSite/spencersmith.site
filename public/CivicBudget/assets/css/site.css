@@ -179,7 +179,9 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .stack__stage { position: relative; aspect-ratio: 100 / 74; margin-bottom: 8px; }
 .stack__back { position: absolute; left: 0; top: 10%; width: 82%; transform: rotate(-2deg); transform-origin: center; }
 .stack__phone { position: absolute; right: 3%; bottom: 0; width: 29%; transform: rotate(3.5deg); transform-origin: center; }
-.stack__phone video.shot { border: 5px solid var(--ink); border-radius: 22px; box-shadow: var(--shadow-lg); }
+/* The bezel is the video's own border. The background matches it, because the tilt softens the edge
+   where the picture meets the border, and a white background showed through there as a hairline. */
+.stack__phone video.shot { border: 5px solid var(--ink); border-radius: 22px; box-shadow: var(--shadow-lg); background: var(--ink); }
 .cite { font-family: var(--mono); font-size: .8rem; color: var(--muted); }
 @media (max-width: 860px) { .feature { grid-template-columns: minmax(0, 1fr); } .feature--flip .feature__copy { order: 0; } }
 /* On a phone the phone clip is the point, so it grows and the screen behind it shrinks. */
@@ -196,6 +198,9 @@ section { padding-block: clamp(64px, 8vw, 104px); }
 .clip__toggle { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 6px 10px; border: 0; border-radius: 6px; background: rgb(15 42 68 / .78); color: #fff; font: 600 .78rem var(--sans); cursor: pointer; }
 .clip__toggle:hover { background: rgb(15 42 68 / .92); }
 .clip--phone video { border-radius: 16px; }
+/* The portal's own "Ask Civic Buddy" launcher sits in a phone clip's bottom-right corner, so the pause
+   button takes the bottom-left there. */
+.clip--phone .clip__toggle { right: auto; left: 12px; }
 
 /* ERP exchange: three flows in, one out. */
 .exchange { display: grid; grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); gap: 20px; align-items: center; }
