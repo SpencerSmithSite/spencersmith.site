@@ -47,10 +47,15 @@
       // the earlier figure was turning away devices the build installs on.
       requires: "Android 7 or later",
       cta: "Download APK",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-android.apk",
-      size: "195 MB",
-      version: "2026.8.2",
-      note: "Also planned for Google Play.",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-android.apk",
+      size: "153 MB",
+      version: "2026.10.29",
+      // Only true of the 2026.8.2 pre-release, which was debug-signed: Android
+      // refuses to install a build signed with a different key over it. Every
+      // build from 2026.10.29 on carries the permanent release key.
+      note:
+        "Have 2026.8.2 installed? Uninstall it first — it was signed with a " +
+        "temporary key, so Android will not update over it. This is needed once.",
       icon:
         '<path d="M5 16V9a7 7 0 0 1 14 0v7"/><path d="M3 16h18a0 0 0 0 1 0 0v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a0 0 0 0 1 0 0Z"/><path d="m7 5-1.5-2.5M17 5l1.5-2.5"/><circle cx="9" cy="11" r=".6" fill="currentColor"/><circle cx="15" cy="11" r=".6" fill="currentColor"/>',
     },
@@ -59,9 +64,9 @@
       name: "macOS",
       requires: "macOS 12 or later · Apple silicon",
       cta: "Download for Mac",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-macos.dmg",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-macos.dmg",
       size: "56 MB",
-      version: "2026.8.2",
+      version: "2026.10.29",
       note:
         "Signed but not yet notarised — on first launch, right-click the app " +
         "and choose Open.",
@@ -73,9 +78,9 @@
       name: "Windows",
       requires: "Windows 10 or later · x64",
       cta: "Download for Windows",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-windows-setup.exe",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-windows-setup.exe",
       size: "72 MB",
-      version: "2026.8.2",
+      version: "2026.10.29",
       note:
         "The installer is unsigned, so SmartScreen will warn on first run — " +
         "choose More info, then Run anyway.",
@@ -91,15 +96,15 @@
       // needlessly excluded 2.34 distributions — RHEL 9 among them.
       requires: "x64 · glibc 2.34 or later",
       cta: "Download AppImage",
-      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-linux-x86_64.AppImage",
+      url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-x86_64.AppImage",
       size: "65 MB",
-      version: "2026.8.2",
+      version: "2026.10.29",
       note: "Make it executable with chmod +x, then run it.",
       // The AppImage leads because it runs on any distribution; Debian and
       // Ubuntu users are better served by the .deb.
       alt: {
-        label: "Debian / Ubuntu package (.deb, 56 MB)",
-        url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-linux-amd64.deb",
+        label: "Debian / Ubuntu package (.deb, 57 MB)",
+        url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-amd64.deb",
       },
       icon:
         '<path d="M9 3.5c0-1 1.3-1.5 3-1.5s3 .5 3 1.5v4c0 2 3 4 3 8a6 6 0 0 1-12 0c0-4 3-6 3-8Z"/><circle cx="10.5" cy="6" r=".6" fill="currentColor"/><circle cx="13.5" cy="6" r=".6" fill="currentColor"/>',
