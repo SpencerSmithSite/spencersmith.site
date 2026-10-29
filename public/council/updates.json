@@ -25,40 +25,42 @@
   ],
 
   "schema": 1,
-  "version": "2026.8.2",
-  "build": 7,
+  "version": "2026.10.29",
+  "build": 8,
 
-  "notes": "Apple Intelligence on Mac, a model picker sized to your device, and a transcript that no longer fights you while an answer streams.",
+  "notes": "Seven branches of the church in one library of 734 sources, a Stop button that stops, and search that keeps Greek and accented names. Downloaded collections need downloading again once.",
   "url": "https://www.spencersmith.site/council/download.html",
 
   "platforms": {
     "ios": {
       "kind": "store",
-      "url": "https://testflight.apple.com/join/JZ1k29YE"
+      "url": "https://testflight.apple.com/join/JZ1k29YE",
+      "version": "2026.8.2",
+      "build": 7
     },
     "android": {
       "kind": "download",
-      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-android.apk",
-      "bytes": 204610770,
-      "sha256": "03e2015837e4fd29de353dc3db079af3bbdc1bccaf0c76a23b5c6697bbb5d485"
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-android.apk",
+      "bytes": 160671657,
+      "sha256": "7f32c540da4225f3d9e62e41b1a2bb79eb00f768e9d7ad24968d0516505f1675"
     },
     "macos": {
       "kind": "download",
-      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-macos.dmg",
-      "bytes": 59382899,
-      "sha256": "292af588784b6c90b41ecd8d7a225afc4a5240723aee5c59d2dff5e5cc62563a"
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-macos.dmg",
+      "bytes": 59460393,
+      "sha256": "d87bf940eba99f1f9ca399675db36b169119969d122d1534ca5471eb2c71b5b4"
     },
     "windows": {
       "kind": "download",
-      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-windows-setup.exe",
-      "bytes": 76056334,
-      "sha256": "84251c486c25e4be95cc71047171d63673ad32802ea3ea78fe99154181da416e"
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-windows-setup.exe",
+      "bytes": 76114540,
+      "sha256": "79d6607069aa34ec704dbfc13e6680ab8b95247ae9dccf3d530112284f0f670d"
     },
     "linux": {
       "kind": "download",
-      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.8.2/Council-linux-x86_64.AppImage",
-      "bytes": 68667896,
-      "sha256": "e0cad57f33f0c471636929d1b1261b8e3bdc3a61d9a29cf38e9757aa414bbcbf"
+      "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-x86_64.AppImage",
+      "bytes": 68733432,
+      "sha256": "aac10ff07b55ffadb8d12b4e386045d0baa74b0aa835e4d5ef6dd756c46fbc70"
     }
   }
 }
