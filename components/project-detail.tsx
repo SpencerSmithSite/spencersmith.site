@@ -4,7 +4,6 @@ import { ArrowLeft, Github, ExternalLink } from "lucide-react"
 
 import { Badge } from "@/components/ui/badge"
 import ProjectGallery from "@/components/project-gallery"
-import ParticleNetworkBackground from "@/components/particle-network-background"
 import { getProjectPage } from "@/lib/project-pages"
 
 export default function ProjectDetail({ slug }: { slug: string }) {
@@ -13,7 +12,14 @@ export default function ProjectDetail({ slug }: { slug: string }) {
 
   return (
     <main className="min-h-screen relative overflow-x-hidden">
-      <ParticleNetworkBackground />
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 top-0 h-screen"
+        style={{
+          background:
+            "radial-gradient(circle farthest-side at center, #1e1e2e 0%, #181825 100%, #11111b 180%)",
+        }}
+      />
 
       {/* Header — a dedicated one rather than the site Navbar, whose links
           scroll to homepage sections that do not exist on this page. */}

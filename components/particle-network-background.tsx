@@ -2,15 +2,77 @@
 
 import { useEffect, useRef } from "react"
 
-// Catppuccin Mocha colors
-const COLORS = {
-  mauve: "#cba6f7",
-  sapphire: "#74c7ec",
-  teal: "#94e2d5",
-  pink: "#f5c2e7",
-  sky: "#89dceb",
-  lavender: "#b4befe",
-  base: "#1e1e2e",
+// Catppuccin Mocha accents. One sprite-sheet cell is painted per color.
+const COLORS = ["#cba6f7", "#74c7ec", "#94e2d5", "#f5c2e7", "#89dceb", "#b4befe"] as const
+
+const MAX_PARTICLES = 80
+const LINK_DISTANCE = 140
+const LINK_DISTANCE_SQ = LINK_DISTANCE * LINK_DISTANCE
+const MOUSE_RADIUS = 180
+const MOUSE_RADIUS_SQ = MOUSE_RADIUS * MOUSE_RADIUS
+const SPRITE_SIZE = 64
+
+// Same stops the old per-frame radial fill used. farthest-side puts the
+// mid stop on the viewport edge; the crust stop sits out at the corners.
+const PARTICLE_BACKGROUND =
+  "radial-gradient(circle farthest-side at center, #1e1e2e 0%, #181825 100%, #11111b 180%)"
+
+function hexChannel(hex: string, start: number) {
+  return Number.parseInt(hex.slice(start, start + 2), 16)
+}
+
+function mixHex(a: string, b: string) {
+  const r = (hexChannel(a, 1) + hexChannel(b, 1)) >> 1
+  const g = (hexChannel(a, 3) + hexChannel(b, 3)) >> 1
+  const bl = (hexChannel(a, 5) + hexChannel(b, 5)) >> 1
+  return `rgb(${r}, ${g}, ${bl})`
+}
+
+function createSpriteSheet() {
+  const sheet = document.createElement("canvas")
+  sheet.width = SPRITE_SIZE * COLORS.length
+  sheet.height = SPRITE_SIZE
+  const ctx = sheet.getContext("2d")
+  if (!ctx) return null
+
+  COLORS.forEach((color, index) => {
+    const origin = index * SPRITE_SIZE
+    const cx = origin + SPRITE_SIZE / 2
+    const cy = SPRITE_SIZE / 2
+    ctx.save()
+    ctx.beginPath()
+    ctx.rect(origin, 0, SPRITE_SIZE, SPRITE_SIZE)
+    ctx.clip()
+    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, SPRITE_SIZE / 2)
+    glow.addColorStop(0, `${color}40`)
+    glow.addColorStop(0.5, `${color}10`)
+    glow.addColorStop(1, "rgba(0,0,0,0)")
+    ctx.fillStyle = glow
+    ctx.beginPath()
+    ctx.arc(cx, cy, SPRITE_SIZE / 2, 0, Math.PI * 2)
+    ctx.fill()
+
+    ctx.fillStyle = color
+    ctx.beginPath()
+    ctx.arc(cx, cy, SPRITE_SIZE / 8, 0, Math.PI * 2)
+    ctx.fill()
+    ctx.restore()
+  })
+
+  return sheet
+}
+
+type Particle = {
+  x: number
+  y: number
+  vx: number
+  vy: number
+  radius: number
+  colorIndex: number
+  originalX: number
+  originalY: number
+  pulsePhase: number
+  pulseSpeed: number
 }
 
 export default function ParticleNetworkBackground() {
@@ -19,245 +81,260 @@ export default function ParticleNetworkBackground() {
   useEffect(() => {
     const canvas = canvasRef.current
     if (!canvas) return
-
     const ctx = canvas.getContext("2d")
     if (!ctx) return
 
-    // Set canvas dimensions
-    const setCanvasDimensions = () => {
-      const dpr = window.devicePixelRatio || 1
-      canvas.width = window.innerWidth * dpr
-      canvas.height = window.innerHeight * dpr
-      canvas.style.width = `${window.innerWidth}px`
-      canvas.style.height = `${window.innerHeight}px`
-      ctx.scale(dpr, dpr)
-    }
+    const sprite = createSpriteSheet()
+    if (!sprite) return
 
-    setCanvasDimensions()
-    window.addEventListener("resize", setCanvasDimensions)
+    const lineColors = COLORS.map((a) => COLORS.map((b) => mixHex(a, b)))
 
-    // Mouse position
+    let width = 0
+    let height = 0
+    let dpr = 1
+    const particles: Particle[] = []
     let mouseX = 0
     let mouseY = 0
     let isMouseMoving = false
-    let mouseTimer: NodeJS.Timeout
+    let mouseTimer = 0
+    let time = 0
+    let onScreen = true
+    let raf = 0
+    let looping = false
 
-    const handleMouseMove = (e: MouseEvent) => {
-      mouseX = e.clientX
-      mouseY = e.clientY
-      isMouseMoving = true
+    const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)")
+    const canAnimate = () => !document.hidden && onScreen && !motionQuery.matches
 
-      clearTimeout(mouseTimer)
-      mouseTimer = setTimeout(() => {
-        isMouseMoving = false
-      }, 3000)
+    const stop = () => {
+      looping = false
+      cancelAnimationFrame(raf)
     }
 
-    window.addEventListener("mousemove", handleMouseMove)
+    const layout = () => {
+      const nextDpr = window.devicePixelRatio || 1
+      const box = canvas.parentElement?.getBoundingClientRect()
+      const nextWidth = Math.round(box?.width || canvas.clientWidth)
+      const nextHeight = Math.round(box?.height || canvas.clientHeight)
+      if (nextWidth < 1 || nextHeight < 1) return
 
-    // Touch support
-    const handleTouchMove = (e: TouchEvent) => {
-      if (e.touches.length > 0) {
-        mouseX = e.touches[0].clientX
-        mouseY = e.touches[0].clientY
-        isMouseMoving = true
+      const sizeChanged = nextWidth !== width || nextHeight !== height
+      const dprChanged = nextDpr !== dpr
+      if (!sizeChanged && !dprChanged && particles.length > 0) return
 
-        clearTimeout(mouseTimer)
-        mouseTimer = setTimeout(() => {
-          isMouseMoving = false
-        }, 3000)
+      const previousWidth = width
+      const previousHeight = height
+      width = nextWidth
+      height = nextHeight
+      dpr = nextDpr
+      canvas.width = Math.floor(width * dpr)
+      canvas.height = Math.floor(height * dpr)
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0)
+
+      if (particles.length === 0) {
+        const count = Math.min(50 + Math.floor((width * height) / 80_000), MAX_PARTICLES)
+        for (let i = 0; i < count; i++) {
+          const x = Math.random() * width
+          const y = Math.random() * height
+          particles.push({
+            x,
+            y,
+            originalX: x,
+            originalY: y,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            radius: Math.random() * 2.5 + 1,
+            colorIndex: Math.floor(Math.random() * COLORS.length),
+            pulsePhase: Math.random() * Math.PI * 2,
+            pulseSpeed: 0.02 + Math.random() * 0.02,
+          })
+        }
+        return
+      }
+
+      if (!sizeChanged || previousWidth < 1 || previousHeight < 1) return
+      const scaleX = width / previousWidth
+      const scaleY = height / previousHeight
+      for (const particle of particles) {
+        particle.x *= scaleX
+        particle.y *= scaleY
+        particle.originalX *= scaleX
+        particle.originalY *= scaleY
       }
     }
 
-    window.addEventListener("touchmove", handleTouchMove)
-
-    const colorKeys = ["mauve", "sapphire", "teal", "pink", "sky", "lavender"] as const
-    const getRandomColor = () => COLORS[colorKeys[Math.floor(Math.random() * colorKeys.length)]]
-
-    // Create particles
-    const particles: {
-      x: number
-      y: number
-      vx: number
-      vy: number
-      radius: number
-      color: string
-      originalX: number
-      originalY: number
-      pulsePhase: number
-      pulseSpeed: number
-    }[] = []
-
-    // Adjust particle count based on screen size
-    const baseCount = 50
-    const width = window.innerWidth
-    const height = window.innerHeight
-    const area = width * height
-    const particleCount = Math.min(baseCount + Math.floor(area / 80000), 120)
-
-    for (let i = 0; i < particleCount; i++) {
-      const x = Math.random() * width
-      const y = Math.random() * height
-      particles.push({
-        x,
-        y,
-        originalX: x,
-        originalY: y,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        radius: Math.random() * 2.5 + 1,
-        color: getRandomColor(),
-        pulsePhase: Math.random() * Math.PI * 2,
-        pulseSpeed: 0.02 + Math.random() * 0.02,
-      })
-    }
-
-    // Animation
-    let animationId: number
-    let time = 0
-
-    const animate = () => {
+    const update = () => {
       time += 1
-      
-      // Create gradient background
-      const gradient = ctx.createRadialGradient(
-        width / 2,
-        height / 2,
-        0,
-        width / 2,
-        height / 2,
-        Math.max(width, height)
-      )
-      gradient.addColorStop(0, "#1e1e2e")
-      gradient.addColorStop(0.5, "#181825")
-      gradient.addColorStop(1, "#11111b")
-      
-      ctx.fillStyle = gradient
-      ctx.fillRect(0, 0, width, height)
-
-      // Update and draw particles
       for (const particle of particles) {
-        // Move particles
         particle.x += particle.vx
         particle.y += particle.vy
 
-        // Wrap around edges with some bounce effect
         if (particle.x < 0) {
           particle.x = 0
           particle.vx *= -1
-        }
-        if (particle.x > width) {
+        } else if (particle.x > width) {
           particle.x = width
           particle.vx *= -1
         }
         if (particle.y < 0) {
           particle.y = 0
           particle.vy *= -1
-        }
-        if (particle.y > height) {
+        } else if (particle.y > height) {
           particle.y = height
           particle.vy *= -1
         }
 
-        // Gradually return to original position when mouse is not moving
         if (!isMouseMoving) {
-          const dx = particle.originalX - particle.x
-          const dy = particle.originalY - particle.y
-          particle.vx += dx * 0.0003
-          particle.vy += dy * 0.0003
-        }
-
-        // Calculate pulsing radius
-        const pulseAmount = Math.sin(time * particle.pulseSpeed + particle.pulsePhase) * 0.3 + 1
-        const currentRadius = particle.radius * pulseAmount
-
-        // Draw particle with glow effect
-        const glowGradient = ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          currentRadius * 4
-        )
-        glowGradient.addColorStop(0, particle.color + "40")
-        glowGradient.addColorStop(0.5, particle.color + "10")
-        glowGradient.addColorStop(1, "transparent")
-
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, currentRadius * 4, 0, Math.PI * 2)
-        ctx.fillStyle = glowGradient
-        ctx.fill()
-
-        // Draw particle core
-        ctx.beginPath()
-        ctx.arc(particle.x, particle.y, currentRadius, 0, Math.PI * 2)
-        ctx.fillStyle = particle.color
-        ctx.fill()
-
-        // Connect particles with gradient lines
-        for (const otherParticle of particles) {
-          const dx = particle.x - otherParticle.x
-          const dy = particle.y - otherParticle.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
-          if (distance < 140 && distance > 0) {
-            const opacity = (1 - distance / 140) * 0.35
-            
-            const lineGradient = ctx.createLinearGradient(
-              particle.x,
-              particle.y,
-              otherParticle.x,
-              otherParticle.y
-            )
-            lineGradient.addColorStop(0, particle.color + Math.floor(opacity * 255).toString(16).padStart(2, "0"))
-            lineGradient.addColorStop(1, otherParticle.color + Math.floor(opacity * 255).toString(16).padStart(2, "0"))
-
-            ctx.beginPath()
-            ctx.moveTo(particle.x, particle.y)
-            ctx.lineTo(otherParticle.x, otherParticle.y)
-            ctx.strokeStyle = lineGradient
-            ctx.lineWidth = 0.8
-            ctx.stroke()
-          }
-        }
-
-        // React to mouse with enhanced effect
-        if (isMouseMoving) {
+          particle.vx += (particle.originalX - particle.x) * 0.0003
+          particle.vy += (particle.originalY - particle.y) * 0.0003
+        } else {
           const dx = mouseX - particle.x
           const dy = mouseY - particle.y
-          const distance = Math.sqrt(dx * dx + dy * dy)
-
-          if (distance < 180) {
+          const distSq = dx * dx + dy * dy
+          if (distSq > 0 && distSq < MOUSE_RADIUS_SQ) {
+            const distance = Math.sqrt(distSq)
             const angle = Math.atan2(dy, dx)
-            const force = (180 - distance) / 1200
+            const force = (MOUSE_RADIUS - distance) / 1200
             particle.vx -= Math.cos(angle) * force
             particle.vy -= Math.sin(angle) * force
-
-            // Add randomness
             particle.vx += (Math.random() - 0.5) * 0.04
             particle.vy += (Math.random() - 0.5) * 0.04
           }
         }
 
-        // Apply friction
         particle.vx *= 0.985
         particle.vy *= 0.985
       }
-
-      animationId = requestAnimationFrame(animate)
     }
 
-    animate()
+    const draw = () => {
+      ctx.clearRect(0, 0, width, height)
+      ctx.lineWidth = 0.8
+
+      for (let i = 0; i < particles.length; i++) {
+        const a = particles[i]
+        for (let j = i + 1; j < particles.length; j++) {
+          const b = particles[j]
+          const dx = a.x - b.x
+          const dy = a.y - b.y
+          const distSq = dx * dx + dy * dy
+          if (distSq <= 0 || distSq >= LINK_DISTANCE_SQ) continue
+
+          const distance = Math.sqrt(distSq)
+          ctx.globalAlpha = (1 - distance / LINK_DISTANCE) * 0.35
+          ctx.strokeStyle = lineColors[a.colorIndex][b.colorIndex]
+          ctx.beginPath()
+          ctx.moveTo(a.x, a.y)
+          ctx.lineTo(b.x, b.y)
+          ctx.stroke()
+        }
+      }
+
+      ctx.globalAlpha = 1
+      for (const particle of particles) {
+        const pulse = Math.sin(time * particle.pulseSpeed + particle.pulsePhase) * 0.3 + 1
+        const size = particle.radius * pulse * 8
+        ctx.drawImage(
+          sprite,
+          particle.colorIndex * SPRITE_SIZE,
+          0,
+          SPRITE_SIZE,
+          SPRITE_SIZE,
+          particle.x - size / 2,
+          particle.y - size / 2,
+          size,
+          size,
+        )
+      }
+    }
+
+    const frame = () => {
+      update()
+      draw()
+      if (canAnimate()) raf = requestAnimationFrame(frame)
+      else looping = false
+    }
+
+    const start = () => {
+      if (looping || !canAnimate() || particles.length === 0) return
+      looping = true
+      raf = requestAnimationFrame(frame)
+    }
+
+    const sync = () => {
+      if (canAnimate()) {
+        start()
+        return
+      }
+      stop()
+      if (particles.length > 0) draw()
+    }
+
+    const wakeMouse = () => {
+      isMouseMoving = true
+      window.clearTimeout(mouseTimer)
+      mouseTimer = window.setTimeout(() => {
+        isMouseMoving = false
+      }, 3000)
+    }
+
+    const handleMouseMove = (event: MouseEvent) => {
+      const rect = canvas.getBoundingClientRect()
+      mouseX = event.clientX - rect.left
+      mouseY = event.clientY - rect.top
+      wakeMouse()
+    }
+
+    const handleTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0]
+      if (!touch) return
+      const rect = canvas.getBoundingClientRect()
+      mouseX = touch.clientX - rect.left
+      mouseY = touch.clientY - rect.top
+      wakeMouse()
+    }
+
+    const observer = new IntersectionObserver(([entry]) => {
+      onScreen = entry.isIntersecting
+      sync()
+    })
+
+    layout()
+    if (particles.length > 0) draw()
+    start()
+
+    const frameEl = canvas.parentElement ?? canvas
+    observer.observe(frameEl)
+    const resizeObserver = new ResizeObserver(() => {
+      layout()
+      if (!looping && particles.length > 0) draw()
+    })
+    resizeObserver.observe(frameEl)
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true })
+    window.addEventListener("touchmove", handleTouchMove, { passive: true })
+    document.addEventListener("visibilitychange", sync)
+    motionQuery.addEventListener("change", sync)
 
     return () => {
-      window.removeEventListener("resize", setCanvasDimensions)
+      stop()
+      observer.disconnect()
+      resizeObserver.disconnect()
       window.removeEventListener("mousemove", handleMouseMove)
       window.removeEventListener("touchmove", handleTouchMove)
-      clearTimeout(mouseTimer)
-      cancelAnimationFrame(animationId)
+      document.removeEventListener("visibilitychange", sync)
+      motionQuery.removeEventListener("change", sync)
+      window.clearTimeout(mouseTimer)
     }
   }, [])
 
-  return <canvas ref={canvasRef} className="absolute inset-0 z-0" />
+  return (
+    <div
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 z-0"
+      style={{ background: PARTICLE_BACKGROUND }}
+    >
+      {/* Canvas is a replaced element, so inset alone leaves it at 300×150. */}
+      <canvas ref={canvasRef} className="block h-full w-full" />
+    </div>
+  )
 }
