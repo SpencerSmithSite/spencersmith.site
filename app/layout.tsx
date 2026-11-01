@@ -13,8 +13,8 @@ export const metadata: Metadata = {
   description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
   generator: 'v0.dev',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: "Spencer Smith | I build things",
@@ -23,10 +23,11 @@ export const metadata: Metadata = {
     siteName: "Spencer Smith",
     images: [
       {
-        url: "/logo.png",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "Spencer Smith's Portfolio",
+        type: "image/jpeg",
       },
     ],
     locale: "en_US",
@@ -36,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Spencer Smith | I build things",
     description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
-    images: ["/logo.png"],
+    images: ["/og.jpg"],
     creator: "@spencersmith",
   },
 }
