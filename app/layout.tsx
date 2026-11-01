@@ -3,18 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import type React from "react"
 import "./globals.css"
 import type { Metadata, Viewport } from "next"
-import { JetBrains_Mono, Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
 
 export const metadata: Metadata = {
   // Without this, the relative OG/Twitter image paths on the project pages
@@ -63,7 +52,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
