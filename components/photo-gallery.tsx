@@ -10,101 +10,115 @@ import { X, ChevronLeft, ChevronRight } from "lucide-react"
 export interface Photo {
   id: number
   src: string
+  thumb: string
   alt: string
   category: string
   width: number
   height: number
 }
 
-// Your photos collection
+// src is the lightbox JPEG (long edge 2048). thumb is the 800px-wide grid JPEG.
+// width and height are the lightbox file's real pixels. Regenerate both files
+// with scripts/resize-gallery-photos.mjs.
 const photos: Photo[] = [
   {
     id: 1,
     src: "/photos/beach-branch.jpeg",
+    thumb: "/photos/thumbs/beach-branch.jpeg",
     alt: "Bare branches frame a view of a calm blue lake",
     category: "Landscape",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 2,
     src: "/photos/waves-crashing.jpeg",
+    thumb: "/photos/thumbs/waves-crashing.jpeg",
     alt: "Waves crashing against rocks on a sunny day",
     category: "Water",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 3,
     src: "/photos/beach-rocks.jpeg",
+    thumb: "/photos/thumbs/beach-rocks.jpeg",
     alt: "Line of rocks along a tranquil shoreline",
     category: "Landscape",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1261,
   },
   {
     id: 4,
     src: "/photos/snowy-stairs.jpeg",
+    thumb: "/photos/thumbs/snowy-stairs.jpeg",
     alt: "Stone stairs ascending through a snowy winter forest",
     category: "Winter",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1537,
   },
   {
     id: 5,
     src: "/photos/ocean-sand.jpeg",
+    thumb: "/photos/thumbs/ocean-sand.jpeg",
     alt: "Close-up where ocean water meets sandy beach",
     category: "Abstract",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 6,
     src: "/photos/still-river.jpeg",
+    thumb: "/photos/thumbs/still-river.jpeg",
     alt: "Calm turquoise river surrounded by lush forest",
     category: "Nature",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 7,
     src: "/photos/orange-flower.jpeg",
+    thumb: "/photos/thumbs/orange-flower.jpeg",
     alt: "Vibrant orange lily against blurred green background",
     category: "Flora",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1638,
   },
   {
     id: 8,
     src: "/photos/lighthouse.jpeg",
+    thumb: "/photos/thumbs/lighthouse.jpeg",
     alt: "Distant lighthouse viewed through bare branches",
     category: "Landscape",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 9,
     src: "/photos/no-trespassing.jpeg",
+    thumb: "/photos/thumbs/no-trespassing.jpeg",
     alt: "Rocky beach with private property sign and evergreen trees",
     category: "Landscape",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 10,
     src: "/photos/flowing-river.jpeg",
+    thumb: "/photos/thumbs/flowing-river.jpeg",
     alt: "Rushing river flowing through dense forest",
     category: "Nature",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1152,
   },
   {
     id: 11,
     src: "/photos/TealAndOrangeSunset.jpeg",
+    thumb: "/photos/thumbs/TealAndOrangeSunset.jpeg",
     alt: "An orange sunset blends into a teal sky",
     category: "Landscape",
-    width: 1920,
-    height: 1080,
+    width: 2048,
+    height: 1638,
   },
 ]
 
@@ -177,9 +191,10 @@ export default function PhotoGallery() {
           >
             <div className="relative h-64 w-full overflow-hidden">
               <Image
-                src={photo.src || "/placeholder.svg"}
+                src={photo.thumb}
                 alt={photo.alt}
                 fill
+                sizes="(max-width: 639px) 100vw, (max-width: 1023px) 50vw, 33vw"
                 className="object-cover transition-all duration-700 group-hover:scale-110"
               />
               {/* Gradient overlay */}
