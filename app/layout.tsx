@@ -3,18 +3,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import type React from "react"
 import "./globals.css"
 import type { Metadata, Viewport } from "next"
-import { JetBrains_Mono, Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
-
-const inter = Inter({ 
-  subsets: ["latin"],
-  variable: "--font-sans",
-})
-
-const jetbrainsMono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-})
 
 export const metadata: Metadata = {
   // Without this, the relative OG/Twitter image paths on the project pages
@@ -24,8 +13,8 @@ export const metadata: Metadata = {
   description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
   generator: 'v0.dev',
   icons: {
-    icon: '/logo.png',
-    apple: '/logo.png',
+    icon: [{ url: "/favicon.png", sizes: "32x32", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
   },
   openGraph: {
     title: "Spencer Smith | I build things",
@@ -34,10 +23,11 @@ export const metadata: Metadata = {
     siteName: "Spencer Smith",
     images: [
       {
-        url: "/logo.png",
+        url: "/og.jpg",
         width: 1200,
         height: 630,
         alt: "Spencer Smith's Portfolio",
+        type: "image/jpeg",
       },
     ],
     locale: "en_US",
@@ -47,7 +37,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Spencer Smith | I build things",
     description: "Personal portfolio website showcasing my programming projects, photography, and writings.",
-    images: ["/logo.png"],
+    images: ["/og.jpg"],
     creator: "@spencersmith",
   },
 }
@@ -63,7 +53,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning className="bg-background">
-      <body className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}>
+      <body className="font-sans antialiased">
         <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>

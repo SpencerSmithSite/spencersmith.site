@@ -138,4 +138,3 @@ export const projects: Project[] = [
 ]
 
 export const featuredProjects = projects.filter((p) => p.featured)
-export const otherProjects = projects.filter((p) => !p.featured)

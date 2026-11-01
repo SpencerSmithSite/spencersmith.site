@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "check:council": "node scripts/check-council-release.mjs"
+    "check:council": "node scripts/check-council-release.mjs && node scripts/council-totals.mjs --check"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "1.1.4",
@@ -17,7 +17,7 @@
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.454.0",
-    "next": "15.2.8",
+    "next": "15.5.28",
     "next-themes": "^0.4.4",
     "react": "^19",
     "react-dom": "^19",
@@ -31,5 +31,8 @@
     "postcss": "^8",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
+  },
+  "overrides": {
+    "sharp": ">=0.35.5"
   }
 }
