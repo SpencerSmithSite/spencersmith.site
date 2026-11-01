@@ -1,6 +1,3 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
 import { Github, ExternalLink, ArrowRight, AppleIcon as AppStore, PlayIcon as PlayStore } from "lucide-react"
@@ -24,24 +21,15 @@ interface ProjectCardProps {
 }
 
 export default function ProjectCard({ title, description, image, tags, links, href }: ProjectCardProps) {
-  const [isHovered, setIsHovered] = useState(false)
-
   return (
-    <Card
-      className="group relative overflow-hidden glass-card border-ctp-surface2/30 hover:border-ctp-mauve/50 transition-all duration-500 hover:shadow-glow-md"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      {/* Animated gradient border on hover */}
+    <Card className="group relative overflow-hidden glass-card border-ctp-surface2/30 hover:border-ctp-mauve/50 transition-all duration-500 hover:shadow-glow-md">
+      {/* Gradient border, shown on hover */}
       <div
-        className={`absolute inset-0 rounded-lg bg-gradient-to-r from-ctp-mauve via-ctp-sapphire to-ctp-teal opacity-0 transition-opacity duration-500 ${
-          isHovered ? "opacity-100" : ""
-        }`}
+        className="pointer-events-none absolute inset-0 rounded-lg opacity-0 transition-opacity duration-500 group-hover:opacity-100"
         style={{
           padding: "1px",
-          background: isHovered
-            ? "linear-gradient(135deg, hsl(var(--ctp-mauve)), hsl(var(--ctp-sapphire)), hsl(var(--ctp-teal)))"
-            : "transparent",
+          background:
+            "linear-gradient(135deg, hsl(var(--ctp-mauve)), hsl(var(--ctp-sapphire)), hsl(var(--ctp-teal)))",
           WebkitMask: "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
           maskComposite: "exclude",
@@ -54,23 +42,13 @@ export default function ProjectCard({ title, description, image, tags, links, hr
           src={image || "/placeholder.svg"}
           alt={title}
           fill
-          className={`object-cover transition-all duration-700 ${
-            isHovered ? "scale-110 blur-[1px]" : "scale-100"
-          }`}
+          className="object-cover scale-100 transition-all duration-700 group-hover:scale-110 group-hover:blur-[1px]"
         />
         {/* Overlay gradient */}
-        <div
-          className={`absolute inset-0 bg-gradient-to-t from-ctp-base via-ctp-base/50 to-transparent transition-opacity duration-500 ${
-            isHovered ? "opacity-80" : "opacity-40"
-          }`}
-        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ctp-base via-ctp-base/50 to-transparent opacity-40 transition-opacity duration-500 group-hover:opacity-80" />
 
         {/* Floating action links on hover */}
-        <div
-          className={`absolute inset-0 flex items-center justify-center gap-4 transition-all duration-500 ${
-            isHovered ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
-          }`}
-        >
+        <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 translate-y-4 transition-all duration-500 group-hover:opacity-100 group-hover:translate-y-0">
           {links.github && (
             <Link
               href={links.github}

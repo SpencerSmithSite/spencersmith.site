@@ -169,6 +169,12 @@
           <!-- Tells the inbox which site the message came from; the personal
                site posts to the same Formspree endpoint. -->
           <input type="hidden" name="_subject" value="Council — source request">
+          <!-- Formspree honeypot. Kept in the form so FormData posts _gotcha;
+               off-screen, and hidden from assistive tech. -->
+          <div class="form__gotcha" aria-hidden="true">
+            <label for="council-gotcha">Leave this field empty</label>
+            <input type="text" id="council-gotcha" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
+          </div>
           <button class="btn btn--primary" type="submit">Send request</button>
           <p class="form__status" id="form-status" role="status" aria-live="polite"></p>
         </form>
