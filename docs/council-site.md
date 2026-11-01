@@ -18,10 +18,10 @@ It is plain HTML, CSS and vanilla JavaScript. Next.js does not build it, lint it
 or know it exists — it is copied verbatim into the deployment as a static asset,
 so editing a page is editing that page.
 
-## Why it needs two lines of `next.config.mjs`
+## Why `/council/` is special in `next.config.mjs`
 
 Dropping static HTML into `public/` does *not* give you a working `/council`.
-Measured against a production build:
+Measured against a production build with no Council routing:
 
 | URL | Without config |
 |---|---|
@@ -36,21 +36,39 @@ so `/council` matches nothing.
 The obvious fix — rewriting `/council` straight to `/council/index.html` — is a
 trap. The address bar keeps `/council`, so the site's relative
 `href="assets/css/site.css"` resolves against the site root as
-`/assets/css/site.css`, and the page renders **unstyled**.
+`/assets/css/site.css`, and the page renders **unstyled**. From `/council/` the
+same link resolves to `/council/assets/css/site.css`.
 
-What actually works, and what is in the config:
+The slash is only required on `/council/`. `trailingSlash: true` used to force
+it, and it also slashed `/` and every project route. The config now leaves
+`trailingSlash` off and sets `skipTrailingSlashRedirect` so Next's site-wide
+redirect can be replaced by one that strips a trailing slash everywhere except
+`/council/`. `/council` itself is redirected in `middleware.ts`, not in
+`redirects()`, because Next treats the trailing slash on a redirect source as
+optional — a rule from `/council` to `/council/` also matches `/council/` and
+loops.
 
 ```js
-trailingSlash: true,
+trailingSlash: false,
+skipTrailingSlashRedirect: true,
+async redirects() {
+  return [
+    // strip a trailing slash on every path except /council/ itself
+    {
+      source: '/:path((?!council/$)(?:[^/]+/)*[^/]+)/',
+      destination: '/:path',
+      permanent: true,
+    },
+  ]
+},
 async rewrites() {
   return [{ source: '/council/', destination: '/council/index.html' }]
 },
 ```
 
-`trailingSlash` reverses the redirect so `/council` resolves *to* `/council/`,
-which also makes the relative links resolve correctly; the rewrite supplies the
-directory index Next will not. Note that `trailingSlash` is site-wide — any Next
-routes added later will get trailing slashes too.
+`/council` still lands on `/council/`, which is what makes the relative links
+resolve, and the rewrite supplies the directory index Next will not. `/schizo/`
+and the other project routes redirect back to the unslashed form.
 
 ## Regenerating the source catalogue
 
