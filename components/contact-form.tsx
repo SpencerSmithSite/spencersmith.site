@@ -61,7 +61,7 @@ export default function ContactForm() {
     }`
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="relative space-y-6">
       {formState && (
         <div
           className={`p-4 rounded-lg glass-subtle flex items-center gap-3 animate-fade-in ${
@@ -80,6 +80,22 @@ export default function ContactForm() {
       )}
 
       <input type="hidden" name="_replyto" value="website@spencersmith.site" />
+
+      {/* Formspree drops the submission when _gotcha is filled. The field stays
+          in the DOM so it is included in FormData, and off-screen so people and
+          screen readers never reach it. */}
+      <div aria-hidden="true" className="absolute left-0 top-0 h-0 w-0 overflow-hidden">
+        <label htmlFor="contact-gotcha">Leave this field empty</label>
+        <input
+          type="text"
+          id="contact-gotcha"
+          name="_gotcha"
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          className="absolute -left-[9999px]"
+        />
+      </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div className="space-y-2">
