@@ -12,10 +12,16 @@
     "  gh release view v<VERSION> --repo SpencerSmithSite/council \\",
     "    --json assets --jq '.assets[] | \"\\(.name) \\(.size) \\(.digest)\"'",
     "",
-    "This file and assets/js/download.js state the same versions and URLs, so",
-    "`node scripts/check-council-release.mjs` from the repo root proves they",
-    "agree. Run it after editing either one; a mismatch means either the page",
-    "offers a build the app will not update to, or the reverse.",
+    "This file and assets/js/download.js state the same versions, URLs and",
+    "sha256 checksums, so `node scripts/check-council-release.mjs` from the",
+    "repo root proves they agree. Run it after editing either one; a mismatch",
+    "means either the page offers a build the app will not update to, or the",
+    "reverse.",
+    "",
+    "Linux also has a `deb` object (url, bytes, sha256) for the Debian package",
+    "the download page offers beside the AppImage. The installed app only reads",
+    "kind, url, bytes, sha256, version and build on a platform, and ignores",
+    "every other key, so `deb` does not change what an update installs.",
     "",
     "Served from the site rather than the GitHub releases API because app",
     "releases here are marked pre-release (the corpus releases are what",
@@ -60,7 +66,12 @@
       "kind": "download",
       "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-x86_64.AppImage",
       "bytes": 68733432,
-      "sha256": "aac10ff07b55ffadb8d12b4e386045d0baa74b0aa835e4d5ef6dd756c46fbc70"
+      "sha256": "aac10ff07b55ffadb8d12b4e386045d0baa74b0aa835e4d5ef6dd756c46fbc70",
+      "deb": {
+        "url": "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-amd64.deb",
+        "bytes": 60239728,
+        "sha256": "111f5570020337d96fc1f7770396b9e9aac7636de39053aaa4e97d6035b1a5c8"
+      }
     }
   }
 }
