@@ -1,59 +1,62 @@
-"use client"
-
-import { useEffect, useState } from "react"
-
-interface Orb {
-  id: number
-  x: number
-  y: number
-  size: number
-  color: string
-  animationDuration: number
-  animationDelay: number
-}
-
-const COLORS = [
-  "rgba(203, 166, 247, 0.15)", // mauve
-  "rgba(116, 199, 236, 0.15)", // sapphire
-  "rgba(148, 226, 213, 0.12)", // teal
-  "rgba(245, 194, 231, 0.1)",  // pink
-  "rgba(137, 220, 235, 0.12)", // sky
-]
+const ORBS = [
+  {
+    id: "a",
+    className: "floating-orb-a",
+    left: "16%",
+    top: "22%",
+    size: 220,
+    // Mauve into pink, matching the old palette without a live blur filter.
+    background:
+      "radial-gradient(circle, rgba(203, 166, 247, 0.32) 0%, rgba(245, 194, 231, 0.1) 42%, transparent 70%)",
+  },
+  {
+    id: "b",
+    className: "floating-orb-b",
+    left: "84%",
+    top: "74%",
+    size: 180,
+    // Sapphire into teal.
+    background:
+      "radial-gradient(circle, rgba(116, 199, 236, 0.28) 0%, rgba(148, 226, 213, 0.1) 46%, transparent 72%)",
+  },
+] as const
 
 export default function FloatingOrbs() {
-  const [orbs, setOrbs] = useState<Orb[]>([])
-
-  useEffect(() => {
-    // Generate orbs on client side only
-    const generatedOrbs: Orb[] = Array.from({ length: 5 }, (_, i) => ({
-      id: i,
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      size: 200 + Math.random() * 400,
-      color: COLORS[i % COLORS.length],
-      animationDuration: 20 + Math.random() * 15,
-      animationDelay: Math.random() * -20,
-    }))
-    setOrbs(generatedOrbs)
-  }, [])
-
-  if (orbs.length === 0) return null
-
   return (
-    <div className="fixed inset-0 pointer-events-none overflow-hidden z-0">
-      {orbs.map((orb) => (
+    <div className="pointer-events-none fixed inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <style>{`
+        @keyframes floating-orb-a {
+          0%, 100% { transform: translate3d(-50%, -50%, 0); }
+          50% { transform: translate3d(calc(-50% + 24px), calc(-50% - 28px), 0); }
+        }
+        @keyframes floating-orb-b {
+          0%, 100% { transform: translate3d(-50%, -50%, 0); }
+          50% { transform: translate3d(calc(-50% - 20px), calc(-50% + 18px), 0); }
+        }
+        .floating-orb-a {
+          animation: floating-orb-a 32s ease-in-out infinite;
+        }
+        .floating-orb-b {
+          animation: floating-orb-b 40s ease-in-out infinite;
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .floating-orb-a,
+          .floating-orb-b {
+            animation: none;
+          }
+        }
+      `}</style>
+      {ORBS.map((orb) => (
         <div
           key={orb.id}
-          className="absolute rounded-full blur-3xl animate-float"
+          className={`absolute rounded-full ${orb.className}`}
           style={{
-            left: `${orb.x}%`,
-            top: `${orb.y}%`,
+            left: orb.left,
+            top: orb.top,
             width: orb.size,
             height: orb.size,
-            backgroundColor: orb.color,
-            animationDuration: `${orb.animationDuration}s`,
-            animationDelay: `${orb.animationDelay}s`,
-            transform: "translate(-50%, -50%)",
+            background: orb.background,
+            transform: "translate3d(-50%, -50%, 0)",
           }}
         />
       ))}
