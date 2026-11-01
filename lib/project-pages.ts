@@ -1,4 +1,7 @@
 import { projects, type Project } from "./projects"
+import { projectSlugById } from "./project-slugs"
+
+export { detailHrefForProject, slugForProject } from "./project-slugs"
 
 export interface GalleryShot {
   src: string
@@ -41,7 +44,7 @@ export interface ProjectPage {
  */
 export const projectPages: ProjectPage[] = [
   {
-    slug: "satsstack",
+    slug: projectSlugById["sats-stack"],
     projectId: "sats-stack",
     tagline:
       "Local-first Bitcoin-native personal finance — no cloud, no accounts, no tracking.",
@@ -136,7 +139,7 @@ export const projectPages: ProjectPage[] = [
   },
 
   {
-    slug: "schizo",
+    slug: projectSlugById.schizo,
     projectId: "schizo",
     tagline:
       "An offline corkboard where the string between your notes is actually simulated.",
@@ -220,7 +223,7 @@ export const projectPages: ProjectPage[] = [
   },
 
   {
-    slug: "airtype",
+    slug: projectSlugById.airtype,
     projectId: "airtype",
     tagline:
       "Turn any flat surface into a keyboard, using only an iPhone camera.",
@@ -303,7 +306,7 @@ export const projectPages: ProjectPage[] = [
   },
 
   {
-    slug: "maple",
+    slug: projectSlugById["maple-umbrel"],
     projectId: "maple-umbrel",
     tagline:
       "Packages OpenSecret's Maple AI as a self-hostable Umbrel community app.",
@@ -385,7 +388,7 @@ export const projectPages: ProjectPage[] = [
   },
 
   {
-    slug: "bitcoinwalletcomparison",
+    slug: projectSlugById["bitcoin-wallet-comparison"],
     projectId: "bitcoin-wallet-comparison",
     tagline:
       "A side-by-side feature matrix for 28 Bitcoin wallets, filterable by what you actually need.",
@@ -469,7 +472,7 @@ export const projectPages: ProjectPage[] = [
   },
 
   {
-    slug: "openclawbridge",
+    slug: projectSlugById["openclaw-bridge"],
     projectId: "openclaw-bridge",
     tagline:
       "A pixel-art starship bridge that turns AI agents into animated crew members.",
@@ -559,7 +562,7 @@ export const projectPages: ProjectPage[] = [
   },
 
   {
-    slug: "idk",
+    slug: projectSlugById["idk-you-pick"],
     projectId: "idk-you-pick",
     tagline:
       "Ends the \"I don't know, what do you want?\" dinner argument in one tap.",
@@ -674,23 +677,6 @@ export function getProjectPage(slug: string): {
     )
   }
   return { page, project }
-}
-
-/** Slug for a project id, when one has a detail page. */
-export function slugForProject(projectId: string): string | undefined {
-  return projectPages.find((p) => p.projectId === projectId)?.slug
-}
-
-/**
- * Where a project's "View details" link points, when it has somewhere to go.
- * Council is the exception to the generated pages: it has its own hand-built
- * static site under public/council, so it links there instead.
- */
-export function detailHrefForProject(projectId: string): string | undefined {
-  const slug = slugForProject(projectId)
-  if (slug) return `/${slug}`
-  if (projectId === "council") return "/council/"
-  return undefined
 }
 
 /** Per-page title, description and social card, derived from the page content. */

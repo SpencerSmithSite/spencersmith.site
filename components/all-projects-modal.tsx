@@ -9,7 +9,7 @@ import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog"
 import { Button } from "@/components/ui/button"
 import { Badge } from "@/components/ui/badge"
 import { projects, type Project } from "@/lib/projects"
-import { detailHrefForProject } from "@/lib/project-pages"
+import { detailHrefForProject } from "@/lib/project-slugs"
 
 interface AllProjectsModalProps {
   open: boolean
