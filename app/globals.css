@@ -145,11 +145,12 @@
   );
 }
 
-/* Glassmorphism utilities */
+/* Solid stand-ins for the old glass blur.
+   Floating orbs (and the hero particle canvas) animate behind every surface
+   that uses these classes, including the navbar, so none of them keep
+   backdrop-filter. */
 .glass {
-  background: hsl(var(--ctp-base) / 0.7);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
+  background: hsl(var(--ctp-base) / 0.94);
   border: 1px solid hsl(var(--ctp-surface2) / 0.3);
   box-shadow: 
     0 4px 30px hsl(var(--ctp-crust) / 0.3),
@@ -157,16 +158,12 @@
 }
 
 .glass-subtle {
-  background: hsl(var(--ctp-surface0) / 0.5);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: hsl(var(--ctp-surface0) / 0.92);
   border: 1px solid hsl(var(--ctp-surface2) / 0.2);
 }
 
 .glass-card {
-  background: hsl(var(--ctp-surface0) / 0.6);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
+  background: hsl(var(--ctp-surface0) / 0.94);
   border: 1px solid hsl(var(--ctp-surface2) / 0.4);
   box-shadow: 
     0 8px 32px hsl(var(--ctp-crust) / 0.4),
@@ -325,6 +322,19 @@
 /* Animate float class */
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+/* Hero logo uses the same float keyframes, without a per-frame React update. */
+.hero-logo-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-float,
+  .floating-logo .animate-spin,
+  .floating-logo .animate-pulse {
+    animation: none;
+  }
 }
 
 /* Shimmer effect */

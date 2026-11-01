@@ -1,12 +1,7 @@
-"use client"
-
-import { useState } from "react"
 import Image from "next/image"
 import { ChevronDown } from "lucide-react"
 
-import { Button } from "@/components/ui/button"
 import ProjectCard from "@/components/project-card"
-import PhotoGallery from "@/components/photo-gallery"
 import SocialLinks from "@/components/social-links"
 import Navbar from "@/components/navbar"
 import FloatingLogo from "@/components/floating-logo"
@@ -14,13 +9,13 @@ import ParticleNetworkBackground from "@/components/particle-network-background"
 import ContactForm from "@/components/contact-form"
 import ScrollAnimation from "@/components/scroll-animation"
 import FloatingOrbs from "@/components/floating-orbs"
-import AllProjectsModal from "@/components/all-projects-modal"
+import HomeHeroActions from "@/components/home-hero-actions"
+import HomeAllProjects from "@/components/home-all-projects"
+import HomePhotoGallery from "@/components/home-photo-gallery"
 import { featuredProjects } from "@/lib/projects"
-import { detailHrefForProject } from "@/lib/project-pages"
+import { detailHrefForProject } from "@/lib/project-slugs"
 
 export default function Home() {
-  const [showAllProjects, setShowAllProjects] = useState(false)
-
   return (
     <div className="min-h-screen bg-ctp-base text-ctp-text">
       <Navbar />
@@ -34,43 +29,19 @@ export default function Home() {
           <div className="mb-8 relative h-48 md:h-56">
             <FloatingLogo />
           </div>
-          <ScrollAnimation>
+          <ScrollAnimation immediate>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="gradient-text">Hello, I&apos;m</span>{" "}
               <span className="text-ctp-text">Spencer Smith</span>
             </h1>
           </ScrollAnimation>
-          <ScrollAnimation delay={200}>
+          <ScrollAnimation immediate>
             <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-ctp-subtext0">
               I Build Things.
             </p>
           </ScrollAnimation>
-          <ScrollAnimation delay={400}>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Button
-                onClick={() => {
-                  const projectsSection = document.getElementById("projects")
-                  if (projectsSection) {
-                    projectsSection.scrollIntoView({ behavior: "smooth" })
-                  }
-                }}
-                className="relative overflow-hidden bg-gradient-to-r from-ctp-mauve to-ctp-sapphire hover:from-ctp-pink hover:to-ctp-sky text-ctp-crust font-semibold transition-all duration-300 hover:shadow-glow-md hover:scale-105"
-              >
-                View My Work
-              </Button>
-              <Button
-                onClick={() => {
-                  const contactSection = document.getElementById("contact")
-                  if (contactSection) {
-                    contactSection.scrollIntoView({ behavior: "smooth" })
-                  }
-                }}
-                variant="outline"
-                className="border-ctp-mauve/50 text-ctp-mauve hover:bg-ctp-mauve/10 hover:border-ctp-mauve transition-all duration-300 hover:shadow-glow-sm"
-              >
-                Contact Me
-              </Button>
-            </div>
+          <ScrollAnimation immediate>
+            <HomeHeroActions />
           </ScrollAnimation>
         </div>
         <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 animate-bounce">
@@ -105,24 +76,10 @@ export default function Home() {
             ))}
           </div>
           <ScrollAnimation delay={400}>
-            <div className="text-center mt-12">
-              <Button
-                variant="outline"
-                onClick={() => setShowAllProjects(true)}
-                className="border-ctp-teal/50 text-ctp-teal hover:bg-ctp-teal/10 hover:border-ctp-teal transition-all duration-300 hover:shadow-glow-sm"
-              >
-                View All Projects
-              </Button>
-            </div>
+            <HomeAllProjects />
           </ScrollAnimation>
         </div>
       </section>
-
-      {/* All Projects Modal */}
-      <AllProjectsModal
-        open={showAllProjects}
-        onOpenChange={setShowAllProjects}
-      />
 
       {/* Photography Section */}
       <section className="py-20 relative" id="photography">
@@ -134,7 +91,7 @@ export default function Home() {
             </h2>
           </ScrollAnimation>
           <ScrollAnimation delay={200}>
-            <PhotoGallery />
+            <HomePhotoGallery />
           </ScrollAnimation>
         </div>
       </section>

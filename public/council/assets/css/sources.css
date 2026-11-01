@@ -352,11 +352,28 @@
 }
 
 .form {
+  position: relative;
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.6rem;
   box-shadow: var(--shadow-tint);
+}
+
+/* Zero-size clip so the off-screen input cannot widen the page. */
+.form__gotcha {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+.form__gotcha input {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
 }
 
 .form__row {

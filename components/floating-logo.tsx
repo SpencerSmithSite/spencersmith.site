@@ -1,48 +1,11 @@
-"use client"
-
-import { useEffect, useState } from "react"
 import Image from "next/image"
 
 export default function FloatingLogo() {
-  const [offsetY, setOffsetY] = useState(0)
-  const [rotation, setRotation] = useState(0)
-
-  useEffect(() => {
-    let frameId: number
-    let angle = 0
-
-    const animate = () => {
-      // Smooth floating animation using sine wave
-      const newY = Math.sin(angle) * 12
-      // Subtle rotation effect
-      const newRotation = Math.sin(angle * 0.5) * 4
-
-      setOffsetY(newY)
-      setRotation(newRotation)
-      angle += 0.04
-      frameId = requestAnimationFrame(animate)
-    }
-
-    animate()
-
-    return () => {
-      if (frameId) {
-        cancelAnimationFrame(frameId)
-      }
-    }
-  }, [])
-
   return (
-    <div className="relative w-full h-full flex items-center justify-center">
-      <div
-        className="relative w-48 h-48 md:w-56 md:h-56"
-        style={{
-          transform: `translateY(${offsetY}px) rotate(${rotation}deg)`,
-          transition: "transform 0.1s ease-out",
-        }}
-      >
-        {/* Animated glow rings */}
-        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-ctp-mauve/20 to-ctp-sapphire/20 blur-2xl animate-pulse-glow" />
+    <div className="floating-logo relative w-full h-full flex items-center justify-center">
+      <div className="hero-logo-float relative w-48 h-48 md:w-56 md:h-56">
+        {/* Single static blur layer */}
+        <div className="absolute inset-0 rounded-full bg-gradient-to-r from-ctp-mauve/20 to-ctp-sapphire/20 blur-2xl" />
         <div 
           className="absolute inset-[-10%] rounded-full border border-ctp-mauve/20 animate-spin"
           style={{ animationDuration: "20s" }}
@@ -53,7 +16,14 @@ export default function FloatingLogo() {
         />
 
         {/* Logo */}
-        <Image src="/logo.png" alt="Logo" fill className="object-contain z-10" priority />
+        <Image
+          src="/logo.webp"
+          alt="Logo"
+          fill
+          className="object-contain z-10"
+          priority
+          sizes="(min-width: 768px) 224px, 192px"
+        />
       </div>
 
       {/* Decorative particles with Catppuccin colors */}

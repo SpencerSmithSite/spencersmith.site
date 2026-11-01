@@ -1,16 +1,18 @@
 /* The download page: detect the visitor's platform, lead with it, list the rest.
  *
  * ─────────────────────────────────────────────────────────────────────────────
- * TO PUBLISH A RELEASE: set `url` on the platform below and, if you like, `size`
- * and `version`. That is the whole change — the button turns from "Coming soon"
- * into a live download wherever it appears, in the lead card and in the list.
- * Leave `url` null and it stays a placeholder.
+ * TO PUBLISH A RELEASE: set `url`, `size`, `version` and `sha256` on the
+ * platform below. The sha256 is the same value as in ../../updates.json, and
+ * the page prints it beside the button so a reader can check the file they
+ * received. Leave `url` null and the button stays "Coming soon".
  *
  * Then update ../../updates.json to match, which is what already-installed
  * copies of the app read to find out they are out of date, and run
  * `npm run check:council` — it fails if the two files disagree about a version,
- * a URL or a size. Without it the page can offer a build that no installed app
- * will ever update itself to.
+ * a URL, a size or a sha256. Without it the page can offer a build that no
+ * installed app will ever update itself to. The Linux `.deb` is not an app
+ * update: its hash is `alt.sha256` here and `deb` in the manifest, which the
+ * updater ignores.
  * ─────────────────────────────────────────────────────────────────────────────
  *
  * Deliberately not reading the GitHub releases API. Doing so would put a network
@@ -50,6 +52,7 @@
       url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-android.apk",
       size: "153 MB",
       version: "2026.10.29",
+      sha256: "7f32c540da4225f3d9e62e41b1a2bb79eb00f768e9d7ad24968d0516505f1675",
       // Only true of the 2026.8.2 pre-release, which was debug-signed: Android
       // refuses to install a build signed with a different key over it. Every
       // build from 2026.10.29 on carries the permanent release key.
@@ -67,6 +70,7 @@
       url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-macos.dmg",
       size: "56 MB",
       version: "2026.10.29",
+      sha256: "d87bf940eba99f1f9ca399675db36b169119969d122d1534ca5471eb2c71b5b4",
       note:
         "Signed but not yet notarised — on first launch, right-click the app " +
         "and choose Open.",
@@ -81,6 +85,7 @@
       url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-windows-setup.exe",
       size: "72 MB",
       version: "2026.10.29",
+      sha256: "79d6607069aa34ec704dbfc13e6680ab8b95247ae9dccf3d530112284f0f670d",
       note:
         "The installer is unsigned, so SmartScreen will warn on first run — " +
         "choose More info, then Run anyway.",
@@ -99,12 +104,15 @@
       url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-x86_64.AppImage",
       size: "65 MB",
       version: "2026.10.29",
+      sha256: "aac10ff07b55ffadb8d12b4e386045d0baa74b0aa835e4d5ef6dd756c46fbc70",
       note: "Make it executable with chmod +x, then run it.",
       // The AppImage leads because it runs on any distribution; Debian and
-      // Ubuntu users are better served by the .deb.
+      // Ubuntu users are better served by the .deb. Its checksum is not an
+      // update input — updates.json keeps it under `deb`, which the app skips.
       alt: {
         label: "Debian / Ubuntu package (.deb, 57 MB)",
         url: "https://github.com/SpencerSmithSite/council/releases/download/v2026.10.29/Council-linux-amd64.deb",
+        sha256: "111f5570020337d96fc1f7770396b9e9aac7636de39053aaa4e97d6035b1a5c8",
       },
       icon:
         '<path d="M9 3.5c0-1 1.3-1.5 3-1.5s3 .5 3 1.5v4c0 2 3 4 3 8a6 6 0 0 1-12 0c0-4 3-6 3-8Z"/><circle cx="10.5" cy="6" r=".6" fill="currentColor"/><circle cx="13.5" cy="6" r=".6" fill="currentColor"/>',
@@ -185,6 +193,30 @@
     return text ? '<p class="' + cls + '">' + text + "</p>" : "";
   }
 
+  /** sha256 beside a download. A short prefix is visible; the full hash is in
+   *  the disclosure and on the copy button. Only a 64-character hex digest is
+   *  rendered, and every value is escaped. Empty when the platform has no
+   *  checksum — TestFlight, and anything still unreleased. */
+  function checksumMarkup(hash) {
+    if (!/^[0-9a-f]{64}$/.test(hash || "")) return "";
+    var full = String(hash).toLowerCase();
+    return (
+      '<div class="checksum">' +
+      '<details class="checksum__details">' +
+      '<summary><span class="checksum__label">sha256</span> <code>' +
+      esc(full.slice(0, 12)) +
+      "…</code></summary>" +
+      '<p class="checksum__full"><code>' +
+      esc(full) +
+      "</code></p>" +
+      "</details>" +
+      '<button class="checksum__copy" type="button" data-sha256="' +
+      esc(full) +
+      '">Copy</button>' +
+      "</div>"
+    );
+  }
+
   /** A second download for platforms that ship more than one package format.
    *  Only Linux has one — the AppImage runs anywhere and leads, with the .deb
    *  offered beside it. Suppressed while the platform is unreleased, so it can
@@ -196,8 +228,47 @@
       esc(p.alt.url) +
       '">' +
       esc(p.alt.label) +
-      "</a></p>"
+      "</a></p>" +
+      checksumMarkup(p.alt.sha256)
     );
+  }
+
+  function markCopied(button) {
+    button.textContent = "Copied";
+    window.setTimeout(function () {
+      button.textContent = "Copy";
+    }, 1600);
+  }
+
+  /** Select the full digest when the clipboard is unavailable, so it can still
+   *  be copied by hand. */
+  function revealHash(button) {
+    var root = button.parentNode;
+    if (!root) return;
+    var details = root.querySelector("details");
+    var code = root.querySelector(".checksum__full code");
+    if (details) details.open = true;
+    if (!code) return;
+    var range = document.createRange();
+    range.selectNodeContents(code);
+    var selection = window.getSelection();
+    if (!selection) return;
+    selection.removeAllRanges();
+    selection.addRange(range);
+  }
+
+  function copyChecksum(button) {
+    var value = button.getAttribute("data-sha256") || "";
+    if (!/^[0-9a-f]{64}$/.test(value)) return;
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(value).then(function () {
+        markCopied(button);
+      }).catch(function () {
+        revealHash(button);
+      });
+      return;
+    }
+    revealHash(button);
   }
 
   var primaryEl = document.getElementById("primary");
@@ -228,6 +299,7 @@
       '<div class="primary__action">' +
       button(lead, true) +
       metaLine(lead, "primary__meta") +
+      checksumMarkup(lead.sha256) +
       altLink(lead) +
       "</div>" +
       "</div>";
@@ -261,9 +333,21 @@
       "</div>" +
       '<div class="platform__action">' +
       button(p, false) +
+      checksumMarkup(p.sha256) +
       altLink(p) +
       "</div>" +
       "</li>"
     );
   }).join("");
+
+  document.addEventListener("click", function (event) {
+    var node = event.target;
+    while (node && node !== document) {
+      if (node.classList && node.classList.contains("checksum__copy")) {
+        copyChecksum(node);
+        return;
+      }
+      node = node.parentNode;
+    }
+  });
 })();
