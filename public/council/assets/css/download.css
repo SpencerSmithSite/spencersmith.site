@@ -149,9 +149,73 @@
   color: var(--text);
 }
 
+/* sha256 beside a download. The prefix stays visible; the full digest is in
+   the disclosure, and the button copies that same value. */
+.checksum {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-end;
+  gap: 0.35rem 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1.35;
+}
+.primary__action .checksum {
+  justify-content: center;
+}
+.checksum__details {
+  text-align: left;
+  max-width: 16rem;
+}
+.checksum summary {
+  cursor: pointer;
+}
+.checksum__label {
+  font-weight: 650;
+  letter-spacing: 0.04em;
+}
+.checksum__full {
+  margin: 0.4rem 0 0;
+}
+.checksum__full code {
+  display: block;
+  word-break: break-all;
+  user-select: all;
+  text-align: left;
+}
+.checksum__copy {
+  font: inherit;
+  font-size: 0.72rem;
+  line-height: 1.2;
+  padding: 0.2rem 0.45rem;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+}
+.checksum__copy:hover {
+  border-color: var(--text-faint);
+}
+.primary__card .checksum__copy {
+  background: rgb(255 255 255 / 0.92);
+  color: #2a2110;
+  border-color: transparent;
+}
+.primary__card .checksum {
+  color: rgb(255 255 255 / 0.78);
+}
+.platform__action .checksum {
+  color: var(--text-faint);
+}
+
 @media (max-width: 620px) {
   .platform__action .alt-format {
     text-align: center;
+  }
+  .platform__action .checksum {
+    justify-content: center;
   }
 }
 
