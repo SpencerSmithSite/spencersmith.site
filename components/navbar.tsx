@@ -48,11 +48,11 @@ export default function Navbar() {
             <div className="relative w-10 h-10 md:w-12 md:h-12 transition-transform duration-300 group-hover:scale-110">
               <div className="absolute inset-0 rounded-full bg-gradient-to-br from-ctp-mauve/30 to-ctp-sapphire/30 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               <Image
-                src="/logo.png"
+                src="/logo.webp"
                 alt="Logo"
                 fill
                 className="object-contain relative z-10"
-                priority
+                sizes="(min-width: 768px) 48px, 40px"
               />
             </div>
             <span className="font-bold text-xl gradient-text">Spencer Smith</span>

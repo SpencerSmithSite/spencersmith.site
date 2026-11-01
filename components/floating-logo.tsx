@@ -53,7 +53,14 @@ export default function FloatingLogo() {
         />
 
         {/* Logo */}
-        <Image src="/logo.png" alt="Logo" fill className="object-contain z-10" priority />
+        <Image
+          src="/logo.webp"
+          alt="Logo"
+          fill
+          className="object-contain z-10"
+          priority
+          sizes="(min-width: 768px) 224px, 192px"
+        />
       </div>
 
       {/* Decorative particles with Catppuccin colors */}
