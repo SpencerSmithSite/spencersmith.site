@@ -34,18 +34,18 @@ export default function Home() {
           <div className="mb-8 relative h-48 md:h-56">
             <FloatingLogo />
           </div>
-          <ScrollAnimation>
+          <ScrollAnimation immediate>
             <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold mb-6">
               <span className="gradient-text">Hello, I&apos;m</span>{" "}
               <span className="text-ctp-text">Spencer Smith</span>
             </h1>
           </ScrollAnimation>
-          <ScrollAnimation delay={200}>
+          <ScrollAnimation immediate>
             <p className="text-xl md:text-2xl mb-8 max-w-2xl mx-auto text-ctp-subtext0">
               I Build Things.
             </p>
           </ScrollAnimation>
-          <ScrollAnimation delay={400}>
+          <ScrollAnimation immediate>
             <div className="flex flex-wrap justify-center gap-4">
               <Button
                 onClick={() => {
