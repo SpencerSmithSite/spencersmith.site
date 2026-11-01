@@ -327,6 +327,19 @@
   animation: float 6s ease-in-out infinite;
 }
 
+/* Hero logo uses the same float keyframes, without a per-frame React update. */
+.hero-logo-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-logo-float,
+  .floating-logo .animate-spin,
+  .floating-logo .animate-pulse {
+    animation: none;
+  }
+}
+
 /* Shimmer effect */
 .shimmer {
   background: linear-gradient(
