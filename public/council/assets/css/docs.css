@@ -1,9 +1,8 @@
 /* Docs page — sidebar contents plus a readable measure. */
 
 .page-head {
-  padding: clamp(2.5rem, 6vw, 4rem) 0 1.75rem;
+  padding: clamp(3rem, 7vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
   border-bottom: 1px solid var(--border);
-  background: var(--bg-tint);
 }
 .page-head .lede {
   max-width: 46rem;
@@ -15,7 +14,7 @@
   grid-template-columns: 15rem minmax(0, 1fr);
   gap: clamp(2rem, 5vw, 4rem);
   align-items: start;
-  padding-top: 2.5rem;
+  padding-top: 3rem;
 }
 
 @media (max-width: 900px) {
@@ -29,8 +28,9 @@
 
 .toc {
   position: sticky;
-  top: 5rem;
-  font-size: 0.92rem;
+  top: 6rem;
+  font-family: var(--sans);
+  font-size: 0.875rem;
 }
 @media (max-width: 900px) {
   .toc {
@@ -38,42 +38,43 @@
     background: var(--surface);
     border: 1px solid var(--border);
     border-radius: var(--radius-lg);
-    padding: 1.1rem 1.25rem;
+    padding: 1rem 1.25rem;
   }
 }
 
 .toc__title {
-  font-size: 0.72rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--text-faint);
-  margin: 0 0 0.6rem;
+  margin: 0 0 0.5rem;
 }
 
 .toc ol {
   list-style: none;
   margin: 0;
   padding: 0;
-  border-left: 1px solid var(--border);
+  border-left: 1px solid var(--border-strong);
 }
 
 .toc a {
   display: block;
-  padding: 0.32rem 0 0.32rem 0.9rem;
+  padding: 0.25rem 0 0.25rem 1rem;
   margin-left: -1px;
-  border-left: 2px solid transparent;
+  border-left: 1px solid transparent;
   color: var(--text-dim);
-  line-height: 1.4;
+  line-height: 1.5;
+  text-decoration: none;
 }
 .toc a:hover {
-  color: var(--text);
+  color: var(--gold-ink);
   text-decoration: none;
 }
 .toc a[aria-current="true"] {
-  color: var(--accent);
-  border-left-color: var(--accent);
-  font-weight: 600;
+  color: var(--gold-ink);
+  /* 2px of gilt without shifting the text: the border plus an inset line. */
+  border-left-color: var(--gilt);
+  box-shadow: inset 1px 0 0 var(--gilt);
+  font-weight: 500;
 }
 
 /* ----------------------------------------------------------------- body -- */
@@ -84,9 +85,9 @@
 
 .docs__body section {
   /* Clear the sticky nav when jumped to from the contents. */
-  scroll-margin-top: 5rem;
-  padding-bottom: 2.75rem;
-  margin-bottom: 2.75rem;
+  scroll-margin-top: 6rem;
+  padding-bottom: 3rem;
+  margin-bottom: 3rem;
   border-bottom: 1px solid var(--border);
 }
 .docs__body section:last-of-type {
@@ -94,26 +95,26 @@
 }
 
 .docs__body h2 {
-  margin-bottom: 0.85rem;
+  margin-bottom: 1rem;
 }
 
 .docs__body h3 {
-  margin-top: 2rem;
+  margin-top: 2.25rem;
   margin-bottom: 0.5rem;
-  font-size: 1.08rem;
+  font-size: 1.25rem;
   color: var(--text);
 }
 
 .docs__body ul,
 .docs__body ol {
-  padding-left: 1.3rem;
-  margin: 0 0 1.15rem;
+  padding-left: 1.25rem;
+  margin: 0 0 1.25rem;
 }
 .docs__body li {
   margin-bottom: 0.5rem;
 }
 .docs__body li > pre {
-  margin-top: 0.6rem;
+  margin-top: 0.5rem;
 }
 
 .docs__body p,
@@ -122,18 +123,18 @@
 }
 .docs__body strong {
   color: var(--text);
-  font-weight: 640;
+  font-weight: 600;
 }
 
 .callout {
   border-radius: var(--radius);
-  border: 1px solid var(--border-strong);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--accent);
   background: var(--surface);
-  padding: 1rem 1.15rem;
-  margin: 1.35rem 0;
-  font-size: 0.95rem;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  font-size: 1rem;
   color: var(--text-dim);
-  border-left: 3px solid var(--accent);
 }
 .callout strong {
   color: var(--text);
@@ -146,8 +147,7 @@
   border-left-color: var(--text-faint);
 }
 .callout--warn {
-  border-left-color: #d97706;
-  background: var(--gold-soft);
+  border-left-color: var(--warn);
 }
 
 .providers td:last-child,
@@ -157,6 +157,6 @@
 
 .docs__foot {
   color: var(--text-dim);
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   padding-top: 1rem;
 }

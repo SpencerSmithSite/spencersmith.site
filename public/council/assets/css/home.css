@@ -1,32 +1,17 @@
-/* Home page only — hero, feature grid, screenshot carousel. */
+/* Home page only — hero, feature list, screenshot carousel. */
 
 /* ------------------------------------------------------------------ hero -- */
 
+/* The hero sits on the page itself. The phone is the one thing on the first
+ * screen with colour in it, so nothing behind the copy competes with it. */
 .hero {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(3rem, 8vw, 6rem) 0 clamp(3rem, 7vw, 5rem);
-  background: linear-gradient(160deg, var(--hero-from), var(--hero-to));
-  color: var(--hero-ink);
-  isolation: isolate;
-}
-
-/* A soft light source behind the copy, so the flat gradient has somewhere to
- * come from. Purely decorative and hidden from assistive tech. */
-.hero__bg {
-  position: absolute;
-  inset: -30% -10% auto -10%;
-  height: 130%;
-  z-index: -1;
-  background:
-    radial-gradient(38rem 26rem at 22% 18%, rgb(255 255 255 / 0.16), transparent 65%),
-    radial-gradient(30rem 22rem at 88% 78%, rgb(242 217 155 / 0.14), transparent 62%);
+  padding: clamp(3rem, 7vw, 5.5rem) 0 clamp(4rem, 8vw, 6rem);
 }
 
 .hero__inner {
   display: grid;
-  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-  gap: clamp(2rem, 5vw, 4rem);
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(2.5rem, 6vw, 5rem);
   align-items: center;
 }
 
@@ -38,87 +23,64 @@
   .hero__inner {
     grid-template-columns: minmax(0, 1fr);
   }
-  .hero__shot {
-    margin-top: 1rem;
-  }
 }
 @media (max-width: 560px) {
   .hero .phone {
-    width: min(250px, 66vw);
+    width: min(256px, 68vw);
   }
 }
 
-.hero__eyebrow {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin: 0 0 1rem;
-}
-
 .hero h1 {
-  color: var(--hero-ink);
-  margin-bottom: 1.1rem;
+  max-width: 11em;
+  margin-bottom: 1.5rem;
 }
 
 .hero__lede {
-  font-size: clamp(1.05rem, 1.9vw, 1.22rem);
-  max-width: 34rem;
-  color: rgb(255 255 255 / 0.86);
-  margin-bottom: 2rem;
+  font-size: clamp(1.125rem, 1.9vw, 1.3125rem);
+  line-height: 1.55;
+  max-width: 32rem;
+  color: var(--text-dim);
+  margin-bottom: 2.25rem;
 }
 .hero__lede strong {
-  color: var(--hero-ink);
-  font-weight: 650;
+  color: var(--text);
+  font-weight: 600;
 }
 
 .hero__actions {
   display: flex;
   flex-wrap: wrap;
   gap: 0.75rem;
-  margin-bottom: 2.75rem;
-}
-
-/* On the hero the primary button sits on indigo, so it inverts to a light fill
- * rather than using the page accent, which would be indigo on indigo. */
-.hero .btn--primary {
-  background: var(--gold);
-  color: #2a2110;
-}
-.hero .btn--primary:hover {
-  background: #f7e5b8;
-  color: #2a2110;
+  margin-bottom: 3rem;
 }
 
 .hero__stats {
   display: grid;
   grid-template-columns: repeat(4, auto);
   justify-content: start;
-  gap: 0 clamp(1.25rem, 4vw, 2.75rem);
+  gap: 0 clamp(2rem, 5vw, 3.5rem);
   margin: 0;
   padding-top: 1.5rem;
-  border-top: 1px solid rgb(255 255 255 / 0.18);
+  border-top: 1px solid var(--border);
+  max-width: 32rem;
 }
 .hero__stats dt {
-  font-size: 0.74rem;
-  font-weight: 650;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
-  color: rgb(255 255 255 / 0.62);
+  font-size: 0.8125rem;
+  color: var(--text-faint);
 }
 .hero__stats dd {
-  margin: 0.15rem 0 0;
-  font-size: clamp(1.25rem, 3vw, 1.7rem);
-  font-weight: 700;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
+  margin: 0.25rem 0 0;
+  font-family: var(--serif);
+  font-size: clamp(1.625rem, 3vw, 2rem);
+  font-weight: 500;
+  line-height: 1.1;
+  color: var(--text);
 }
 
 @media (max-width: 560px) {
   .hero__stats {
     grid-template-columns: repeat(2, 1fr);
-    gap: 1.1rem 1rem;
+    gap: 1.25rem 1rem;
   }
 }
 
@@ -126,20 +88,20 @@
 
 .phone {
   --bezel: 11px;
-  width: min(300px, 74vw);
+  width: min(304px, 74vw);
   margin-inline: auto;
   padding: var(--bezel);
   border-radius: 46px;
-  background: linear-gradient(155deg, #3a3550, #17141f 55%, #2a2539);
+  background: linear-gradient(155deg, #3b3833, #171512 55%, #2b2823);
   box-shadow:
-    0 0 0 1.5px rgb(255 255 255 / 0.10),
-    0 30px 60px -18px rgb(0 0 0 / 0.55),
-    0 8px 18px -6px rgb(0 0 0 / 0.4);
+    0 0 0 1px rgb(255 255 255 / 0.08),
+    0 32px 56px -24px rgb(50 36 14 / 0.45),
+    0 12px 20px -12px rgb(50 36 14 / 0.3);
 }
 
 .phone__screen {
   position: relative;
-  border-radius: 36px;
+  border-radius: 35px;
   overflow: hidden;
   background: #000;
   aspect-ratio: 1080 / 2424;
@@ -163,53 +125,70 @@
   transform: translateX(-50%);
   width: 31%;
   height: 22px;
-  border-radius: 999px;
+  border-radius: 11px;
   background: #000;
 }
 
-/* --------------------------------------------------------------- section -- */
+/* ------------------------------------------------------------ features -- */
 
-.section--tint {
-  background: var(--bg-tint);
-  border-block: 1px solid var(--border);
-}
-
-.feature__icon {
-  width: 42px;
-  height: 42px;
+/* Six short entries, set like a book's contents: a hairline over each, a
+ * heading and a paragraph, no boxes and no icons. */
+.features {
   display: grid;
-  place-items: center;
-  border-radius: 12px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  margin-bottom: 1rem;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 3rem clamp(2rem, 4vw, 3.5rem);
 }
-.feature__icon svg {
-  width: 22px;
-  height: 22px;
+@media (max-width: 900px) {
+  .features {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .features {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2rem;
+  }
+}
+
+.feature {
+  position: relative;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-strong);
+}
+/* On hover a gilt rule draws across the top of the entry, over the hairline. */
+.feature::before {
+  content: "";
+  position: absolute;
+  top: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gilt);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 360ms var(--ease);
+}
+.feature:hover::before {
+  transform: scaleX(1);
 }
 
 .feature h3 {
-  margin-bottom: 0.45rem;
+  margin-bottom: 0.5rem;
 }
 .feature p {
   color: var(--text-dim);
-  font-size: 0.97rem;
+  font-size: 1rem;
+  line-height: 1.6;
   margin-bottom: 0;
 }
 
-.collections td:first-child {
-  white-space: normal;
-}
-.collections__note {
-  margin-top: 1rem;
-  font-size: 0.93rem;
-}
+/* --------------------------------------------------------------- splits -- */
 
+/* Text on the left, its table or list on the right. */
 .split {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-  gap: clamp(2rem, 5vw, 3.5rem);
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 2.5rem clamp(2rem, 6vw, 5rem);
   align-items: start;
 }
 @media (max-width: 860px) {
@@ -217,78 +196,93 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+.split__text h2 {
+  margin-bottom: 1.25rem;
+}
+.split__text p {
+  font-size: 1.0625rem;
+}
 
+.collections td:first-child {
+  white-space: normal;
+  color: var(--text);
+}
+.collections td {
+  color: var(--text-dim);
+}
+.collections__note {
+  margin: 1.5rem 0 0;
+  font-size: 1rem;
+}
+
+.backends {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--border-strong);
+}
+
+.backend {
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.backend:first-child {
+  padding-top: 1.25rem;
+}
+.backend h3 {
+  transition: color var(--fast) var(--ease);
+}
+.backend:hover h3 {
+  color: var(--gold-ink);
+}
 .backend h3 {
   display: flex;
-  align-items: center;
-  gap: 0.6rem;
+  align-items: baseline;
+  gap: 0.75rem;
   flex-wrap: wrap;
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
+}
+.backend .badge {
+  vertical-align: 0;
 }
 .backend p {
   color: var(--text-dim);
-  font-size: 0.97rem;
+  font-size: 1rem;
   margin-bottom: 0;
 }
 
-.pill {
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.22em 0.62em;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
-  border: 1px solid var(--border);
-}
-.pill--default {
-  background: var(--gold-soft);
-  color: var(--gold-ink);
-}
-.pill--warn {
-  background: color-mix(in srgb, #d97706 14%, transparent);
-  color: #b45309;
-  border-color: color-mix(in srgb, #d97706 30%, transparent);
-}
-:root[data-theme="dark"] .pill--warn {
-  color: #fbbf24;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .pill--warn {
-    color: #fbbf24;
-  }
-}
+/* ---------------------------------------------------------------- close -- */
 
-.cta {
+.close {
+  padding: clamp(1rem, 3vw, 2rem) 0 0;
+}
+.close__inner {
   text-align: center;
-  padding: clamp(2.5rem, 6vw, 4rem) 1.5rem;
-  border-radius: var(--radius-lg);
-  background: linear-gradient(150deg, var(--hero-from), var(--hero-to));
-  color: var(--hero-ink);
+  padding: clamp(3.5rem, 8vw, 5.5rem) 0 0;
+  border-top: 1px solid var(--border);
 }
-.cta h2 {
-  color: var(--hero-ink);
-  margin-bottom: 0.4rem;
+/* The one ornament on the site: the cross from the mark, set above the last
+ * heading like a printer's flourish at the end of a chapter. */
+.close__ornament {
+  display: block;
+  width: 14px;
+  height: 20px;
+  margin: 0 auto 1.25rem;
+  fill: var(--gilt);
 }
-.cta p {
-  color: rgb(255 255 255 / 0.78);
-  margin-bottom: 1.75rem;
+.close h2 {
+  margin-bottom: 0.75rem;
 }
-.cta .btn--primary {
-  background: var(--gold);
-  color: #2a2110;
-}
-.cta .btn--primary:hover {
-  background: #f7e5b8;
-  color: #2a2110;
+.close p {
+  color: var(--text-dim);
+  font-size: 1.125rem;
+  margin-bottom: 2rem;
 }
 
 /* -------------------------------------------------------------- carousel -- */
 
 .carousel {
   position: relative;
-  margin-top: 0.5rem;
 }
 
 .carousel__track {
@@ -299,7 +293,7 @@
   scroll-behavior: smooth;
   /* Leading and trailing space so the first and last slides can still centre
    * themselves under `scroll-snap-align: center`. */
-  padding: 1rem max(var(--gutter), calc(50% - 150px)) 1.5rem;
+  padding: 0.5rem max(var(--gutter), calc(50% - 150px)) 1.5rem;
   scrollbar-width: none;
 }
 .carousel__track::-webkit-scrollbar {
@@ -314,14 +308,14 @@
   width: min(300px, 74vw);
   scroll-snap-align: center;
   text-align: center;
-  transition: opacity 0.35s var(--ease), transform 0.35s var(--ease);
+  transition: opacity 360ms var(--ease), transform 360ms var(--ease);
 }
 
 /* Off-centre slides recede. Applied by the script, which knows which slide is
  * actually snapped. */
 .slide:not(.is-active) {
-  opacity: 0.42;
-  transform: scale(0.93);
+  opacity: 0.4;
+  transform: scale(0.94);
 }
 
 .slide .phone {
@@ -329,37 +323,38 @@
 }
 
 .slide__caption {
-  margin: 1.15rem auto 0;
+  margin: 1.5rem auto 0;
   max-width: 26rem;
 }
 .slide__caption h3 {
-  font-size: 1.02rem;
+  font-size: 1.125rem;
   margin-bottom: 0.25rem;
 }
 .slide__caption p {
-  font-size: 0.91rem;
+  font-size: 0.9375rem;
   color: var(--text-dim);
   margin: 0;
 }
 
 .carousel__arrow {
   position: absolute;
-  top: clamp(140px, 26vw, 250px);
+  top: clamp(140px, 26vw, 248px);
   z-index: 3;
   width: 44px;
   height: 44px;
   display: grid;
   place-items: center;
-  border-radius: 999px;
-  border: 1px solid var(--border);
-  background: var(--surface);
+  border-radius: 50%;
+  border: 1px solid var(--border-strong);
+  background: var(--surface-solid);
   color: var(--text);
   cursor: pointer;
-  box-shadow: var(--shadow-tint);
-  transition: background 0.18s var(--ease), opacity 0.18s var(--ease);
+  box-shadow: var(--shadow-float);
+  transition: background var(--fast) var(--ease), opacity var(--fast) var(--ease);
 }
 .carousel__arrow:hover {
-  background: var(--surface-2);
+  color: var(--accent);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
 }
 .carousel__arrow[disabled] {
   opacity: 0.3;
@@ -379,20 +374,30 @@
 .carousel__dots {
   display: flex;
   justify-content: center;
-  gap: 0.5rem;
-  margin-top: 0.5rem;
 }
+/* The button is the 24px tap target; the dot is drawn inside it. */
 .carousel__dots button {
-  width: 8px;
-  height: 8px;
+  width: 24px;
+  height: 24px;
   padding: 0;
   border: 0;
-  border-radius: 999px;
-  background: var(--border-strong);
+  background: none;
   cursor: pointer;
-  transition: background 0.2s var(--ease), width 0.2s var(--ease);
+  display: grid;
+  place-items: center;
 }
-.carousel__dots button[aria-selected="true"] {
-  background: var(--accent);
-  width: 22px;
+.carousel__dots button::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--border-strong);
+  transition: background var(--fast) var(--ease), transform var(--fast) var(--ease);
+}
+.carousel__dots button:hover::before {
+  background: var(--text-faint);
+}
+.carousel__dots button[aria-selected="true"]::before {
+  background: var(--gilt);
+  transform: scale(1.34);
 }

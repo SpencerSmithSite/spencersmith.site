@@ -4,44 +4,53 @@
  * toolchain would cost more than it saves and would put a `node_modules` between
  * the author and a one-line copy edit.
  *
- * Colours come from the app's own icon — the indigo it is drawn on, the lavender
- * of the book's spine, the gold of the cross — so the site and the thing it is
- * advertising look like the same product.
+ * The site is set like a book. The ground is a cream page with the grain of
+ * real paper; prose and headings are in the same serif as the corpus; the
+ * interface — nav, buttons, labels, tables, forms — is in a sans so it never
+ * looks like part of the text. The app's own icon supplies the only colour: its
+ * indigo is reserved for buttons, and the gold of its cross is everything else
+ * that carries colour: links, the current page, hover states and the gilt rule
+ * beside quotations.
  *
  * Every colour is a custom property declared twice, once per theme. Nothing
  * below the `:root` blocks names a literal colour, which is what makes the dark
  * and light modes genuinely equal rather than one being the real design and the
  * other an afterthought.
+ *
+ * Spacing sits on a 4px grid: 0.25rem steps.
  */
 
 /* ---------------------------------------------------------------- palette -- */
 
 :root {
-  --indigo-900: #14111f;
-  --indigo-800: #1b1729;
-  --indigo-700: #241f36;
-  --indigo-500: #3b2e6b;
-  --indigo-400: #5a4aa0;
-  --lavender: #a99be0;
-  --gold: #f2d99b;
-
-  --radius: 14px;
-  --radius-lg: 22px;
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
   --max: 1120px;
+  --measure: 36rem;
   --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section: clamp(4rem, 9vw, 7rem);
 
   --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto,
     "Helvetica Neue", Arial, sans-serif;
-  /* The corpus is set in a serif. Quoting Chrysostom in the same face as the
-   * navigation makes him look like interface copy. */
-  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Georgia", serif;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+    Georgia, serif;
   --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
 
-  --shadow-sm: 0 1px 2px rgb(0 0 0 / 0.06), 0 2px 8px rgb(0 0 0 / 0.04);
-  --shadow-md: 0 4px 12px rgb(0 0 0 / 0.08), 0 12px 32px rgb(0 0 0 / 0.06);
-  --shadow-lg: 0 8px 24px rgb(0 0 0 / 0.12), 0 24px 64px rgb(0 0 0 / 0.10);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --fast: 160ms;
 
-  --ease: cubic-bezier(0.32, 0.72, 0, 1);
+  /* The paper. Three tiles of SVG noise, drawn by the browser rather than
+   * downloaded: a fine grain, a slow mottling like the uneven density of a
+   * real sheet, and sparse flecks. Each is a different size so the repeat
+   * never lines up. Each theme picks its own set as --paper. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .36 0 0 0 0 .28 0 0 0 0 .16 .22 0 0 0 -.06'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --mottle: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='760'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.005' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .5 0 0 0 0 .38 0 0 0 0 .2 .13 0 0 0 -.045'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --flecks: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='430' height='430'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='1' seed='7' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .3 0 0 0 0 .22 0 0 0 0 .12 4.2 0 0 0 -3.05'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  /* The same sheet at night: pale noise at a fraction of the strength, so the
+   * ink ground has a tooth without turning into leather. */
+  --grain-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .79 0 0 0 0 .68 .07 0 0 0 -.02'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  --mottle-dark: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='760'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.005' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .85 0 0 0 0 .78 0 0 0 0 .64 .06 0 0 0 -.022'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
 }
 
 /* Light is the default so a page rendered with JavaScript disabled is still
@@ -50,59 +59,69 @@
 :root[data-theme="light"] {
   color-scheme: light;
 
-  --bg: #f6f5fa;
-  --bg-tint: #efedf7;
-  --surface: #ffffff;
-  --surface-2: #faf9fd;
-  --border: #e2dfee;
-  --border-strong: #cfcae0;
+  --bg: #f7f2e7;
+  --paper: var(--flecks), var(--grain), var(--mottle);
+  --paper-blend: multiply;
+  --surface: rgb(255 253 247 / 0.66);
+  --surface-solid: #fbf8f0;
+  --surface-2: rgb(70 52 24 / 0.06);
+  --border: rgb(70 52 24 / 0.13);
+  --border-strong: rgb(70 52 24 / 0.22);
 
-  --text: #17142a;
-  --text-dim: #5c5678;
-  --text-faint: #857fa0;
+  --text: #27211a;
+  --text-dim: #574e42;
+  --text-faint: #6c6355;
 
-  --accent: #55429c;
-  --accent-hover: #43327f;
-  --accent-soft: #ede9f8;
+  --accent: #54409f;
+  --accent-hover: #3f2f80;
+  --accent-soft: rgb(84 64 159 / 0.09);
   --on-accent: #ffffff;
 
-  --gold-ink: #7a5c12;
-  --gold-soft: #fbf3de;
+  --gilt: #b38a33;
+  --gold-ink: #80600f;
+  --gold-ink-hover: #5f470b;
+  --gold-soft: rgb(179 138 51 / 0.14);
 
-  --hero-from: #3b2e6b;
-  --hero-to: #6a53b8;
-  --hero-ink: #ffffff;
+  --warn: #9a520a;
+  --positive: #15803d;
+  --negative: #b91c1c;
 
-  --shadow-tint: 0 1px 2px rgb(23 20 42 / 0.05), 0 8px 24px rgb(23 20 42 / 0.06);
+  --shadow: 0 1px 2px rgb(70 52 24 / 0.06);
+  --shadow-float: 0 8px 24px rgb(70 52 24 / 0.1);
 }
 
 :root[data-theme="dark"] {
   color-scheme: dark;
 
-  --bg: #100e1a;
-  --bg-tint: #161327;
-  --surface: #1a1729;
-  --surface-2: #211d33;
-  --border: #2c2742;
-  --border-strong: #3d3659;
+  --bg: #1a1814;
+  --paper: var(--grain-dark), var(--mottle-dark);
+  --paper-blend: normal;
+  --surface: rgb(255 246 228 / 0.035);
+  --surface-solid: #211e19;
+  --surface-2: rgb(255 246 228 / 0.06);
+  --border: rgb(239 228 206 / 0.1);
+  --border-strong: rgb(239 228 206 / 0.18);
 
-  --text: #eeebf8;
-  --text-dim: #a9a3c6;
-  --text-faint: #7d7799;
+  --text: #ede5d6;
+  --text-dim: #b0a796;
+  --text-faint: #958c7c;
 
   --accent: #b4a6ec;
   --accent-hover: #c8bcf5;
-  --accent-soft: #241f3c;
+  --accent-soft: rgb(180 166 236 / 0.1);
   --on-accent: #17142a;
 
-  --gold-ink: var(--gold);
-  --gold-soft: #2a2418;
+  --gilt: #c9a95e;
+  --gold-ink: #dfc27c;
+  --gold-ink-hover: #ecd59e;
+  --gold-soft: rgb(201 169 94 / 0.14);
 
-  --hero-from: #241d45;
-  --hero-to: #3f3178;
-  --hero-ink: #f3f0ff;
+  --warn: #e8a957;
+  --positive: #4cc38a;
+  --negative: #f2898c;
 
-  --shadow-tint: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+  --shadow: none;
+  --shadow-float: 0 8px 24px rgb(0 0 0 / 0.4);
 }
 
 /* The toggle stamps `data-theme` on <html>, so it must win over this. The
@@ -112,30 +131,35 @@
   :root:not([data-theme]) {
     color-scheme: dark;
 
-    --bg: #100e1a;
-    --bg-tint: #161327;
-    --surface: #1a1729;
-    --surface-2: #211d33;
-    --border: #2c2742;
-    --border-strong: #3d3659;
+    --bg: #1a1814;
+    --paper: var(--grain-dark), var(--mottle-dark);
+    --paper-blend: normal;
+    --surface: rgb(255 246 228 / 0.035);
+    --surface-solid: #211e19;
+    --surface-2: rgb(255 246 228 / 0.06);
+    --border: rgb(239 228 206 / 0.1);
+    --border-strong: rgb(239 228 206 / 0.18);
 
-    --text: #eeebf8;
-    --text-dim: #a9a3c6;
-    --text-faint: #7d7799;
+    --text: #ede5d6;
+    --text-dim: #b0a796;
+    --text-faint: #958c7c;
 
     --accent: #b4a6ec;
     --accent-hover: #c8bcf5;
-    --accent-soft: #241f3c;
+    --accent-soft: rgb(180 166 236 / 0.1);
     --on-accent: #17142a;
 
-    --gold-ink: var(--gold);
-    --gold-soft: #2a2418;
+    --gilt: #c9a95e;
+    --gold-ink: #dfc27c;
+    --gold-ink-hover: #ecd59e;
+    --gold-soft: rgb(201 169 94 / 0.14);
 
-    --hero-from: #241d45;
-    --hero-to: #3f3178;
-    --hero-ink: #f3f0ff;
+    --warn: #e8a957;
+    --positive: #4cc38a;
+    --negative: #f2898c;
 
-    --shadow-tint: 0 1px 2px rgb(0 0 0 / 0.4), 0 8px 24px rgb(0 0 0 / 0.35);
+    --shadow: none;
+    --shadow-float: 0 8px 24px rgb(0 0 0 / 0.4);
   }
 }
 
@@ -165,15 +189,54 @@ html {
   }
 }
 
+/* Anything that paints its own ground — the page, the sticky bars, the open
+ * menu — paints the same paper, so nothing reads as a flat panel laid on it. */
+body,
+.paper,
+.nav {
+  background-color: var(--bg);
+  background-image: var(--paper);
+  background-blend-mode: var(--paper-blend);
+}
+
 body {
   margin: 0;
-  background: var(--bg);
   color: var(--text);
-  font-family: var(--sans);
-  font-size: 17px;
-  line-height: 1.65;
+  font-family: var(--serif);
+  font-size: 18px;
+  line-height: 1.6;
+  font-variant-numeric: oldstyle-nums proportional-nums;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  font-kerning: normal;
+}
+
+/* The interface layer. Everything a reader operates rather than reads is set
+ * in the sans, with lining figures. */
+.ui,
+.nav,
+.footer,
+.btn,
+.badge,
+.tag,
+button,
+input,
+select,
+textarea,
+label,
+table,
+code,
+kbd,
+pre {
+  font-family: var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
+}
+.ui,
+.nav,
+.footer,
+table {
+  font-size: 0.9375rem;
+  line-height: 1.5;
 }
 
 img {
@@ -183,66 +246,80 @@ img {
 }
 
 a {
-  color: var(--accent);
-  text-decoration: none;
+  color: var(--gold-ink);
+  text-decoration: underline;
+  text-decoration-color: color-mix(in srgb, var(--gilt) 45%, transparent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+  transition: color var(--fast) var(--ease), text-decoration-color var(--fast) var(--ease);
 }
 
 a:hover {
-  color: var(--accent-hover);
-  text-decoration: underline;
+  color: var(--gold-ink-hover);
+  text-decoration-color: var(--gilt);
+}
+
+/* Selecting text marks it the way the app highlights a passage. */
+::selection {
+  background: color-mix(in srgb, var(--gilt) 30%, transparent);
+  color: var(--text);
 }
 
 h1,
 h2,
 h3,
 h4 {
-  line-height: 1.2;
-  letter-spacing: -0.02em;
+  font-family: var(--serif);
+  font-weight: 500;
+  line-height: 1.15;
   margin: 0 0 0.5em;
-  font-weight: 680;
+  font-variant-numeric: lining-nums;
+  text-wrap: balance;
 }
 
 h1 {
-  font-size: clamp(2.1rem, 5.5vw, 3.4rem);
-  letter-spacing: -0.035em;
+  font-size: clamp(2.5rem, 6vw, 4.25rem);
+  line-height: 1.04;
+  letter-spacing: -0.02em;
 }
 h2 {
-  font-size: clamp(1.5rem, 3.4vw, 2.1rem);
+  font-size: clamp(1.875rem, 3.6vw, 2.625rem);
+  line-height: 1.1;
+  letter-spacing: -0.012em;
 }
 h3 {
-  font-size: 1.2rem;
+  font-size: 1.25rem;
+  line-height: 1.3;
 }
 
 p {
   margin: 0 0 1em;
+  text-wrap: pretty;
 }
 
 code,
 kbd {
-  font-family: var(--mono);
-  font-size: 0.88em;
-  background: var(--accent-soft);
+  font-size: 0.8125em;
+  background: var(--surface-2);
   color: var(--text);
-  padding: 0.15em 0.42em;
-  border-radius: 6px;
-  border: 1px solid var(--border);
+  padding: 0.125em 0.375em;
+  border-radius: 4px;
 }
 
 pre {
-  background: var(--surface-2);
+  background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 1rem 1.15rem;
+  padding: 1rem 1.25rem;
   overflow-x: auto;
-  margin: 0 0 1.25rem;
-  line-height: 1.5;
+  margin: 0 0 1.5rem;
+  line-height: 1.6;
 }
 
 pre code {
   background: none;
-  border: 0;
   padding: 0;
-  font-size: 0.86rem;
+  font-size: 0.8125rem;
 }
 
 :focus-visible {
@@ -263,12 +340,21 @@ pre code {
   top: 0;
   background: var(--accent);
   color: var(--on-accent);
-  padding: 0.6rem 1rem;
+  font-family: var(--sans);
+  padding: 0.5rem 1rem;
   z-index: 100;
   border-radius: 0 0 var(--radius) 0;
 }
 .skip:focus {
   left: 0;
+}
+
+/* A rule between sections, held to the text column like one on a page. */
+.rule {
+  height: 1px;
+  margin: 0;
+  border: 0;
+  background: var(--border);
 }
 
 /* -------------------------------------------------------------- nav bar --- */
@@ -277,16 +363,14 @@ pre code {
   position: sticky;
   top: 0;
   z-index: 50;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
-  backdrop-filter: saturate(180%) blur(16px);
-  -webkit-backdrop-filter: saturate(180%) blur(16px);
   border-bottom: 1px solid var(--border);
 }
 
 .nav__inner {
   max-width: var(--max);
   margin-inline: auto;
-  padding: 0.6rem var(--gutter);
+  min-height: 64px;
+  padding: 0.75rem var(--gutter);
   display: flex;
   align-items: center;
   gap: 1rem;
@@ -295,27 +379,32 @@ pre code {
 .brand {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  font-weight: 700;
-  font-size: 1.06rem;
-  letter-spacing: -0.02em;
+  gap: 0.625rem;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 1.3125rem;
   color: var(--text);
+  text-decoration: none;
   margin-right: auto;
 }
 .brand:hover {
-  text-decoration: none;
   color: var(--text);
 }
-.brand img {
-  width: 30px;
-  height: 30px;
-  border-radius: 8px;
+.brand__mark {
+  width: 32px;
+  height: 32px;
+  flex: none;
+  fill: currentColor;
+}
+/* The book is in ink, the cross in the same gilt as the quotation rules. */
+.brand__cross {
+  fill: var(--gilt);
 }
 
 .nav__links {
   display: flex;
   align-items: center;
-  gap: 0.15rem;
+  gap: 0.25rem;
   list-style: none;
   margin: 0;
   padding: 0;
@@ -323,41 +412,53 @@ pre code {
 
 .nav__links a {
   display: block;
-  padding: 0.42rem 0.78rem;
-  border-radius: 999px;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius);
   color: var(--text-dim);
-  font-size: 0.95rem;
-  font-weight: 550;
-  transition: background 0.18s var(--ease), color 0.18s var(--ease);
+  font-weight: 500;
+  text-decoration: none;
+  position: relative;
+  transition: background var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 .nav__links a:hover {
-  background: var(--accent-soft);
-  color: var(--text);
-  text-decoration: none;
+  background: var(--gold-soft);
+  color: var(--gold-ink);
 }
+/* The current page is marked like a ribbon in a book: a short gilt bar under
+ * the link, the link itself in gold. */
 .nav__links a[aria-current="page"] {
-  color: var(--accent);
-  background: var(--accent-soft);
+  color: var(--gold-ink);
+}
+.nav__links a[aria-current="page"]::after {
+  content: "";
+  position: absolute;
+  left: 0.75rem;
+  right: 0.75rem;
+  bottom: -0.875rem;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--gilt);
 }
 
 .icon-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 38px;
-  height: 38px;
+  width: 36px;
+  height: 36px;
   flex: none;
-  border-radius: 999px;
+  border-radius: var(--radius);
   border: 1px solid var(--border);
-  background: var(--surface);
+  background: transparent;
   color: var(--text-dim);
   cursor: pointer;
-  transition: background 0.18s var(--ease), color 0.18s var(--ease),
-    border-color 0.18s var(--ease);
+  transition: background var(--fast) var(--ease), color var(--fast) var(--ease),
+    border-color var(--fast) var(--ease);
 }
 .icon-btn:hover {
-  color: var(--text);
-  border-color: var(--border-strong);
+  color: var(--gold-ink);
+  background: var(--gold-soft);
+  border-color: color-mix(in srgb, var(--gilt) 40%, transparent);
 }
 .icon-btn svg {
   width: 18px;
@@ -384,6 +485,10 @@ pre code {
 }
 
 @media (max-width: 720px) {
+  .nav__inner {
+    min-height: 56px;
+    padding-block: 0.5rem;
+  }
   .nav__toggle {
     display: inline-flex;
   }
@@ -394,30 +499,41 @@ pre code {
     right: 0;
     flex-direction: column;
     align-items: stretch;
-    gap: 0;
-    background: var(--surface);
+    gap: 0.125rem;
+    background-color: var(--bg);
+    background-image: var(--paper);
+    background-blend-mode: var(--paper-blend);
     border-bottom: 1px solid var(--border);
-    padding: 0.4rem var(--gutter) 0.8rem;
-    box-shadow: var(--shadow-tint);
+    padding: 0.5rem var(--gutter) 0.75rem;
+    box-shadow: var(--shadow-float);
   }
   .nav__links[hidden] {
     display: none;
   }
   .nav__links a {
-    padding: 0.7rem 0.8rem;
-    border-radius: var(--radius);
+    padding: 0.625rem 0.75rem;
+  }
+  .nav__links a[aria-current="page"] {
+    background: var(--gold-soft);
+  }
+  .nav__links a[aria-current="page"]::after {
+    left: 0;
+    right: auto;
+    top: 0.625rem;
+    bottom: 0.625rem;
+    width: 2px;
+    height: auto;
   }
 }
 
 /* --------------------------------------------------------------- footer --- */
 
 .footer {
-  margin-top: 5rem;
+  margin-top: var(--section);
   border-top: 1px solid var(--border);
-  background: var(--bg-tint);
   padding: 2.5rem 0 3rem;
-  color: var(--text-dim);
-  font-size: 0.92rem;
+  color: var(--text-faint);
+  font-size: 0.875rem;
 }
 
 .footer__inner {
@@ -430,11 +546,25 @@ pre code {
   align-items: baseline;
 }
 
+.footer__inner strong {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  color: var(--text);
+}
+
 .footer__inner nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem 1.25rem;
+  gap: 0.5rem 1.5rem;
   margin-left: auto;
+}
+.footer a {
+  color: var(--text-dim);
+  text-decoration: none;
+}
+.footer a:hover {
+  color: var(--gold-ink);
 }
 
 /* -------------------------------------------------------------- buttons --- */
@@ -444,28 +574,26 @@ pre code {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.72rem 1.35rem;
-  border-radius: 999px;
+  min-height: 44px;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--radius);
   border: 1px solid transparent;
-  font: inherit;
-  font-weight: 620;
-  font-size: 0.98rem;
-  cursor: pointer;
-  transition: transform 0.18s var(--ease), background 0.18s var(--ease),
-    border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
-}
-.btn:hover {
+  font-weight: 500;
+  font-size: 0.9375rem;
+  line-height: 1.4;
   text-decoration: none;
-  transform: translateY(-1px);
+  cursor: pointer;
+  transition: transform var(--fast) var(--ease), background var(--fast) var(--ease),
+    border-color var(--fast) var(--ease), color var(--fast) var(--ease);
 }
 .btn:active {
-  transform: translateY(0);
+  transform: scale(0.98);
 }
 
 .btn--primary {
   background: var(--accent);
   color: var(--on-accent);
-  box-shadow: var(--shadow-tint);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), var(--shadow);
 }
 .btn--primary:hover {
   background: var(--accent-hover);
@@ -473,24 +601,14 @@ pre code {
 }
 
 .btn--ghost {
-  background: var(--surface);
+  background: transparent;
   border-color: var(--border-strong);
   color: var(--text);
 }
 .btn--ghost:hover {
-  background: var(--surface-2);
-  color: var(--text);
-}
-
-.btn--onhero {
-  background: rgb(255 255 255 / 0.14);
-  border-color: rgb(255 255 255 / 0.28);
-  color: var(--hero-ink);
-  backdrop-filter: blur(8px);
-}
-.btn--onhero:hover {
-  background: rgb(255 255 255 / 0.22);
-  color: var(--hero-ink);
+  background: var(--accent-soft);
+  border-color: color-mix(in srgb, var(--accent) 40%, transparent);
+  color: var(--accent);
 }
 
 .btn[disabled],
@@ -503,27 +621,46 @@ pre code {
 /* ---------------------------------------------------------------- shared -- */
 
 .section {
-  padding: clamp(3rem, 8vw, 5.5rem) 0;
+  padding: var(--section) 0;
 }
 
 .section__head {
-  max-width: 46rem;
-  margin-bottom: 2.5rem;
+  max-width: 40rem;
+  margin-bottom: 3rem;
+}
+.section__head h2 {
+  margin-bottom: 1rem;
 }
 .section__head p {
   color: var(--text-dim);
-  font-size: 1.06rem;
+  font-size: 1.125rem;
   margin-bottom: 0;
 }
 
-.eyebrow {
-  display: inline-block;
-  font-size: 0.78rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 0.6rem;
+/* A head set as two columns: the heading on the left, its paragraph on the
+ * right, both on one baseline. */
+.section__head--split {
+  max-width: none;
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: 1rem clamp(2rem, 6vw, 5rem);
+  align-items: baseline;
+}
+.section__head--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section__head--split h2 {
+  margin: 0;
+}
+.section__head--split p {
+  max-width: var(--measure);
+}
+@media (max-width: 820px) {
+  .section__head--split {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .card {
@@ -531,27 +668,50 @@ pre code {
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
   padding: 1.5rem;
-  box-shadow: var(--shadow-tint);
+  box-shadow: var(--shadow);
 }
 
 .grid {
   display: grid;
-  gap: 1.15rem;
+  gap: 1rem;
 }
 .grid--3 {
-  grid-template-columns: repeat(auto-fit, minmax(265px, 1fr));
-}
-.grid--2 {
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
 }
 
 .lede {
-  font-size: 1.15rem;
+  font-size: clamp(1.125rem, 1.8vw, 1.25rem);
+  line-height: 1.55;
   color: var(--text-dim);
 }
 
 .muted {
   color: var(--text-dim);
+}
+
+/* A quiet label for a state — the default backend, the platform you are on.
+ * Text in a hairline box, not a lozenge. */
+.badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0 0.375rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-strong);
+  color: var(--text-dim);
+  white-space: nowrap;
+  vertical-align: 0.2em;
+}
+/* Recommended, built in: the gold. */
+.badge--gold {
+  color: var(--gold-ink);
+  background: var(--gold-soft);
+  border-color: transparent;
+}
+.badge--warn {
+  color: var(--warn);
+  border-color: color-mix(in srgb, var(--warn) 40%, transparent);
 }
 
 .visually-hidden {
@@ -574,23 +734,42 @@ pre code {
 table {
   border-collapse: collapse;
   width: 100%;
-  font-size: 0.95rem;
 }
 th,
 td {
   text-align: left;
-  padding: 0.6rem 0.9rem;
+  padding: 0.75rem 1rem;
   border-bottom: 1px solid var(--border);
   white-space: nowrap;
 }
 th {
-  font-weight: 650;
-  color: var(--text-dim);
-  font-size: 0.86rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
+  font-weight: 500;
+  color: var(--text-faint);
+  font-size: 0.8125rem;
+  padding-block: 0.5rem;
+  border-bottom-color: var(--border-strong);
+}
+tbody td {
+  transition: color var(--fast) var(--ease);
+}
+tbody tr:hover td:first-child {
+  color: var(--gold-ink);
 }
 td:first-child,
 th:first-child {
   padding-left: 0;
+}
+td:last-child,
+th:last-child {
+  padding-right: 0;
+}
+.num {
+  text-align: right;
+}
+
+/* Inner pages open with a smaller title than the home page's hero. */
+.page-head h1,
+.dl-head h1 {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  margin-bottom: 1rem;
 }
