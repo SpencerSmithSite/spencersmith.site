@@ -57,7 +57,7 @@
       // refuses to install a build signed with a different key over it. Every
       // build from 2026.10.29 on carries the permanent release key.
       note:
-        "Have 2026.8.2 installed? Uninstall it first — it was signed with a " +
+        "Have 2026.8.2 installed? Uninstall it first. It was signed with a " +
         "temporary key, so Android will not update over it. This is needed once.",
       icon:
         '<path d="M5 16V9a7 7 0 0 1 14 0v7"/><path d="M3 16h18a0 0 0 0 1 0 0v2a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-2a0 0 0 0 1 0 0Z"/><path d="m7 5-1.5-2.5M17 5l1.5-2.5"/><circle cx="9" cy="11" r=".6" fill="currentColor"/><circle cx="15" cy="11" r=".6" fill="currentColor"/>',
@@ -72,7 +72,7 @@
       version: "2026.10.29",
       sha256: "d87bf940eba99f1f9ca399675db36b169119969d122d1534ca5471eb2c71b5b4",
       note:
-        "Signed but not yet notarised — on first launch, right-click the app " +
+        "Signed but not yet notarised. On first launch, right-click the app " +
         "and choose Open.",
       icon:
         '<rect x="2" y="4" width="20" height="13" rx="2"/><path d="M2 20h20"/>',
@@ -87,8 +87,8 @@
       version: "2026.10.29",
       sha256: "79d6607069aa34ec704dbfc13e6680ab8b95247ae9dccf3d530112284f0f670d",
       note:
-        "The installer is unsigned, so SmartScreen will warn on first run — " +
-        "choose More info, then Run anyway.",
+        "The installer is unsigned, so SmartScreen will warn on first run. " +
+        "Choose More info, then Run anyway.",
       icon:
         '<path d="M3 5.5 10.5 4v7.5H3zM12 3.8 21 2.5v9H12zM3 13h7.5v7L3 18.5zM12 13h9v8.5L12 20.2z"/>',
     },
@@ -152,7 +152,7 @@
 
   function icon(p) {
     return (
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" ' +
+      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" ' +
       'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' +
       p.icon +
       "</svg>"
@@ -324,7 +324,7 @@
       '<div class="platform__text">' +
       "<h3>" +
       esc(p.name) +
-      (p.id === detected ? ' <span class="pill">Your device</span>' : "") +
+      (p.id === detected ? ' <span class="badge">Your device</span>' : "") +
       "</h3>" +
       "<p>" +
       esc(p.requires) +

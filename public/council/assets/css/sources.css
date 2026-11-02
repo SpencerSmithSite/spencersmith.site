@@ -1,9 +1,8 @@
 /* Sources page — the searchable catalogue. */
 
 .page-head {
-  padding: clamp(2.5rem, 6vw, 4rem) 0 1.75rem;
+  padding: clamp(3rem, 7vw, 5rem) 0 clamp(2rem, 4vw, 3rem);
   border-bottom: 1px solid var(--border);
-  background: var(--bg-tint);
 }
 .page-head .lede {
   max-width: 46rem;
@@ -12,7 +11,6 @@
 
 /* ------------------------------------------------------------- controls -- */
 
-/* Sticky under the nav so the filters stay reachable 600 cards down. */
 /* Bounds the sticky controls below. Without it the bar's containing block is
    <main>, so it stayed pinned over the request form at the foot of the page. */
 .catalogue {
@@ -25,27 +23,25 @@
   scroll-margin-top: 5rem;
 }
 
+/* Sticky under the nav so the filters stay reachable 600 cards down. */
 .controls {
   position: sticky;
-  top: 55px;
+  top: 64px;
   z-index: 20;
-  padding: 1rem 0 0.85rem;
-  background: color-mix(in srgb, var(--bg) 88%, transparent);
-  backdrop-filter: saturate(180%) blur(14px);
-  -webkit-backdrop-filter: saturate(180%) blur(14px);
+  padding: 1rem 0 0.75rem;
   border-bottom: 1px solid var(--border);
 }
 
 .searchbar {
   display: flex;
   align-items: center;
-  gap: 0.6rem;
-  background: var(--surface);
+  gap: 0.625rem;
+  min-height: 44px;
+  background: var(--surface-solid);
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  padding: 0.15rem 0.6rem 0.15rem 1rem;
-  box-shadow: var(--shadow-tint);
-  transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+  border-radius: var(--radius);
+  padding: 0 0.5rem 0 0.875rem;
+  transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
 .searchbar:focus-within {
   border-color: var(--accent);
@@ -65,7 +61,7 @@
   font: inherit;
   font-size: 1rem;
   color: var(--text);
-  padding: 0.7rem 0;
+  padding: 0.625rem 0;
   outline: none;
 }
 .searchbar input::placeholder {
@@ -80,20 +76,26 @@
   flex: none;
   display: grid;
   place-items: center;
-  width: 30px;
-  height: 30px;
+  width: 28px;
+  height: 28px;
   border: 0;
-  border-radius: 999px;
-  background: var(--accent-soft);
+  border-radius: var(--radius-sm);
+  background: var(--surface-2);
   color: var(--text-dim);
   cursor: pointer;
+  transition: color var(--fast) var(--ease);
+}
+/* `display: grid` above would otherwise beat the `hidden` attribute and show
+ * the button over an empty field. */
+.searchbar__clear[hidden] {
+  display: none;
 }
 .searchbar__clear:hover {
   color: var(--text);
 }
 .searchbar__clear svg {
-  width: 15px;
-  height: 15px;
+  width: 16px;
+  height: 16px;
   color: inherit;
 }
 
@@ -101,38 +103,40 @@
   display: flex;
   flex-wrap: wrap;
   align-items: end;
-  gap: 0.6rem;
-  margin-top: 0.85rem;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
 }
 
 .select {
   display: flex;
   flex-direction: column;
-  gap: 0.2rem;
-  font-size: 0.72rem;
-  font-weight: 650;
-  letter-spacing: 0.07em;
-  text-transform: uppercase;
+  gap: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
   color: var(--text-faint);
 }
 .select select {
   font: inherit;
-  font-size: 0.9rem;
-  font-weight: 500;
-  letter-spacing: 0;
-  text-transform: none;
+  font-size: 0.875rem;
+  font-weight: 400;
   color: var(--text);
-  background: var(--surface);
+  background: var(--surface-solid);
   border: 1px solid var(--border-strong);
-  border-radius: 999px;
-  padding: 0.42rem 0.85rem;
+  border-radius: var(--radius);
+  height: 36px;
+  padding: 0 0.75rem;
   cursor: pointer;
   max-width: 15rem;
+  transition: border-color var(--fast) var(--ease);
+}
+.select select:hover {
+  border-color: color-mix(in srgb, var(--accent) 45%, transparent);
 }
 
 .btn--sm {
-  padding: 0.42rem 1rem;
-  font-size: 0.88rem;
+  min-height: 36px;
+  padding: 0.375rem 1rem;
+  font-size: 0.875rem;
 }
 
 /* On a phone the four filters stack, and a sticky block that tall would eat
@@ -141,8 +145,6 @@
 @media (max-width: 720px) {
   .controls {
     position: static;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
   }
   .filters {
     display: grid;
@@ -165,12 +167,12 @@
   justify-content: space-between;
   gap: 0.75rem 1rem;
   flex-wrap: wrap;
-  margin-top: 0.85rem;
+  margin-top: 0.75rem;
 }
 
 .count {
   margin: 0;
-  font-size: 0.88rem;
+  font-size: 0.875rem;
   color: var(--text-dim);
   font-variant-numeric: tabular-nums;
 }
@@ -181,30 +183,35 @@
 .request-link {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  font-size: 0.88rem;
-  font-weight: 600;
+  gap: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
   white-space: nowrap;
-}
-.request-link svg {
-  width: 15px;
-  height: 15px;
-  flex: none;
+  text-decoration: none;
 }
 .request-link:hover {
   text-decoration: underline;
-  text-underline-offset: 3px;
+}
+.request-link svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
 }
 
 /* ---------------------------------------------------------------- cards -- */
 
 .cards {
   list-style: none;
-  margin: 1.75rem 0 0;
+  margin: 2rem 0 0;
   padding: 0;
   display: grid;
-  gap: 1.1rem;
-  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+}
+@media (max-width: 400px) {
+  .cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
 
 .src {
@@ -213,48 +220,54 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.35rem 1.4rem 1.15rem;
-  box-shadow: var(--shadow-tint);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow);
+  transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
+}
+/* Hovering a card warms its edge toward the gilt of its quotation rule. */
+.src:hover {
+  border-color: color-mix(in srgb, var(--gilt) 55%, transparent);
+  box-shadow: var(--shadow-float);
 }
 
+/* A work's title is set like a title, in the serif of the text itself. */
 .src__title {
-  font-size: 1.06rem;
-  font-weight: 660;
-  letter-spacing: -0.015em;
-  line-height: 1.32;
-  margin: 0 0 0.2rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.3;
+  margin: 0 0 0.25rem;
 }
 
 .src__author {
-  font-size: 0.93rem;
+  font-size: 1rem;
   color: var(--text-dim);
-  margin: 0 0 0.8rem;
+  margin: 0 0 0.75rem;
 }
 .src__dates {
   color: var(--text-faint);
+  font-variant-numeric: tabular-nums;
 }
 
 .src__tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.35rem;
-  margin-bottom: 0.9rem;
+  gap: 0.375rem;
+  margin-bottom: 1rem;
 }
 
 .tag {
-  font-size: 0.7rem;
-  font-weight: 650;
-  letter-spacing: 0.04em;
-  padding: 0.2em 0.6em;
-  border-radius: 999px;
-  background: var(--accent-soft);
-  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.5;
+  padding: 0 0.375rem;
+  border-radius: 4px;
+  background: var(--surface-2);
+  color: var(--text-dim);
   white-space: nowrap;
 }
 .tag--type {
   background: transparent;
-  border: 1px solid var(--border-strong);
-  color: var(--text-dim);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
 }
 .tag--bundled {
   background: var(--gold-soft);
@@ -262,15 +275,15 @@
 }
 
 /* The excerpt is the card's reason for existing, so it is typeset as text
- * rather than as metadata: serif, generous leading, a quotation rule. */
+ * rather than as metadata: serif, generous leading, and the gilt rule that
+ * marks a quotation everywhere on the site. */
 .src__excerpt {
-  font-family: var(--serif);
-  font-size: 0.97rem;
-  line-height: 1.62;
+  font-size: 1rem;
+  line-height: 1.6;
   color: var(--text);
   margin: 0 0 1rem;
-  padding-left: 0.9rem;
-  border-left: 2px solid var(--border-strong);
+  padding-left: 1rem;
+  border-left: 2px solid var(--gilt);
   /* Long works get long openings; clamp so the grid stays even and the card
    * stays scannable. The full text is in the app. */
   display: -webkit-box;
@@ -281,21 +294,22 @@
 }
 
 .src__meta {
-  margin-top: auto;
-  padding-top: 0.85rem;
+  font-family: var(--sans);
+  margin: auto 0 0;
+  padding-top: 0.75rem;
   border-top: 1px solid var(--border);
-  font-size: 0.82rem;
+  font-size: 0.8125rem;
   color: var(--text-dim);
   display: grid;
-  gap: 0.28rem;
+  gap: 0.25rem;
 }
 .src__meta div {
   display: flex;
-  gap: 0.45rem;
+  gap: 0.5rem;
 }
 .src__meta dt {
   flex: none;
-  min-width: 5.2rem;
+  min-width: 5.25rem;
   color: var(--text-faint);
 }
 .src__meta dd {
@@ -305,12 +319,14 @@
 }
 
 .src__foot {
+  font-family: var(--sans);
+  font-variant-numeric: lining-nums tabular-nums;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem 0.9rem;
-  margin-top: 0.85rem;
-  font-size: 0.82rem;
+  gap: 0.5rem 1rem;
+  margin-top: 0.75rem;
+  font-size: 0.8125rem;
 }
 .src__size {
   color: var(--text-faint);
@@ -318,20 +334,25 @@
 }
 .src__link {
   margin-left: auto;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .empty {
   text-align: center;
   color: var(--text-dim);
   padding: 3.5rem 1rem;
-  font-size: 1.02rem;
+  font-size: 1rem;
 }
 
 .more {
   display: flex;
   justify-content: center;
   padding: 2rem 0 0;
+}
+
+/* The rule that closes the catalogue, set apart from the last row of cards. */
+.section-gap {
+  padding-top: var(--section);
 }
 
 /* -------------------------------------------------------------- request -- */
@@ -347,6 +368,9 @@
     grid-template-columns: minmax(0, 1fr);
   }
 }
+.request h2 {
+  margin-bottom: 1.25rem;
+}
 .request p {
   color: var(--text-dim);
 }
@@ -356,8 +380,8 @@
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: var(--radius-lg);
-  padding: 1.6rem;
-  box-shadow: var(--shadow-tint);
+  padding: 1.5rem;
+  box-shadow: var(--shadow);
 }
 
 /* Zero-size clip so the off-screen input cannot widen the page. */
@@ -379,7 +403,7 @@
 .form__row {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 0.9rem;
+  gap: 1rem;
 }
 @media (max-width: 520px) {
   .form__row {
@@ -389,27 +413,27 @@
 
 .field {
   display: block;
-  margin-bottom: 0.9rem;
+  margin-bottom: 1rem;
 }
 .field > span {
   display: block;
-  font-size: 0.82rem;
-  font-weight: 620;
+  font-size: 0.875rem;
+  font-weight: 500;
   color: var(--text-dim);
-  margin-bottom: 0.3rem;
+  margin-bottom: 0.25rem;
 }
 .field input,
 .field textarea {
   width: 100%;
   font: inherit;
-  font-size: 0.95rem;
+  font-size: 0.9375rem;
   color: var(--text);
-  background: var(--surface-2);
+  background: var(--surface-solid);
   border: 1px solid var(--border-strong);
   border-radius: var(--radius);
-  padding: 0.65rem 0.85rem;
+  padding: 0.625rem 0.75rem;
   outline: none;
-  transition: border-color 0.18s var(--ease), box-shadow 0.18s var(--ease);
+  transition: border-color var(--fast) var(--ease), box-shadow var(--fast) var(--ease);
 }
 .field textarea {
   resize: vertical;
@@ -427,32 +451,18 @@
 
 .form .btn {
   width: 100%;
-  margin-top: 0.3rem;
+  margin-top: 0.25rem;
 }
 
 .form__status {
-  margin: 0.9rem 0 0;
-  font-size: 0.9rem;
+  margin: 1rem 0 0;
+  font-size: 0.875rem;
   text-align: center;
-  min-height: 1.2em;
+  min-height: 1.25em;
 }
 .form__status--ok {
-  color: #15803d;
+  color: var(--positive);
 }
 .form__status--err {
-  color: #b91c1c;
-}
-:root[data-theme="dark"] .form__status--ok {
-  color: #4ade80;
-}
-:root[data-theme="dark"] .form__status--err {
-  color: #fca5a5;
-}
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme]) .form__status--ok {
-    color: #4ade80;
-  }
-  :root:not([data-theme]) .form__status--err {
-    color: #fca5a5;
-  }
+  color: var(--negative);
 }

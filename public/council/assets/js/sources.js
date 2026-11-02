@@ -297,7 +297,7 @@
       );
 
       q.placeholder =
-        "Search " + all.length + " works by title, author or opening line…";
+        "Search " + all.length + " works by title, author or opening line";
 
       restore();
       apply();
@@ -362,7 +362,7 @@
           if (!r.ok) throw new Error();
           form.reset();
           status.className = "form__status form__status--ok";
-          status.textContent = "Sent — thank you. I read every one of these.";
+          status.textContent = "Sent, thank you. I read every one of these.";
         })
         .catch(function () {
           status.className = "form__status form__status--err";

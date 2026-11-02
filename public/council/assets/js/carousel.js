@@ -16,7 +16,7 @@
       alt: "An answer to 'Compare views on baptism', headed 'Comparison of Views on Baptism Across the Sources', quoting Augustine against the Donatists with numbered citations",
       title: "One question, every tradition",
       caption:
-        "Ask once and the answer draws on all of them — here Augustine, Aquinas and the Westminster Confession on the same question.",
+        "Ask once and the answer draws on all of them: here Augustine, Aquinas and the Westminster Confession on the same question.",
     },
     {
       src: "assets/img/screens/chat-sources.webp",
@@ -58,7 +58,7 @@
       alt: "The Library screen listing Creeds & Confessions at 8.5 MB (the app labels sizes in mebibytes) and several Bible translations, each with a description and a download button",
       title: "Take only what you need",
       caption:
-        "Thirty-one collections, from 0.7 MB to 107 MB. Nothing downloads twice, however many collections a work belongs to.",
+        "Forty-three collections, from 0.7 MB to 107 MB. Nothing downloads twice, however many collections a work belongs to.",
     },
     {
       src: "assets/img/screens/ai-backend.webp",

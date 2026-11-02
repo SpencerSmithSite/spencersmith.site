@@ -239,7 +239,14 @@ footer, it belongs outside that wrapper.
 The Council site has its own light/dark toggle, independent of the rest of the
 site. Every colour is a custom property declared twice in
 `assets/css/site.css`; nothing below those blocks names a literal colour. The
-palette comes from the app's own icon.
+palette comes from the app's own icon: the indigo is kept for buttons, and the
+gold of the cross carries links, the current page and hover states. The paper
+texture is three SVG noise tiles in `--paper`, drawn by the browser, with a
+lighter set for dark mode.
+
+The logo is `assets/img/logo.svg` (ink book, gilt cross). The nav draws the same
+paths inline so the ink follows the theme; `assets/img/favicon.svg` is the flat
+indigo tile used for the browser tab.
 
 The theme is applied by a **blocking inline script in each page's `<head>`**, not
 by the deferred `site.js`. Anything deferred runs after first paint, and a
